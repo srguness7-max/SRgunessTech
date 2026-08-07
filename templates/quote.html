@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="quote-container">
+    <h2>Proje Teklif Formu</h2>
+    <p>Hayalinizdeki projeyi detaylandırın, size özel teknolojik çözümü oluşturalım.</p>
+
+    <!-- Başarı / Hata Bildirim Kutusu -->
+    <div id="formAlert" style="display: none; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; text-align: center; font-weight: 500;"></div>
+
+    <form id="quoteForm" class="quote-form">
+        <div class="form-group">
+            <label for="name">Ad Soyad / Firma Adı</label>
+            <input type="text" id="name" name="name" required placeholder="Örn: Ahmet Yılmaz">
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-posta Adresi</label>
+            <input type="email" id="email" name="email" required placeholder="ornek@domain.com">
+        </div>
+
+        <div class="form-group">
+            <label for="project_type">Proje Türü</label>
+            <select id="project_type" name="project_type" required>
+                <option value="Gömülü Sistem / IoT">Gömülü Sistem / IoT Projesi</option>
+                <option value="Özel Web Yazılımı">Özel Web Yazılımı</option>
+                <option value="Otomasyon & Masaüstü">Otomasyon / Masaüstü Yazılımı</option>
+                <option value="Diğer">Diğer Mühendislik Projeleri</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="budget">Tahmini Bütçe (Opsiyonel)</label>
+            <input type="text" id="budget" name="budget" placeholder="Örn: 10.000 TL - 20.000 TL">
+        </div>
+
+        <div class="form-group">
+            <label for="details">Proje Detayları</label>
+            <textarea id="details" name="details" rows="5" required placeholder="Projenizden ve isteklerinizden kısaca bahsedin..."></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn-main" style="width: 100%; border: none; cursor: pointer;">Teklif Talebi Gönder</button>
+    </form>
+</section>
+
+<script>
+document.getElementById('quoteForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const alertBox = document.getElementById('formAlert');
+    const submitBtn = document.getElementById('submitBtn');
+    const formData = new FormData(this);
+
+    submitBtn.innerText = 'Gönderiliyor...';
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch("{{ url_for('quote') }}", {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+
+        alertBox.style.display = 'block';
+        if (result.success) {
+            alertBox.style.background = 'rgba(0, 243, 255, 0.15)';
+            alertBox.style.border = '1px solid var(--neon-cyan)';
+            alertBox.style.color = 'var(--neon-cyan)';
+            alertBox.innerText = '✓ Teklif talebiniz başarıyla alındı! En kısa sürede dönüş yapacağız.';
+            this.reset();
+        } else {
+            alertBox.style.background = 'rgba(255, 0, 85, 0.15)';
+            alertBox.style.border = '1px solid #ff0055';
+            alertBox.style.color = '#ff0055';
+            alertBox.innerText = 'Hata oluştu: ' + result.message;
+        }
+    } catch (err) {
+        alertBox.style.display = 'block';
+        alertBox.style.background = 'rgba(255, 0, 85, 0.15)';
+        alertBox.style.border = '1px solid #ff0055';
+        alertBox.style.color = '#ff0055';
+        alertBox.innerText = 'Bir bağlantı hatası oluştu.';
+    } finally {
+        submitBtn.innerText = 'Teklif Talebi Gönder';
+        submitBtn.disabled = false;
+    }
+});
+</script>
+{% endblock %}

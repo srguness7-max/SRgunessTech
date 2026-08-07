@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero">
+    <h1>Geleceğin Teknolojisini <br><span>Birlikte İnşa Edelim</span></h1>
+    <p>Gömülü sistemler, web yazılımları, otomasyon ve özel mühendislik çözümleri.</p>
+    <div class="hero-buttons">
+        <a href="{{ url_for('quote') }}" class="btn-main">Projeni Başlat</a>
+        <a href="#portfolio" class="btn-secondary">Portfolyoyu İncele</a>
+    </div>
+</section>
+
+<section id="portfolio" class="portfolio-section">
+    <h2>Öne Çıkan Projeler</h2>
+    <div class="cards-grid">
+        <div class="card-3d">
+            <h3>SRG-01 Otonom İHA</h3>
+            <p>Özel bilgisayar kontrollü ve yerli donanım mimarisine sahip insansız hava aracı projesi.</p>
+        </div>
+        <div class="card-3d">
+            <h3>Gömülü Sistem & IoT</h3>
+            <p>ESP32 ve Arduino tabanlı, Wi-Fi ve Python arayüzü ile uzaktan kontrol edilen araç sistemleri.</p>
+        </div>
+        <div class="card-3d">
+            <h3>Web & Otomasyon</h3>
+            <p>Python/Flask altyapısı ile geliştirilen yüksek performanslı ve interaktif dijital çözümler.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
