@@ -35,24 +35,20 @@
             background-size: 50px 50px; z-index: -1; pointer-events: none;
         }
 
-        /* NAVBAR STİLLERİ - ARKA PLANLA BÜTÜNLEŞİK & SOLA HİZALI */
+        /* NAVBAR STİLLERİ - BÜTÜNLEŞİK VE SOLA HİZALI */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 12px 3%; background: rgba(14, 23, 38, 0.95);
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             position: sticky; top: 0; z-index: 1000;
-            border-bottom: none; flex-wrap: wrap; gap: 15px;
+            border-bottom: none; gap: 15px;
         }
         
-        /* LOGO BÜYÜK, YAZIDAN BASKIN VE YAKIN */
         .logo a { display: flex; align-items: center; gap: 6px; text-decoration: none; }
         .logo-img {
             height: 96px; width: auto; object-fit: contain;
             filter: brightness(0) invert(1);
             transition: 0.3s ease;
-        }
-        .logo a:hover .logo-img {
-            transform: scale(1.03);
         }
         .logo-text {
             font-size: 32px; font-weight: 700; color: #ffffff !important; letter-spacing: 2px;
@@ -60,16 +56,15 @@
             text-shadow: none !important; margin-left: 2px;
         }
         
-        .navbar nav { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
-        .navbar nav a { color: #cbd5e1; text-decoration: none; font-size: 14px; font-weight: 600; transition: 0.3s; }
-        .navbar nav a:hover { color: #38bdf8; }
+        .nav-links { display: flex; align-items: center; gap: 18px; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; font-size: 14px; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: #38bdf8; }
         
         .btn-quote {
             background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
             color: #fff !important; padding: 10px 22px; border-radius: 30px; font-weight: 700 !important;
             box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3); transition: 0.3s !important; border: none;
         }
-        .btn-quote:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(2, 132, 199, 0.5) !important; }
         
         .nav-pay-btn {
             border: 1px solid rgba(56, 189, 248, 0.5); color: #38bdf8 !important;
@@ -77,6 +72,12 @@
             background: rgba(56, 189, 248, 0.08);
         }
         .nav-pay-btn:hover { background: #38bdf8; color: #0f172a !important; }
+
+        /* HAMBURGER MENÜ BUTONU (Masaüstünde Gizli) */
+        .hamburger-btn {
+            display: none; background: transparent; border: none; color: #38bdf8;
+            font-size: 28px; cursor: pointer; padding: 5px;
+        }
 
         /* MODAL STİLLERİ */
         .modal-overlay {
@@ -128,12 +129,21 @@
         .footer-col p, .footer-col a { color: #cbd5e1; text-decoration: none; display: block; margin-bottom: 10px; font-size: 14px; transition: 0.3s; }
         .footer-col a:hover { color: #38bdf8; }
 
-        @media (max-width: 768px) {
-            .navbar { justify-content: center; text-align: center; padding: 10px 15px; }
-            .navbar nav { justify-content: center; width: 100%; gap: 10px; }
-            .navbar nav a { font-size: 13px; }
-            .logo-img { height: 70px; }
-            .logo-text { font-size: 26px; }
+        /* MOBİL ÖZEL UYARLAMALARI */
+        @media (max-width: 900px) {
+            .navbar { padding: 10px 4%; }
+            .logo-img { height: 50px; }
+            .logo-text { font-size: 22px; }
+            .hamburger-btn { display: block; }
+            
+            .nav-links {
+                display: none; flex-direction: column; width: 100%; position: absolute;
+                top: 100%; left: 0; background: rgba(15, 23, 42, 0.98); padding: 20px;
+                border-bottom: 1px solid rgba(56, 189, 248, 0.2); gap: 15px; text-align: center;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            }
+            .nav-links.active { display: flex; }
+            
             .iban-box { flex-direction: column; text-align: center; }
             .copy-btn { width: 100%; margin-top: 8px; }
             .footer-content { flex-direction: column; text-align: center; }
@@ -148,16 +158,19 @@
                 <span class="logo-text">SRgunessTech</span>
             </a>
         </div>
-        <nav>
-            <a href="{{ url_for('index') }}">Ana Sayfa</a>
-            <a href="#services">Hizmetler</a>
-            <a href="#calculator">Bütçe Hesapla</a>
-            <a href="#portfolio">Portfolyo</a>
-            <a href="#logbook">Proje Günlüğü</a>
-            <a href="#testimonials">Yorumlar</a>
-            <a href="#faq">SSS</a>
-            <a href="javascript:void(0)" onclick="openRequestModal()" class="btn-quote">Teklif Al</a>
-            <a href="javascript:void(0)" onclick="openPaymentModal()" class="nav-pay-btn">Ödeme Yap</a>
+        
+        <button class="hamburger-btn" onclick="toggleMobileMenu()">☰</button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="{{ url_for('index') }}" onclick="closeMobileMenu()">Ana Sayfa</a>
+            <a href="#about" onclick="closeMobileMenu()">Hakkında</a>
+            <a href="#services" onclick="closeMobileMenu()">Hizmetler</a>
+            <a href="#calculator" onclick="closeMobileMenu()">Bütçe Hesapla</a>
+            <a href="#portfolio" onclick="closeMobileMenu()">Portfolyo</a>
+            <a href="#testimonials" onclick="closeMobileMenu()">Yorumlar</a>
+            <a href="#faq" onclick="closeMobileMenu()">SSS</a>
+            <a href="javascript:void(0)" onclick="closeMobileMenu(); openRequestModal();" class="btn-quote">Teklif Al</a>
+            <a href="javascript:void(0)" onclick="closeMobileMenu(); openPaymentModal();" class="nav-pay-btn">Ödeme Yap</a>
         </nav>
     </header>
 
@@ -180,10 +193,10 @@
             </div>
             <div class="footer-col">
                 <h4>Hızlı Bağlantılar</h4>
+                <a href="#about">Hakkımızda</a>
                 <a href="#services">Hizmetlerimiz</a>
                 <a href="#calculator">Bütçe Hesaplayıcı</a>
                 <a href="#portfolio">Öne Çıkan Projeler</a>
-                <a href="#logbook">Proje Günlüğü</a>
                 <a href="#testimonials">Müşteri Yorumları</a>
                 <a href="#faq">Sıkça Sorulan Sorular</a>
             </div>
@@ -251,6 +264,13 @@
     </div>
 
     <script>
+        function toggleMobileMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+        function closeMobileMenu() {
+            document.getElementById('navLinks').classList.remove('active');
+        }
+
         function openRequestModal() { document.getElementById('requestModal').style.display = 'flex'; }
         function closeRequestModal() { document.getElementById('requestModal').style.display = 'none'; }
         function openPaymentModal() { document.getElementById('paymentModal').style.display = 'flex'; }
