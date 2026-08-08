@@ -22,16 +22,11 @@
             border-bottom: 1px solid rgba(0, 210, 255, 0.1);
             flex-wrap: wrap; gap: 10px;
         }
-        .logo a {
-            font-size: 22px; font-weight: 700; color: #fff; text-decoration: none;
-            letter-spacing: 0.5px; transition: 0.3s;
-        }
+        .logo a { font-size: 22px; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 0.5px; }
+        .logo a span { color: #00d2ff; }
         
         .navbar nav { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
-        .navbar nav a {
-            color: #8a99ad; text-decoration: none;
-            font-size: 14px; font-weight: 500; transition: 0.3s;
-        }
+        .navbar nav a { color: #8a99ad; text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.3s; }
         .navbar nav a:hover { color: #00d2ff; }
         .btn-quote {
             background: #00d2ff !important; color: #0b0f19 !important;
@@ -55,38 +50,49 @@
             box-shadow: 0 0 30px rgba(0, 210, 255, 0.25); color: #fff;
             position: relative; text-align: center; max-height: 90vh; overflow-y: auto;
         }
-        .modal-close {
-            position: absolute; top: 12px; right: 18px; font-size: 24px;
-            color: #8a99ad; cursor: pointer;
-        }
+        .modal-close { position: absolute; top: 12px; right: 18px; font-size: 24px; color: #8a99ad; cursor: pointer; }
         .iban-box {
             background: #131b2e; border: 1px dashed #00d2ff; padding: 12px;
             border-radius: 8px; margin: 15px 0; display: flex;
             justify-content: space-between; align-items: center;
             font-family: monospace; font-size: 13px; color: #00d2ff; gap: 10px;
         }
-        .copy-btn {
-            background: #00d2ff; color: #0b0f19; border: none; padding: 8px 12px;
-            border-radius: 5px; font-weight: bold; cursor: pointer; shrink: 0;
-        }
+        .copy-btn { background: #00d2ff; color: #0b0f19; border: none; padding: 8px 12px; border-radius: 5px; font-weight: bold; cursor: pointer; }
         .form-group { text-align: left; margin-bottom: 12px; }
         .form-group label { display: block; margin-bottom: 5px; font-size: 12px; color: #8a99ad; }
         .form-group input, .form-group textarea {
             width: 100%; padding: 10px; background: #131b2e; border: 1px solid #1e2d4a;
             border-radius: 6px; color: #fff; font-family: inherit; font-size: 14px;
         }
-        .btn-submit {
-            width: 100%; padding: 12px; background: #25d366; color: #fff;
-            font-weight: bold; border: none; border-radius: 6px; cursor: pointer; font-size: 15px;
-        }
+        .btn-submit { width: 100%; padding: 12px; background: #25d366; color: #fff; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; font-size: 15px; }
 
-        /* MOBİL ÖZEL AYARLAR */
+        /* SABİT WHATSAPP BUTONU */
+        .fixed-wa-btn {
+            position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px;
+            background: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5); z-index: 999; text-decoration: none;
+            transition: 0.3s;
+        }
+        .fixed-wa-btn:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(37, 211, 102, 0.8); }
+        .fixed-wa-btn svg { width: 30px; height: 30px; fill: #fff; }
+
+        /* FOOTER */
+        .footer {
+            background: #070a12; border-top: 1px solid #131b2e; padding: 40px 8% 20px;
+            margin-top: 60px; text-align: center; color: #8a99ad; font-size: 14px;
+        }
+        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; margin-bottom: 30px; text-align: left; }
+        .footer-col h4 { color: #00d2ff; font-size: 16px; margin-bottom: 12px; }
+        .footer-col p, .footer-col a { color: #8a99ad; text-decoration: none; display: block; margin-bottom: 8px; font-size: 13px; }
+        .footer-col a:hover { color: #00d2ff; }
+
         @media (max-width: 768px) {
             .navbar { justify-content: center; text-align: center; padding: 12px 10px; }
             .navbar nav { justify-content: center; width: 100%; margin-top: 5px; gap: 10px; }
             .navbar nav a { font-size: 13px; }
             .iban-box { flex-direction: column; text-align: center; }
             .copy-btn { width: 100%; margin-top: 8px; }
+            .footer-content { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -97,7 +103,9 @@
         </div>
         <nav>
             <a href="{{ url_for('index') }}">Ana Sayfa</a>
+            <a href="#services">Hizmetler</a>
             <a href="#portfolio">Portfolyo</a>
+            <a href="#faq">SSS</a>
             <a href="javascript:void(0)" onclick="openRequestModal()" class="btn-quote">Teklif Al</a>
             <a href="javascript:void(0)" onclick="openPaymentModal()" class="nav-pay-btn">Ödeme Yap</a>
         </nav>
@@ -107,13 +115,46 @@
         {% block content %}{% endblock %}
     </main>
 
-    <!-- 1. WHATSAPP TEKLİF MODALI -->
+    <!-- SABİT WHATSAPP ICONU -->
+    <a href="https://wa.me/905531734971?text=Merhaba%2C%20SRgunessTech%20uzzerinden%20bilgi%20almak%20istiyorum." target="_blank" class="fixed-wa-btn" title="WhatsApp İle İletişime Geç">
+        <svg viewBox="0 0 32 32">
+            <path d="M16 2A13 13 0 0 0 4.68 21.25L3 27.5l6.43-1.65A13 13 0 1 0 16 2zm0 24a11 11 0 0 1-5.59-1.52l-.4-.24-3.8.97 1-3.68-.26-.41A11 11 0 1 1 16 26zm6-8.16c-.33-.16-1.95-.96-2.25-1.07s-.52-.16-.74.16-.86 1.07-1.05 1.29-.38.25-.71.08a9 9 0 0 1-2.63-1.62 10 10 0 0 1-1.82-2.27c-.19-.33 0-.5.15-.66s.33-.38.5-.57a2.2 2.2 0 0 0 .33-.55.6.6 0 0 0 0-.57c-.08-.16-.74-1.78-1-2.43s-.54-.54-.74-.55h-.63a1.2 1.2 0 0 0-.88.41 3.7 3.7 0 0 0-1.15 2.75 6.4 6.4 0 0 0 1.34 3.42 14.7 14.7 0 0 0 5.65 5 19 19 0 0 0 1.9.7 4.6 4.6 0 0 0 2.1.13 3.4 3.4 0 0 0 2.25-1.58 2.8 2.8 0 0 0 .2-1.58c-.08-.13-.31-.22-.64-.38z"/>
+        </svg>
+    </a>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>SRgunessTech</h4>
+                <p>Mühendislik, gömülü sistemler, IoT ve özel web yazılımları geliştirme laboratuvarı.</p>
+                <p>📍 Ankara, Türkiye</p>
+            </div>
+            <div class="footer-col">
+                <h4>Hızlı Bağlantılar</h4>
+                <a href="#services">Hizmetlerimiz</a>
+                <a href="#process">Çalışma Süreci</a>
+                <a href="#portfolio">Öne Çıkan Projeler</a>
+                <a href="#faq">Sıkça Sorulan Sorular</a>
+            </div>
+            <div class="footer-col">
+                <h4>İletişim & Destek</h4>
+                <p>📱 WhatsApp: +90 553 173 49 71</p>
+                <p>✉️ E-Posta: destek@srgunesstech.com.tr</p>
+                <a href="javascript:void(0)" onclick="openPaymentModal()" style="color: #00d2ff;">💳 Online Ödeme / IBAN</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #131b2e; padding-top: 20px;">
+            &copy; 2026 SRgunessTech. Tüm Hakları Saklıdır.
+        </div>
+    </footer>
+
+    <!-- MODALLAR (TEKLİF / IBAN / PROJE) -->
     <div id="requestModal" class="modal-overlay">
         <div class="modal-content">
             <span class="modal-close" onclick="closeRequestModal()">&times;</span>
             <h3 style="color: #00d2ff; margin-bottom: 8px;">Proje Teklif Formu</h3>
             <p style="font-size: 12px; color: #8a99ad; margin-bottom: 15px;">Projenizin detaylarını girin, doğrudan WhatsApp üzerinden detayları görüşelim.</p>
-            
             <form id="projectForm" onsubmit="submitToWhatsApp(event)">
                 <div class="form-group">
                     <label>Adınız Soyadınız / Firma</label>
@@ -136,27 +177,20 @@
         </div>
     </div>
 
-    <!-- 2. IBAN ÖDEME MODALI -->
     <div id="paymentModal" class="modal-overlay">
         <div class="modal-content">
             <span class="modal-close" onclick="closePaymentModal()">&times;</span>
             <h3 style="color: #00d2ff; margin-bottom: 8px;">SRgunessTech - Banka Bilgileri</h3>
             <p style="font-size: 13px; color: #8a99ad;">Proje ödemelerinizi aşağıdaki IBAN adresine Havale/EFT ile gönderebilirsiniz.</p>
-            
-            <div style="text-align: left; margin-top: 15px; font-size: 13px;">
-                <strong>Alıcı Adı:</strong> Seyyid Ramazan Güneş
-            </div>
-
+            <div style="text-align: left; margin-top: 15px; font-size: 13px;"><strong>Alıcı Adı:</strong> Seyyid Ramazan Güneş</div>
             <div class="iban-box">
                 <span id="ibanText">TR65 0006 2000 5330 0006 6289 70</span>
                 <button class="copy-btn" onclick="copyIBAN()">Kopyala</button>
             </div>
-
             <p style="font-size: 11px; color: #8a99ad;">* Açıklama kısmına <strong>Adınızı ve Proje Adınızı</strong> yazmayı unutmayınız.</p>
         </div>
     </div>
 
-    <!-- 3. PROJE DETAY MODALI -->
     <div id="projectDetailModal" class="modal-overlay">
         <div class="modal-content">
             <span class="modal-close" onclick="closeProjectModal()">&times;</span>
