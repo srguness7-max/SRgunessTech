@@ -7,7 +7,7 @@
     <!-- Google Search Console Doğrulama Etiketi -->
     <meta name="google-site-verification" content="BAJsoxVaHtuN_9ib_DTXRCWwUdlqNsaNoWGnZgf5n4Y" />
 
-    <!-- TAB / FAVICON SİMGESİ (DEĞİŞTİRİLMEDİ) -->
+    <!-- TAB / FAVICON SİMGESİ -->
     <link rel="icon" type="image/png" sizes="64x64" href="{{ url_for('static', filename='logo2.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='logo2.png') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='logo2.png') }}">
@@ -26,65 +26,64 @@
         body {
             margin: 0; background-color: #0e1726; color: #f1f5f9;
             font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; overflow-x: hidden;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(0, 180, 255, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
-                radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.8) 0px, transparent 100%);
-            background-attachment: fixed;
         }
 
-        body::before {
-            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-            background-size: 50px 50px; z-index: -1; pointer-events: none;
-        }
-
-        /* ÜST ARAYÜZ (TAM ŞEFFAF, YOL/ŞERİT YOK) */
+        /* BAYKAR TARZI TAM SAYDAM SIFIR NAVBAR (ÇUBUK/ŞERİT/ÇİZGİ TAMAMEN KALDIRILDI) */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 2%; background: transparent !important;
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-            position: sticky; top: 0; z-index: 1000;
-            border: none !important; gap: 15px;
+            padding: 15px 4%; 
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            position: absolute;
+            top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            border: none !important;
+            box-shadow: none !important;
         }
         
-        /* SITE İÇİ LOGO KÜÇÜLTÜLDÜ VE YAZIYLA HİZALANDI */
         .logo a { display: flex; align-items: center; gap: 8px !important; text-decoration: none; }
         .logo-img {
-            height: 65px !important; width: auto; object-fit: contain;
+            height: 60px !important; width: auto; object-fit: contain;
             filter: brightness(0) invert(1);
             transition: 0.3s ease;
         }
-        .logo a:hover .logo-img {
-            transform: scale(1.04);
-        }
+        .logo a:hover .logo-img { transform: scale(1.04); }
         .logo-text {
-            font-size: 30px; font-weight: 700; color: #ffffff !important; letter-spacing: 1.5px;
+            font-size: 28px; font-weight: 700; color: #ffffff !important; letter-spacing: 1.5px;
             font-family: 'Rajdhani', sans-serif; text-transform: uppercase;
-            text-shadow: none !important;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
-        .nav-links { display: flex; align-items: center; gap: 18px; }
-        .nav-links a { color: #cbd5e1; text-decoration: none; font-size: 14px; font-weight: 600; transition: 0.3s; }
+        .nav-links { display: flex; align-items: center; gap: 22px; }
+        .nav-links a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 600; 
+            transition: 0.3s;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+        }
         .nav-links a:hover { color: #38bdf8; }
         
         .btn-quote {
             background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
             color: #fff !important; padding: 10px 22px; border-radius: 30px; font-weight: 700 !important;
-            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3); transition: 0.3s !important; border: none;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4); transition: 0.3s !important; border: none;
+            text-shadow: none !important;
         }
-        .btn-quote:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(2, 132, 199, 0.5) !important; }
+        .btn-quote:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6) !important; }
         
         .nav-pay-btn {
-            border: 1px solid rgba(56, 189, 248, 0.5); color: #38bdf8 !important;
+            border: 1px solid rgba(255, 255, 255, 0.4); color: #ffffff !important;
             padding: 9px 20px; border-radius: 30px; font-weight: 600; transition: 0.3s;
-            background: rgba(56, 189, 248, 0.08);
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px);
+            text-shadow: none !important;
         }
-        .nav-pay-btn:hover { background: #38bdf8; color: #0f172a !important; }
+        .nav-pay-btn:hover { background: #38bdf8; border-color: #38bdf8; color: #0f172a !important; }
 
         .hamburger-btn {
-            display: none; background: transparent; border: none; color: #38bdf8;
+            display: none; background: transparent; border: none; color: #fff;
             font-size: 28px; cursor: pointer; padding: 5px;
         }
 
@@ -139,9 +138,9 @@
         .footer-col a:hover { color: #38bdf8; }
 
         @media (max-width: 900px) {
-            .navbar { padding: 10px 4%; }
+            .navbar { padding: 12px 4%; }
             .logo-img { height: 45px !important; }
-            .logo-text { font-size: 22px; }
+            .logo-text { font-size: 20px; }
             .hamburger-btn { display: block; }
             
             .nav-links {
