@@ -7,8 +7,9 @@
     <!-- Google Search Console Doğrulama Etiketi -->
     <meta name="google-site-verification" content="BAJsoxVaHtuN_9ib_DTXRCWwUdlqNsaNoWGnZgf5n4Y" />
 
-    <!-- TAB / FAVICON SİMGESİ -->
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='SRguness Logo Mavi YAZISIZ.png') }}">
+    <!-- TAB / FAVICON SİMGESİ (logo.png) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='logo.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='logo.png') }}">
 
     <title>SRgunessTech | Geleceğin Teknolojisi</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -38,7 +39,7 @@
             background-size: 50px 50px; z-index: -1; pointer-events: none;
         }
 
-        /* UYUMLU VE NET NAVBAR */
+        /* NAVBAR STİLLERİ */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 10px 3%; background: rgba(14, 23, 38, 0.85);
@@ -47,11 +48,11 @@
             border-bottom: 1px solid rgba(56, 189, 248, 0.15); gap: 15px;
         }
         
-        /* ORİJİNAL LOGO & HİZALANMIŞ YAZI */
-        .logo a { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        /* LOGO.PNG BÜYÜTÜLDÜ VE NETLEŞTİRİLDİ */
+        .logo a { display: flex; align-items: center; gap: 8px; text-decoration: none; }
         .logo-img {
-            height: 65px; width: auto; object-fit: contain;
-            filter: drop-shadow(0 0 8px rgba(0, 180, 255, 0.4));
+            height: 80px; width: auto; object-fit: contain;
+            filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
             transition: 0.3s ease;
         }
         .logo a:hover .logo-img {
@@ -137,7 +138,7 @@
 
         @media (max-width: 900px) {
             .navbar { padding: 10px 4%; }
-            .logo-img { height: 50px; }
+            .logo-img { height: 55px; }
             .logo-text { font-size: 22px; }
             .hamburger-btn { display: block; }
             
@@ -159,7 +160,7 @@
     <header class="navbar">
         <div class="logo">
             <a href="{{ url_for('index') }}">
-                <img src="{{ url_for('static', filename='SRguness Logo Mavi YAZISIZ.png') }}" alt="SRgunessTech Logo" class="logo-img">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="SRgunessTech Logo" class="logo-img">
                 <span class="logo-text">SRgunessTech</span>
             </a>
         </div>
