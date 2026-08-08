@@ -2,7 +2,6 @@
 
 {% block content %}
 <style>
-    /* HERO ALANI MOBİL UYUM */
     .hero {
         text-align: center; padding: 60px 15px 40px;
         background: radial-gradient(circle at center, rgba(0, 210, 255, 0.08) 0%, transparent 70%);
@@ -25,15 +24,39 @@
         font-weight: 600; text-decoration: none; transition: 0.3s; background: rgba(19, 27, 46, 0.5); font-size: 14px;
     }
 
-    /* PORTFOLYO MOBİL UYUM */
-    .portfolio-section { padding: 50px 5%; text-align: center; }
-    .portfolio-section h2 { font-size: 26px; margin-bottom: 30px; position: relative; display: inline-block; }
-    .portfolio-section h2::after {
+    /* SEKTÖR / BÖLÜM BAŞLIKLARI */
+    .section-title { text-align: center; font-size: 28px; margin-bottom: 40px; position: relative; }
+    .section-title::after {
         content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
         width: 50px; height: 3px; background: #00d2ff; border-radius: 2px;
     }
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    
+
+    /* HİZMETLER BÖLÜMÜ */
+    .services-section { padding: 60px 8%; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+    .service-card {
+        background: #0f172a; border: 1px solid #1e2d4a; border-radius: 10px; padding: 25px;
+        transition: 0.3s; position: relative;
+    }
+    .service-card:hover { border-color: #00d2ff; transform: translateY(-5px); box-shadow: 0 5px 20px rgba(0, 210, 255, 0.15); }
+    .service-icon { font-size: 32px; margin-bottom: 15px; display: inline-block; }
+    .service-card h3 { color: #fff; font-size: 18px; margin-bottom: 10px; }
+    .service-card p { color: #8a99ad; font-size: 13px; line-height: 1.5; }
+
+    /* ÇALIŞMA SÜRECİ */
+    .process-section { padding: 60px 8%; background: #080c16; text-align: center; }
+    .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; }
+    .process-step { background: #0f172a; border: 1px solid #1e2d4a; padding: 20px; border-radius: 10px; position: relative; }
+    .step-num {
+        width: 35px; height: 35px; background: #00d2ff; color: #0b0f19; font-weight: bold;
+        border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 15px;
+    }
+    .process-step h4 { color: #fff; margin-bottom: 8px; font-size: 16px; }
+    .process-step p { color: #8a99ad; font-size: 12px; line-height: 1.4; }
+
+    /* PORTFOLYO */
+    .portfolio-section { padding: 60px 8%; text-align: center; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
     .card-3d {
         background: #131b2e; border: 1px solid #1e2d4a; border-radius: 12px;
         padding: 25px 20px; text-align: left; cursor: pointer; transition: 0.3s;
@@ -42,29 +65,91 @@
     .card-3d p { color: #8a99ad; font-size: 14px; line-height: 1.5; margin-bottom: 15px; }
     .card-link { font-size: 13px; font-weight: 600; color: #00d2ff; display: inline-block; }
 
+    /* SSS BÖLÜMÜ */
+    .faq-section { padding: 60px 8%; max-width: 800px; margin: 0 auto; }
+    .faq-item { background: #0f172a; border: 1px solid #1e2d4a; border-radius: 8px; margin-bottom: 15px; overflow: hidden; }
+    .faq-question {
+        padding: 18px 20px; font-weight: 600; color: #fff; cursor: pointer;
+        display: flex; justify-content: space-between; align-items: center; font-size: 15px;
+    }
+    .faq-answer { padding: 0 20px 18px; color: #8a99ad; font-size: 13px; line-height: 1.5; display: none; border-top: 1px solid #131b2e; padding-top: 12px; }
+
     @media (min-width: 769px) {
         .hero { padding: 100px 20px 80px; }
         .hero h1 { font-size: 52px; }
         .hero p { font-size: 18px; }
-        .portfolio-section { padding: 80px 8%; }
-        .portfolio-section h2 { font-size: 36px; }
-        .cards-grid { gap: 30px; }
+        .section-title { font-size: 34px; }
     }
 </style>
 
 <section class="hero">
     <h1>Geleceğin Teknolojisini <br><span>Birlikte İnşa Edelim</span></h1>
-    <p>SRgunesTech bünyesinde gömülü sistemler, web yazılımları, otomasyon ve özel mühendislik çözümleri sunuyoruz.</p>
+    <p>SRgunessTech bünyesinde gömülü sistemler, web yazılımları, otomasyon ve özel mühendislik çözümleri sunuyoruz.</p>
     <div class="hero-buttons">
         <a href="javascript:void(0)" onclick="openRequestModal()" class="btn-main">Projeni Başlat</a>
         <a href="#portfolio" class="btn-secondary">Portfolyoyu İncele</a>
     </div>
 </section>
 
+<!-- HİZMETLERİMİZ -->
+<section id="services" class="services-section">
+    <h2 class="section-title">Hizmetlerimiz</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <span class="service-icon">⚡</span>
+            <h3>Gömülü Sistem & IoT</h3>
+            <p>ESP32, STM32 ve Arduino mimarilerinde Wi-Fi / Bluetooth entegrasyonlu akıllı donanım kartları ve sensör sistemleri.</p>
+        </div>
+        <div class="service-card">
+            <span class="service-icon">💻</span>
+            <h3>Özel Web Yazılım</h3>
+            <p>Python/Flask altyapısı ile yüksek performanslı, veritabanı yönetimli web siteleri, otomasyonlar ve yönetim panelleri.</p>
+        </div>
+        <div class="service-card">
+            <span class="service-icon">🛠️</span>
+            <h3>Mekanik & 3D Tasarım</h3>
+            <p>SolidWorks ortamında ürün kılıfları, donanım muhafazaları ve hassas 3D baskı odaklı prototip imalat modelleri.</p>
+        </div>
+        <div class="service-card">
+            <span class="service-icon">🚀</span>
+            <h3>Otonom Sistemler</h3>
+            <p>İHA ve İKA projelerine özel kontrol yazılımları, uzaktan komut arayüzleri ve yer istasyonu telemetri sistemleri.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ÇALIŞMA SÜRECİ -->
+<section id="process" class="process-section">
+    <h2 class="section-title">Nasıl Çalışıyoruz?</h2>
+    <div class="process-grid">
+        <div class="process-step">
+            <div class="step-num">1</div>
+            <h4>Analiz & Talep</h4>
+            <p>Proje ihtiyaçlarınızı ve teknik isterleri detaylıca inceliyoruz.</p>
+        </div>
+        <div class="process-step">
+            <div class="step-num">2</div>
+            <h4>Teklif & Mimari</h4>
+            <p>Sistem mimarisini belirleyip bütçe/zaman takvimini onayınıza sunuyoruz.</p>
+        </div>
+        <div class="process-step">
+            <div class="step-num">3</div>
+            <h4>Kodlama & Test</h4>
+            <p>Yazılım ve donanımı geliştirip tüm işlevsellik testlerinden geçiriyoruz.</p>
+        </div>
+        <div class="process-step">
+            <div class="step-num">4</div>
+            <h4>Teslimat</h4>
+            <p>Projenizi canlıya alıp tüm dokümantasyon ve kaynak kodlarıyla teslim ediyoruz.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PORTFOLYO -->
 <section id="portfolio" class="portfolio-section">
-    <h2>Öne Çıkan Projeler</h2>
+    <h2 class="section-title">Öne Çıkan Projeler</h2>
     <div class="cards-grid">
-        <div class="card-3d" onclick="openProjectDetail('SRG-01 Otonom İHA', 'SRGunesTech mühendisliği ile geliştirilen SRG-01, yerli donanım mimarisine ve bilgisayar kontrollü otonom uçuş yazılımlarına sahiptir. Telemetri verilerini anlık aktaran yer istasyonu entegrasyonu mevcuttur.')">
+        <div class="card-3d" onclick="openProjectDetail('SRG-01 Otonom İHA', 'SRgunessTech mühendisliği ile geliştirilen SRG-01, yerli donanım mimarisine ve bilgisayar kontrollü otonom uçuş yazılımlarına sahiptir. Telemetri verilerini anlık aktaran yer istasyonu entegrasyonu mevcuttur.')">
             <h3>SRG-01 Otonom İHA</h3>
             <p>Özel bilgisayar kontrollü ve yerli donanım mimarisine sahip insansız hava aracı projesi.</p>
             <span class="card-link">Detayları İncele &rarr;</span>
@@ -81,4 +166,50 @@
         </div>
     </div>
 </section>
+
+<!-- SSS (Sıkça Sorulan Sorular) -->
+<section id="faq" class="faq-section">
+    <h2 class="section-title">Sıkça Sorulan Sorular</h2>
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            Projemin kaynak kodlarını ve tasarım dosyalarını teslim ediyor musunuz?
+            <span>+</span>
+        </div>
+        <div class="faq-answer">
+            Evet, geliştirilen tüm web yazılımlarının kaynak kodları, SolidWorks çizimleri ve gömülü sistem yazılımları eksiksiz olarak müşteriye teslim edilir.
+        </div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            Proje geliştirme süreci ne kadar sürüyor?
+            <span>+</span>
+        </div>
+        <div class="faq-answer">
+            Projenin kapsamına ve donanım/yazılım karmaşıklığına bağlı olarak süreçler genellikle 3 ile 15 iş günü arasında tamamlanmaktadır.
+        </div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            Teslimat sonrası teknik destek sağlıyor musunuz?
+            <span>+</span>
+        </div>
+        <div class="faq-answer">
+            Teslimat sonrasında sistemin sorunsuz çalışması, kurulum aşamaları ve olası revizyon talepleriniz için teknik destek sunuyoruz.
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleFaq(element) {
+        var answer = element.nextElementSibling;
+        var icon = element.querySelector('span');
+        if (answer.style.display === "block") {
+            answer.style.display = "none";
+            icon.innerText = "+";
+        } else {
+            answer.style.display = "block";
+            icon.innerText = "-";
+        }
+    }
+</script>
 {% endblock %}
