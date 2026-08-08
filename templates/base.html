@@ -7,6 +7,9 @@
     <!-- Google Search Console Doğrulama Etiketi -->
     <meta name="google-site-verification" content="BAJsoxVaHtuN_9ib_DTXRCWwUdlqNsaNoWGnZgf5n4Y" />
 
+    <!-- TAB / FAVICON SİMGESİ -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+
     <title>SRgunessTech | Geleceğin Teknolojisi</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,7 +38,7 @@
             background-size: 50px 50px; z-index: -1; pointer-events: none;
         }
 
-        /* TAM ŞEFFAF TOOLBAR / NAVBAR (ALTTAN AYRILAN BLOK ŞERİT TAMAMEN KALDIRILDI) */
+        /* TAM ŞEFFAF TOOLBAR / NAVBAR */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 10px 2%; background: transparent !important;
