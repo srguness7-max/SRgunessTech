@@ -31,23 +31,23 @@
     .hero-overlay {
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
-        background: linear-gradient(180deg, rgba(14, 23, 38, 0.45) 0%, rgba(14, 23, 38, 0.55) 50%, rgba(14, 23, 38, 0.95) 100%);
+        background: linear-gradient(180deg, rgba(14, 23, 38, 0.5) 0%, rgba(14, 23, 38, 0.65) 50%, rgba(14, 23, 38, 0.98) 100%);
         z-index: -1;
     }
 
     .hero-container {
-        max-width: 900px; margin: 0 auto; position: relative; z-index: 2; margin-top: 40px;
+        max-width: 950px; margin: 0 auto; position: relative; z-index: 2; margin-top: 40px;
     }
 
     .hero-badge {
-        display: inline-block; padding: 6px 16px;
-        background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4);
+        display: inline-block; padding: 8px 18px;
+        background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35);
         color: #38bdf8; border-radius: 20px; font-size: 13px; font-weight: 600;
-        margin-bottom: 25px; backdrop-filter: blur(8px);
+        margin-bottom: 25px; backdrop-filter: blur(8px); letter-spacing: 0.5px;
     }
 
     .hero-title {
-        font-size: 52px; font-weight: 800; line-height: 1.15; margin-bottom: 20px;
+        font-size: 56px; font-weight: 800; line-height: 1.12; margin-bottom: 20px;
         color: #ffffff; font-family: 'Rajdhani', sans-serif; text-transform: uppercase;
         letter-spacing: 1px;
     }
@@ -55,39 +55,52 @@
     .hero-title span { color: #38bdf8; }
 
     .hero-subtitle {
-        font-size: 17px; color: #f1f5f9; line-height: 1.6; margin-bottom: 35px;
-        max-width: 750px; margin-left: auto; margin-right: auto;
+        font-size: 18px; color: #f1f5f9; line-height: 1.6; margin-bottom: 30px;
+        max-width: 800px; margin-left: auto; margin-right: auto;
+    }
+
+    .tech-pills {
+        display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 35px;
+        font-size: 13px; color: #94a3b8; font-weight: 600;
+    }
+    .tech-pill {
+        background: rgba(255, 255, 255, 0.06); padding: 5px 14px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);
     }
 
     .hero-btns { display: flex; gap: 15px; justify-content: center; align-items: center; flex-wrap: wrap; }
 
     .btn-primary-custom {
         background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%); color: #fff;
-        padding: 14px 32px; border-radius: 30px; font-weight: 700; text-decoration: none;
+        padding: 15px 34px; border-radius: 30px; font-weight: 700; text-decoration: none;
         box-shadow: 0 4px 20px rgba(2, 132, 199, 0.4); transition: 0.3s;
     }
     .btn-primary-custom:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(2, 132, 199, 0.6); }
 
     .btn-secondary-custom {
-        background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.3);
-        padding: 14px 32px; border-radius: 30px; font-weight: 600; text-decoration: none;
+        background: rgba(255, 255, 255, 0.08); color: #fff; border: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 15px 34px; border-radius: 30px; font-weight: 600; text-decoration: none;
         backdrop-filter: blur(8px); transition: 0.3s;
     }
-    .btn-secondary-custom:hover { background: rgba(255, 255, 255, 0.25); border-color: #38bdf8; }
+    .btn-secondary-custom:hover { background: rgba(255, 255, 255, 0.2); border-color: #38bdf8; }
 
-    .stats-container { display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap; }
-    .stat-item h3 { font-size: 36px; font-weight: 800; color: #38bdf8; margin: 0; font-family: 'Rajdhani', sans-serif; }
-    .stat-item p { font-size: 13px; color: #cbd5e1; margin: 5px 0 0; font-weight: 600; }
-
-    /* HESAPLAYICI DÜZENİ */
-    .calc-card {
-        background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(56, 189, 248, 0.2);
-        border-radius: 16px; padding: 35px; max-width: 700px; margin: 0 auto; backdrop-filter: blur(10px);
+    /* NASIL ÇALIŞIYORUZ SÜREÇ KARTLARI */
+    .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 40px; }
+    .process-card {
+        background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px; padding: 25px 20px; text-align: left; transition: 0.3s;
     }
-    .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; text-align: left; }
+    .process-card:hover { border-color: #38bdf8; transform: translateY(-4px); }
+    .process-num { font-size: 28px; font-family: 'Rajdhani', sans-serif; font-weight: 800; color: #38bdf8; margin-bottom: 10px; }
+
+    /* PROJE KAPSAM FORMU */
+    .scope-card {
+        background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(56, 189, 248, 0.25);
+        border-radius: 16px; padding: 35px; max-width: 800px; margin: 0 auto; backdrop-filter: blur(10px);
+    }
+    .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin: 25px 0; text-align: left; }
     .checkbox-item {
         background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 12px 15px; border-radius: 8px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; font-size: 14px;
+        padding: 14px 16px; border-radius: 8px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; font-size: 14px;
     }
     .checkbox-item:hover { border-color: #38bdf8; }
     .checkbox-item input { accent-color: #38bdf8; width: 18px; height: 18px; }
@@ -100,50 +113,42 @@
     }
     .portfolio-card:hover { transform: translateY(-5px); border-color: #38bdf8; box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15); }
 
-    /* YORUM VE SSS */
-    .testimonial-card, .faq-item {
+    .faq-item {
         background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255,255,255,0.08);
         border-radius: 12px; padding: 25px; margin-bottom: 15px; text-align: left;
     }
 
     @media (max-width: 768px) {
-        .hero-title { font-size: 34px; }
+        .hero-title { font-size: 36px; }
         .hero-subtitle { font-size: 15px; }
-        .stats-container { gap: 20px; }
+        .scope-card { padding: 20px; }
     }
 </style>
 
-<!-- TAM EKRAN HERO VİDEO -->
+<!-- HERO SECTION -->
 <section class="hero-section">
     <video autoplay loop muted playsinline class="hero-bg-video">
-        <source src="{{ url_for('static', filename='hero-bg.mp4') }}?v=7" type="video/mp4">
+        <source src="{{ url_for('static', filename='hero-bg.mp4') }}?v=8" type="video/mp4">
     </video>
     
     <div class="hero-overlay"></div>
 
     <div class="hero-container">
-        <div class="hero-badge">⚡ 7/24 Aktif Mühendislik & Yazılım Laboratuvarı</div>
-        <h1 class="hero-title">Geleceğin Teknolojisini<br><span>Birlikte İnşa Edelim</span></h1>
-        <p class="hero-subtitle">SRgunessTech bünyesinde gömülü sistemler, web yazılımları, otomasyon ve özel mühendislik çözümleri sunuyoruz.</p>
+        <div class="hero-badge">⚡ Fikirden Prototipe Uçtan Uca Ürün Geliştirme</div>
+        <h1 class="hero-title">Fikrinizden <span>Çalışan Ürüne</span></h1>
+        <p class="hero-subtitle">Gömülü sistemler, endüstriyel otomasyon ve özel elektronik cihazlarınızı tasarlıyor, prototipliyor ve yazılımını geliştiriyoruz.</p>
         
-        <div class="hero-btns">
-            <a href="javascript:void(0)" onclick="openRequestModal()" class="btn-primary-custom">Projeyi Başlat</a>
-            <a href="#calculator" class="btn-secondary-custom">Maliyet Hesapla</a>
+        <div class="tech-pills">
+            <span class="tech-pill">ESP32 / STM32</span>
+            <span class="tech-pill">PCB Tasarımı</span>
+            <span class="tech-pill">IoT Kontrol Panelleri</span>
+            <span class="tech-pill">SolidWorks CAD</span>
+            <span class="tech-pill">Prototip Üretim</span>
         </div>
 
-        <div class="stats-container">
-            <div class="stat-item">
-                <h3>+15</h3>
-                <p>Tamamlanan Proje</p>
-            </div>
-            <div class="stat-item">
-                <h3>%100</h3>
-                <p>Müşteri Memnuniyeti</p>
-            </div>
-            <div class="stat-item">
-                <h3>7/24</h3>
-                <p>Teknik Destek</p>
-            </div>
+        <div class="hero-btns">
+            <a href="javascript:void(0)" onclick="openRequestModal()" class="btn-primary-custom">Projenizi Anlatın ➔</a>
+            <a href="#portfolio" class="btn-secondary-custom">Çalışmalarımızı Görün</a>
         </div>
     </div>
 </section>
@@ -151,119 +156,124 @@
 <!-- SİTE İÇERİĞİ -->
 <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 60px 20px;">
 
-    <!-- HAKKIMIZDA BÖLÜMÜ -->
-    <section id="about" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
-        <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; text-align: center; margin-bottom: 20px;">Hakkımızda</h2>
-        <p style="text-align: center; max-width: 850px; margin: 0 auto; color: #cbd5e1; line-height: 1.8; font-size: 16px;">
-            SRgunessTech; savunma sanayii teknolojileri, otonom hava ve kara araçları, gömülü sistemler, endüstriyel otomasyon ve özel web yazılımları geliştirmek amacıyla Ankara merkezli kurulan yenilikçi bir teknoloji laboratuvarıdır. İleri düzey mühendislik prensipleriyle fikirlerinizi üretime ve çalışan prototiplere dönüştürüyoruz.
-        </p>
+    <!-- ÇÖZÜMLERİMİZ (HİZMETLER) -->
+    <section id="solutions" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; text-align: center; margin-bottom: 10px;">Uzmanlık Alanlarımız</h2>
+        <p style="text-align: center; color: #94a3b8; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto;">Donanım, gömülü yazılım ve mekanik tasarımı tek bir çatı altında birleştiriyoruz.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+            <div style="background: rgba(30, 41, 59, 0.5); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                <h3 style="color: #fff; margin-bottom: 15px;">🔌 Gömülü Sistemler & Firmware</h3>
+                <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">ESP32, STM32 ve mikrodenetleyiciler için C/C++ ve Python tabanlı yüksek performanslı gömülü yazılımlar ve devre tasarımları.</p>
+            </div>
+            <div style="background: rgba(30, 41, 59, 0.5); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                <h3 style="color: #fff; margin-bottom: 15px;">⚙️ Endüstriyel Otomasyon & IoT</h3>
+                <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">Sensör ağları, uzaktan veri toplama, Wi-Fi/Bluetooth haberleşme ve cihaz kontrol sistemleri entegrasyonu.</p>
+            </div>
+            <div style="background: rgba(30, 41, 59, 0.5); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                <h3 style="color: #fff; margin-bottom: 15px;">🛠️ PCB & SolidWorks Prototipleme</h3>
+                <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">Cihazlarınıza özel PCB devre tasarımı, SolidWorks 3D koruyucu kasa çizimleri ve üretime hazır prototipleme.</p>
+            </div>
+            <div style="background: rgba(30, 41, 59, 0.5); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                <h3 style="color: #fff; margin-bottom: 15px;">🌐 IoT & Cihaz Kontrol Panelleri</h3>
+                <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">Cihazlarınızın anlık verilerini izleyebileceğiniz ve uzaktan yönetebileceğiniz özel web tabanlı dashboard panelleri.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NASIL ÇALIŞIYORUZ? (MÜHENDİSLİK SÜRECİ) -->
+    <section id="process" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08); text-align: center;">
+        <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; margin-bottom: 10px;">Nasıl Çalışıyoruz?</h2>
+        <p style="color: #94a3b8; margin-bottom: 30px;">Fikrinizi çalışan bir ürüne dönüştüren 5 adımlı disiplinli geliştirme sürecimiz.</p>
+        
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="process-num">01</div>
+                <h4 style="color: #fff; margin: 0 0 8px;">Keşif & Analiz</h4>
+                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5; margin: 0;">Teknik ihtiyaçlarınızı ve sistem gereksinimlerini birlikte belirliyoruz.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-num">02</div>
+                <h4 style="color: #fff; margin: 0 0 8px;">Mimarinin Tasarımı</h4>
+                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5; margin: 0;">Elektronik devre şeması, firmware ve SolidWorks kasa mimarisini kurguluyoruz.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-num">03</div>
+                <h4 style="color: #fff; margin: 0 0 8px;">Prototipleme</h4>
+                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5; margin: 0;">PCB basımı, 3D gövde üretimi ve ilk fiziksel prototipin montajını yapıyoruz.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-num">04</div>
+                <h4 style="color: #fff; margin: 0 0 8px;">Firmware & Test</h4>
+                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5; margin: 0;">Gömülü yazılımı yükleyip sistem stres ve saha testlerini gerçekleştiriyoruz.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-num">05</div>
+                <h4 style="color: #fff; margin: 0 0 8px;">Teslim & Destek</h4>
+                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5; margin: 0;">Çalışan ürünü, kaynak kodlarını ve teknik dosyaları teslim ediyoruz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJE KAPSAM BELİRLEME FORMU -->
+    <section id="scope-form" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08); text-align: center;">
+        <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; margin-bottom: 10px;">Proje Kapsamınızı Belirleyin</h2>
+        <p style="color: #94a3b8; margin-bottom: 30px;">İhtiyacınız olan modülleri işaretleyin, mühendislik ekibimiz 24 saat içinde değerlendirsin.</p>
+        
+        <div class="scope-card">
+            <div class="checkbox-grid">
+                <label class="checkbox-item"><input type="checkbox" value="ESP32 / STM32 Firmware"> ESP32 / STM32 Yazılımı</label>
+                <label class="checkbox-item"><input type="checkbox" value="Özel PCB Tasarımı"> Özel PCB Devre Tasarımı</label>
+                <label class="checkbox-item"><input type="checkbox" value="Sensör & Otomasyon"> Sensör & Veri Toplama</label>
+                <label class="checkbox-item"><input type="checkbox" value="SolidWorks 3D Kasa"> SolidWorks 3D Kasa / Kılıf</label>
+                <label class="checkbox-item"><input type="checkbox" value="IoT Web Dashboard"> IoT & Web Kontrol Paneli</label>
+                <label class="checkbox-item"><input type="checkbox" value="Prototip İmalatı"> Tam Donanımlı Prototip</label>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px;">
+                <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 20px;">* Nihai fiyatlandırma ve süre, mühendislik ön değerlendirmesinden sonra netleşir.</p>
+                <button onclick="openRequestModal()" class="btn-primary-custom" style="cursor: pointer; border: none;">Ücretsiz Ön Görüşme Talep Et ➔</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJELER & AR-GE LABORATUVARI -->
+    <section id="portfolio" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; text-align: center; margin-bottom: 10px;">Projeler & Ar-Ge Çalışmaları</h2>
+        <p style="text-align: center; color: #94a3b8; margin-bottom: 30px;">Laboratuvarımızda geliştirdiğimiz teknik prototipler ve devam eden Ar-Ge projeleri.</p>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-card" onclick="openProjectDetail('SRG-01 Otonom İHA Projesi', 'Problem: Otonom hava araçları için kararlı yer istasyonu ve telemetri kontrolü ihtiyacı.\n\nÇözüm: Python tabanlı yer istasyonu yazılımı, otonom uçuş protokolleri ve kablosuz telemetri modülleri entegre edilerek geliştirilen Ar-Ge İHA çalışması.\n\nKullanılan Teknolojiler: Python, C++, Telemetri, CAD, Otonom Kontrol.')">
+                <span style="color: #38bdf8; font-size: 12px; font-weight: bold;">AR-GE & OTONOM SİSTEMLER</span>
+                <h3 style="color: #fff; margin: 10px 0 8px;">SRG-01 Otonom İHA Çalışması</h3>
+                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5;">Yer istasyonu telemetri kontrolü ve otonom sistem yazılımı.</p>
+            </div>
+            <div class="portfolio-card" onclick="openProjectDetail('Wi-Fi Kontrollü Robotik Araç', 'Problem: Kablosuz ağ üzerinden anlık komut işleyen düşük gecikmeli sürüş sistemi ihtiyacı.\n\nÇözüm: ESP32 mikrodenetleyici ve Python socket mimarisi üzerinden yönlendirilen akıllı robotik araç prototipi.\n\nKullanılan Teknolojiler: ESP32, Python, C++, Wi-Fi Socket.')">
+                <span style="color: #38bdf8; font-size: 12px; font-weight: bold;">GÖMÜLÜ SİSTEM & IOT</span>
+                <h3 style="color: #fff; margin: 10px 0 8px;">Wi-Fi Robotik Kontrol Sistemi</h3>
+                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5;">ESP32 ve bilgisayar tabanlı kablosuz yönlendirme.</p>
+            </div>
+            <div class="portfolio-card" onclick="openProjectDetail('SolidWorks Diagnostik Cihaz Kasası', 'Problem: Hassas elektronik kartların dış ortam koşullarından korunması ve montaj kolaylığı.\n\nÇözüm: Shell yöntemi, bağlantı bossları ve hava kanalları tasarlanarak üretilmiş özel SolidWorks 3D kasa prototipi.\n\nKullanılan Teknolojiler: SolidWorks CAD, 3D Prototipleme, Shell Yöntemi.')">
+                <span style="color: #38bdf8; font-size: 12px; font-weight: bold;">3D MEKANİK TASARIM</span>
+                <h3 style="color: #fff; margin: 10px 0 8px;">SolidWorks Koruyucu Cihaz Kasası</h3>
+                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5;">Elektronik kartlar için hassas 3D koruma ve montaj kasaları.</p>
+            </div>
+        </div>
     </section>
 
     <!-- KURUCUMUZ BÖLÜMÜ -->
     <section id="founder" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
         <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; text-align: center; margin-bottom: 30px;">Kurucumuz</h2>
         <div style="background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 16px; padding: 35px; max-width: 850px; margin: 0 auto; backdrop-filter: blur(8px); text-align: left;">
-            <div style="margin-bottom: 20px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 15px;">
-                <h3 style="color: #ffffff; margin: 0; font-size: 24px; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px;">Seyyid Ramazan Güneş</h3>
-                <span style="color: #38bdf8; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Kurucu & CEO</span>
+            <div style="margin-bottom: 20px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <div>
+                    <h3 style="color: #ffffff; margin: 0; font-size: 24px; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px;">Seyyid Ramazan Güneş</h3>
+                    <span style="color: #38bdf8; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Founder & Product Engineer</span>
+                </div>
+                <a href="#portfolio" style="color: #38bdf8; text-decoration: none; font-size: 13px; font-weight: bold; border: 1px solid #38bdf8; padding: 6px 14px; border-radius: 20px;">Geliştirilen Projeler ➔</a>
             </div>
-            <p style="color: #cbd5e1; font-size: 15px; line-height: 1.85; margin-bottom: 16px;">
-                2006 yılında Ankara'da doğan Seyyid Ramazan Güneş, teknolojiye ve mühendislik bilimlerine olan tutkusunu küçük yaşlardan itibaren somut projelere dönüştürmüştür. Lise öğrenimini <strong>Endüstriyel Otomasyon Teknolojileri</strong> alanında başarıyla tamamlayarak mekanik tasarım, elektronik devreler ve otomasyon mantığında güçlü bir pratik altyapı kazanmıştır. Akademik gelişimini ise <strong>Atatürk Üniversitesi Bilgisayar Programcılığı</strong> bünyesinde sürdürmektedir.
-            </p>
             <p style="color: #cbd5e1; font-size: 15px; line-height: 1.85; margin: 0;">
-                Gömülü sistemler (ESP32, STM32 ve mikrodenetleyici mimarileri), Python ve C/C++ tabanlı donanım sürücüleri, SolidWorks ile hassas 3D mekanik kasa tasarımları, otonom İHA yer istasyonu yazılımları ve yüksek performanslı modern web teknolojileri alanında geniş bir uzmanlığa sahiptir. Sahip olduğu vizyoner yaklaşım ve disiplinler arası mühendislik yetkinliğiyle <strong>SRgunessTech</strong> firmasını kurmuş; ar-ge, tasarım ve üretim süreçlerini bizzat sevk ve idare etmektedir.
+                Endüstriyel Otomasyon Teknolojileri altyapısı üzerine geliştirdiği gömülü sistem (ESP32/STM32), C/C++, Python donanım sürücüleri ve SolidWorks 3D mekanik tasarım yetkinliklerini <strong>SRgunessTech</strong> çatısı altında birleştirerek fikirleri çalışan gerçek ürünlere dönüştürmektedir.
             </p>
-        </div>
-    </section>
-
-    <!-- HİZMETLER BÖLÜMÜ -->
-    <section id="services" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
-        <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; text-align: center; margin-bottom: 40px;">Hizmetlerimiz</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
-            <div style="background: rgba(30, 41, 59, 0.5); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
-                <h3 style="color: #fff; margin-bottom: 15px;">🌐 Özel Web Yazılımı</h3>
-                <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">Python, Flask ve modern ön yüz mimarileriyle hızlı, güvenli ve kurumsal web platformları geliştirme.</p>
-            </div>
-            <div style="background: rgba(30, 41, 59, 0.5); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
-                <h3 style="color: #fff; margin-bottom: 15px;">🔌 Gömülü Sistemler & IoT</h3>
-                <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">ESP32, STM32 ve mikrodenetleyiciler ile akıllı cihazlar, sensör ağları ve uzaktan kontrol sistemleri.</p>
-            </div>
-            <div style="background: rgba(30, 41, 59, 0.5); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
-                <h3 style="color: #fff; margin-bottom: 15px;">🛠️ 3D Tasarım & CAD</h3>
-                <p style="color: #94a3b8; font-size: 14px; line-height: 1.6;">SolidWorks ile mekanik kutu/kasa tasarımları, prototipleme ve üretime uygun 3D çizimler.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- İNTERAKTİF BÜTÇE HESAPLAYICI -->
-    <section id="calculator" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08); text-align: center;">
-        <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; margin-bottom: 10px;">Bütçe Hesaplayıcı</h2>
-        <p style="color: #94a3b8; margin-bottom: 30px;">İhtiyacınız olan modülleri seçerek tahmini proje bütçenizi anında hesaplayın.</p>
-        
-        <div class="calc-card">
-            <div class="checkbox-grid">
-                <label class="checkbox-item">
-                    <input type="checkbox" value="3500" onchange="calculateBudget()"> Web Yazılımı / Tanıtım Sitesi (3.500 TL)
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" value="5000" onchange="calculateBudget()"> Yönetim Paneli & Veritabanı (5.000 TL)
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" value="4500" onchange="calculateBudget()"> Gömülü Sistem & Wi-Fi Kontrol (4.500 TL)
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" value="2500" onchange="calculateBudget()"> SolidWorks 3D Kasa Tasarımı (2.500 TL)
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" value="6000" onchange="calculateBudget()"> Otonom Sistem / Telemetri (6.000 TL)
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" value="2000" onchange="calculateBudget()"> Özel Domain & Sunucu Kurulumu (2.000 TL)
-                </label>
-            </div>
-            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px;">
-                <h3 style="color: #fff; margin: 0;">Tahmini Toplam Tutar: <span id="totalPrice" style="color: #38bdf8; font-size: 28px; font-family: 'Rajdhani', sans-serif;">0 TL</span></h3>
-                <button onclick="openRequestModalWithBudget()" class="btn-primary-custom" style="margin-top: 20px; cursor: pointer; border: none;">Bu Bütçeyle Teklif Al</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- PORTFOLYO BÖLÜMÜ -->
-    <section id="portfolio" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
-        <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; text-align: center; margin-bottom: 10px;">Öne Çıkan Projeler</h2>
-        <p style="text-align: center; color: #94a3b8; margin-bottom: 30px;">Ar-Ge laboratuvarımızda geliştirdiğimiz bazı teknik çalışmalar.</p>
-        
-        <div class="portfolio-grid">
-            <div class="portfolio-card" onclick="openProjectDetail('SRG-01 Otonom İHA Projesi', 'Python tabanlı yer istasyonu yazılımı, otonom uçuş protokolleri ve telemetri veri aktarımı entegre edilmiş insansız hava aracı projesi.')">
-                <span style="color: #38bdf8; font-size: 12px; font-weight: bold;">HAVACILIK & OTONOM</span>
-                <h3 style="color: #fff; margin: 10px 0 8px;">SRG-01 Otonom İHA</h3>
-                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5;">Yer istasyonu telemetri kontrolü ve otonom sistemler.</p>
-            </div>
-            <div class="portfolio-card" onclick="openProjectDetail('Python & ESP32 Wi-Fi Araç Kontrolü', 'ESP32 mikrodenetleyici ve Python socket iletişimi üzerinden anlık komut alan, özel yönlandirme mekanizmalı RC araç.')">
-                <span style="color: #38bdf8; font-size: 12px; font-weight: bold;">GÖMÜLÜ SİSTEM & IOT</span>
-                <h3 style="color: #fff; margin: 10px 0 8px;">Wi-Fi Robotik Araç</h3>
-                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5;">ESP32 ve bilgisayar tabanlı kablosuz yönlendirme.</p>
-            </div>
-            <div class="portfolio-card" onclick="openProjectDetail('SolidWorks Koruyucu Cihaz Kılıfı', 'Elektronik kartlar için Shell yöntemi, bağlantı bossları ve hava kanalları tasarlanarak üretilmiş özel SolidWorks 3D kasası.')">
-                <span style="color: #38bdf8; font-size: 12px; font-weight: bold;">3D TASARIM & CAD</span>
-                <h3 style="color: #fff; margin: 10px 0 8px;">SolidWorks Diagnostik Kasa</h3>
-                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5;">Cihazlar için özel hassas 3D koruma kutuları.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- MÜŞTERİ YORUMLARI -->
-    <section id="testimonials" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
-        <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; text-align: center; margin-bottom: 30px;">Müşteri Yorumları</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-            <div class="testimonial-card">
-                <p style="color: #cbd5e1; font-style: italic; font-size: 14px; line-height: 1.6;">"Gömülü sistem projemiz için hızlı ve sorunsuz bir iletişim sağladık. İstediğimiz kart tasarımını tam zamanında teslim aldık."</p>
-                <div style="color: #38bdf8; font-weight: bold; margin-top: 15px; font-size: 13px;">- Ahmet K. / Mühendislik Danışmanlığı</div>
-            </div>
-            <div class="testimonial-card">
-                <p style="color: #cbd5e1; font-style: italic; font-size: 14px; line-height: 1.6;">"Web sitemizin Render ve DNS kurulumlarını saatler içinde tamamladılar. İletişimleri gayet net ve profesyonel."</p>
-                <div style="color: #38bdf8; font-weight: bold; margin-top: 15px; font-size: 13px;">- Selin Y. / Dijital Yayıncılık</div>
-            </div>
         </div>
     </section>
 
@@ -272,36 +282,15 @@
         <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; text-align: center; margin-bottom: 30px;">Sıkça Sorulan Sorular</h2>
         <div style="max-width: 800px; margin: 0 auto;">
             <div class="faq-item">
-                <h4 style="color: #fff; margin: 0 0 10px;">❓ Proje teslim süreleriniz ne kadardır?</h4>
-                <p style="color: #94a3b8; font-size: 14px; margin: 0;">Projenin kapsamına göre değişmekle birlikte standart web yazılımları 3-5 gün, gömülü sistem prototipleri 1-2 hafta içinde teslim edilir.</p>
+                <h4 style="color: #fff; margin: 0 0 10px;">❓ Süreç nasıl başlıyor?</h4>
+                <p style="color: #94a3b8; font-size: 14px; margin: 0;">"Projeni Anlat" butonu üzerinden talebinizi ilettiğinizde, 24 saat içinde mühendislik ön değerlendirmesini yapıp size dönüş sağlıyoruz.</p>
             </div>
             <div class="faq-item">
-                <h4 style="color: #fff; margin: 0 0 10px;">❓ Ödemeyi nasıl yapabilirim?</h4>
-                <p style="color: #94a3b8; font-size: 14px; margin: 0;">Menüdeki "Ödeme Yap" butonundan resmi banka IBAN adresimize Havale/EFT yapabilirsiniz.</p>
+                <h4 style="color: #fff; margin: 0 0 10px;">❓ Hem donanım hem yazılıımı beraber mi yapıyorsunuz?</h4>
+                <p style="color: #94a3b8; font-size: 14px; margin: 0;">Evet. PCB tasarımı, gömülü firmware yazılımı, 3D kasa çizimi ve gerekirse web kontrol panelini tek elden entegre olarak geliştiriyoruz.</p>
             </div>
         </div>
     </section>
 
 </div>
-
-<script>
-    function calculateBudget() {
-        var checkboxes = document.querySelectorAll('.checkbox-item input[type="checkbox"]');
-        var total = 0;
-        checkboxes.forEach(function(cb) {
-            if (cb.checked) {
-                total += parseInt(cb.value);
-            }
-        });
-        document.getElementById('totalPrice').innerText = total.toLocaleString('tr-TR') + ' TL';
-    }
-
-    function openRequestModalWithBudget() {
-        var total = document.getElementById('totalPrice').innerText;
-        openRequestModal();
-        if (total !== '0 TL') {
-            document.getElementById('reqBudget').value = total;
-        }
-    }
-</script>
 {% endblock %}
