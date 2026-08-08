@@ -28,24 +28,30 @@
             font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; overflow-x: hidden;
         }
 
-        /* BAYKAR TARZI TAM ŞEFFAF NAVBAR */
+        /* KAYDIRDIKÇA EN ÜSTTE SABİT KALAN (STICKY) ŞEFFAF NAVBAR */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 4%; 
-            background: transparent !important;
-            position: absolute; top: 0; left: 0; width: 100%;
-            z-index: 1000; border: none !important; box-shadow: none !important;
+            padding: 12px 4%; 
+            background: rgba(14, 23, 38, 0.6) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            position: fixed !important; 
+            top: 0; left: 0; width: 100%;
+            z-index: 1000; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+            transition: all 0.3s ease;
         }
         
         .logo a { display: flex; align-items: center; gap: 8px !important; text-decoration: none; }
         .logo-img {
-            height: 65px !important; width: auto; object-fit: contain;
+            height: 60px !important; width: auto; object-fit: contain;
             filter: brightness(0) invert(1);
             transition: 0.3s ease;
         }
         .logo a:hover .logo-img { transform: scale(1.04); }
         
-        /* BEMBEYAZ, İNCE VE UZUN YAZI */
+        /* BEMBEYAZ, İNCE VE UZUN FONT */
         .logo-text {
             font-size: 34px !important; font-weight: 600 !important; color: #ffffff !important;
             letter-spacing: 2px !important; font-family: 'Rajdhani', sans-serif !important;
@@ -128,7 +134,7 @@
         .footer-col a:hover { color: #38bdf8; }
 
         @media (max-width: 900px) {
-            .navbar { padding: 12px 4%; }
+            .navbar { padding: 10px 4%; }
             .logo-img { height: 45px !important; }
             .logo-text { font-size: 24px !important; }
             .hamburger-btn { display: block; }
@@ -160,7 +166,8 @@
 
         <nav class="nav-links" id="navLinks">
             <a href="{{ url_for('index') }}" onclick="closeMobileMenu()">Ana Sayfa</a>
-            <a href="#about" onclick="closeMobileMenu()">Hakkında</a>
+            <a href="#about" onclick="closeMobileMenu()">Hakkımda</a>
+            <a href="#founder" onclick="closeMobileMenu()">Kurucumuz</a>
             <a href="#services" onclick="closeMobileMenu()">Hizmetler</a>
             <a href="#calculator" onclick="closeMobileMenu()">Bütçe Hesapla</a>
             <a href="#portfolio" onclick="closeMobileMenu()">Portfolyo</a>
@@ -191,6 +198,7 @@
             <div class="footer-col">
                 <h4>Hızlı Bağlantılar</h4>
                 <a href="#about">Hakkımızda</a>
+                <a href="#founder">Kurucumuz</a>
                 <a href="#services">Hizmetlerimiz</a>
                 <a href="#calculator">Bütçe Hesaplayıcı</a>
                 <a href="#portfolio">Öne Çıkan Projeler</a>
