@@ -10,104 +10,88 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
+        html { scroll-behavior: smooth; }
+        body { margin: 0; background-color: #0b0f19; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        /* NAVBAR STİLLERİ */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 8%; background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(0, 210, 255, 0.1);
         }
+        .logo a {
+            font-size: 24px; font-weight: 700; color: #fff; text-decoration: none;
+            letter-spacing: 0.5px; transition: 0.3s;
+        }
+        .logo a span { color: #00d2ff; }
+        .logo a:hover { text-shadow: 0 0 10px rgba(0, 210, 255, 0.6); }
+        .navbar nav a {
+            color: #8a99ad; text-decoration: none; margin-left: 25px;
+            font-size: 15px; font-weight: 500; transition: 0.3s;
+        }
+        .navbar nav a:hover { color: #00d2ff; }
+        .btn-quote {
+            background: #00d2ff !important; color: #0b0f19 !important;
+            padding: 8px 16px; border-radius: 6px; font-weight: 600 !important;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.3); transition: 0.3s !important;
+        }
+        .btn-quote:hover { transform: translateY(-2px); box-shadow: 0 0 25px rgba(0, 210, 255, 0.6) !important; }
+        .nav-pay-btn {
+            border: 1px solid #00d2ff; color: #00d2ff !important;
+            padding: 7px 15px; border-radius: 6px; font-weight: 600; transition: 0.3s;
+        }
+        .nav-pay-btn:hover { background: #00d2ff; color: #0b0f19 !important; box-shadow: 0 0 15px rgba(0, 210, 255, 0.4); }
+
+        /* MODAL STİLLERİ */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
+            z-index: 9999; justify-content: center; align-items: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .modal-content {
-            background: #0b0f19;
-            border: 1px solid #00d2ff;
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
-            color: #fff;
-            position: relative;
-            text-align: center;
-            font-family: 'Inter', sans-serif;
+            background: #0b0f19; border: 1px solid #00d2ff; border-radius: 12px;
+            padding: 30px; max-width: 500px; width: 90%;
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.25); color: #fff;
+            position: relative; text-align: center;
         }
         .modal-close {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 24px;
-            color: #8a99ad;
-            cursor: pointer;
+            position: absolute; top: 15px; right: 20px; font-size: 24px;
+            color: #8a99ad; cursor: pointer; transition: 0.2s;
         }
+        .modal-close:hover { color: #00d2ff; }
         .iban-box {
-            background: #131b2e;
-            border: 1px dashed #00d2ff;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: monospace;
-            font-size: 15px;
-            color: #00d2ff;
+            background: #131b2e; border: 1px dashed #00d2ff; padding: 15px;
+            border-radius: 8px; margin: 20px 0; display: flex;
+            justify-content: space-between; align-items: center;
+            font-family: monospace; font-size: 15px; color: #00d2ff;
         }
         .copy-btn {
-            background: #00d2ff;
-            color: #0b0f19;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
+            background: #00d2ff; color: #0b0f19; border: none; padding: 8px 12px;
+            border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.2s;
         }
         .copy-btn:hover { background: #0099cc; color: #fff; }
         .form-group { text-align: left; margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; font-size: 13px; color: #8a99ad; }
         .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            background: #131b2e;
-            border: 1px solid #1e2d4a;
-            border-radius: 6px;
-            color: #fff;
-            box-sizing: border-box;
-            font-family: inherit;
+            width: 100%; padding: 10px; background: #131b2e; border: 1px solid #1e2d4a;
+            border-radius: 6px; color: #fff; box-sizing: border-box; font-family: inherit;
         }
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: #00d2ff;
-        }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #00d2ff; }
         .btn-submit {
-            width: 100%;
-            padding: 12px;
-            background: #25d366;
-            color: #fff;
-            font-weight: bold;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 15px;
-            transition: 0.2s;
+            width: 100%; padding: 12px; background: #25d366; color: #fff;
+            font-weight: bold; border: none; border-radius: 6px; cursor: pointer;
+            font-size: 15px; transition: 0.3s;
         }
-        .btn-submit:hover { background: #1ebc57; }
-        .nav-pay-btn {
-            background: transparent;
-            border: 1px solid #00d2ff;
-            color: #00d2ff !important;
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-weight: 600;
-        }
-        .nav-pay-btn:hover { background: #00d2ff; color: #0b0f19 !important; }
+        .btn-submit:hover { background: #1ebc57; box-shadow: 0 0 15px rgba(37, 211, 102, 0.4); }
     </style>
 </head>
 <body>
     <header class="navbar">
         <div class="logo">
-            <a href="{{ url_for('index') }}">SRgunessTech</a>
+            <a href="{{ url_for('index') }}">SRGunesTech</a>
         </div>
         <nav>
             <a href="{{ url_for('index') }}">Ana Sayfa</a>
@@ -121,7 +105,7 @@
         {% block content %}{% endblock %}
     </main>
 
-    <!-- 1. PROJE TALEP/TEKLİF MODALI (WHATSAPP ENTEGRELİ) -->
+    <!-- 1. WHATSAPP TEKLİF MODALI -->
     <div id="requestModal" class="modal-overlay">
         <div class="modal-content">
             <span class="modal-close" onclick="closeRequestModal()">&times;</span>
@@ -150,11 +134,11 @@
         </div>
     </div>
 
-    <!-- 2. BANKA / IBAN ÖDEME MODALI -->
+    <!-- 2. IBAN ÖDEME MODALI -->
     <div id="paymentModal" class="modal-overlay">
         <div class="modal-content">
             <span class="modal-close" onclick="closePaymentModal()">&times;</span>
-            <h3 style="color: #00d2ff; margin-bottom: 10px;">SRGüneş Tech - Banka Bilgileri</h3>
+            <h3 style="color: #00d2ff; margin-bottom: 10px;">SRGunesTech - Banka Bilgileri</h3>
             <p style="font-size: 14px; color: #8a99ad;">Anlaşmaya vardığımız proje ödemelerinizi aşağıdaki IBAN adresine Havale/EFT ile gönderebilirsiniz.</p>
             
             <div style="text-align: left; margin-top: 15px; font-size: 14px;">
@@ -170,24 +154,35 @@
         </div>
     </div>
 
+    <!-- 3. PROJE DETAY MODALI -->
+    <div id="projectDetailModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeProjectModal()">&times;</span>
+            <h3 id="projectTitle" style="color: #00d2ff; margin-bottom: 10px;"></h3>
+            <p id="projectDescription" style="font-size: 14px; color: #c5d1e0; line-height: 1.6; text-align: left; margin: 20px 0;"></p>
+            <button class="copy-btn" style="width: 100%; padding: 10px;" onclick="closeProjectModal(); openRequestModal();">Bu Projeden Teklif Al</button>
+        </div>
+    </div>
+
     <script>
-        function openRequestModal() {
-            document.getElementById('requestModal').style.display = 'flex';
+        function openRequestModal() { document.getElementById('requestModal').style.display = 'flex'; }
+        function closeRequestModal() { document.getElementById('requestModal').style.display = 'none'; }
+        function openPaymentModal() { document.getElementById('paymentModal').style.display = 'flex'; }
+        function closePaymentModal() { document.getElementById('paymentModal').style.display = 'none'; }
+        function closeProjectModal() { document.getElementById('projectDetailModal').style.display = 'none'; }
+        
+        function openProjectDetail(title, desc) {
+            document.getElementById('projectTitle').innerText = title;
+            document.getElementById('projectDescription').innerText = desc;
+            document.getElementById('projectDetailModal').style.display = 'flex';
         }
-        function closeRequestModal() {
-            document.getElementById('requestModal').style.display = 'none';
-        }
-        function openPaymentModal() {
-            document.getElementById('paymentModal').style.display = 'flex';
-        }
-        function closePaymentModal() {
-            document.getElementById('paymentModal').style.display = 'none';
-        }
+
         function copyIBAN() {
             var iban = document.getElementById('ibanText').innerText;
             navigator.clipboard.writeText(iban);
             alert('IBAN adresi panoya kopyalandı!');
         }
+
         function submitToWhatsApp(e) {
             e.preventDefault();
             var phone = "905531734971";
