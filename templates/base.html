@@ -28,18 +28,17 @@
             font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; overflow-x: hidden;
         }
 
-        /* KAYDIRDIKÇA EN ÜSTTE SABİT KALAN (STICKY) ŞEFFAF NAVBAR */
+        /* HAFİF & ÇOK DAHA ŞEFFAF STICKY NAVBAR */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 12px 4%; 
-            background: rgba(14, 23, 38, 0.6) !important;
-            backdrop-filter: blur(12px) !important;
-            -webkit-backdrop-filter: blur(12px) !important;
+            background: rgba(14, 23, 38, 0.25) !important;
+            backdrop-filter: blur(3px) !important;
+            -webkit-backdrop-filter: blur(3px) !important;
             position: fixed !important; 
             top: 0; left: 0; width: 100%;
             z-index: 1000; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
             transition: all 0.3s ease;
         }
         
@@ -51,7 +50,7 @@
         }
         .logo a:hover .logo-img { transform: scale(1.04); }
         
-        /* BEMBEYAZ, İNCE VE UZUN FONT */
+        /* BEMBEYAZ, İNCE VE UZUN YAZI */
         .logo-text {
             font-size: 34px !important; font-weight: 600 !important; color: #ffffff !important;
             letter-spacing: 2px !important; font-family: 'Rajdhani', sans-serif !important;
@@ -61,6 +60,7 @@
         .nav-links { display: flex; align-items: center; gap: 20px; }
         .nav-links a { 
             color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 600; transition: 0.3s;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
         .nav-links a:hover { color: #38bdf8; }
         
@@ -68,6 +68,7 @@
             background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
             color: #fff !important; padding: 10px 22px; border-radius: 30px; font-weight: 700 !important;
             box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4); transition: 0.3s !important; border: none;
+            text-shadow: none !important;
         }
         .btn-quote:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6) !important; }
         
@@ -75,6 +76,7 @@
             border: 1px solid rgba(255, 255, 255, 0.4); color: #ffffff !important;
             padding: 9px 20px; border-radius: 30px; font-weight: 600; transition: 0.3s;
             background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px);
+            text-shadow: none !important;
         }
         .nav-pay-btn:hover { background: #38bdf8; border-color: #38bdf8; color: #0f172a !important; }
 
@@ -166,7 +168,7 @@
 
         <nav class="nav-links" id="navLinks">
             <a href="{{ url_for('index') }}" onclick="closeMobileMenu()">Ana Sayfa</a>
-            <a href="#about" onclick="closeMobileMenu()">Hakkımda</a>
+            <a href="#about" onclick="closeMobileMenu()">Hakkımızda</a>
             <a href="#founder" onclick="closeMobileMenu()">Kurucumuz</a>
             <a href="#services" onclick="closeMobileMenu()">Hizmetler</a>
             <a href="#calculator" onclick="closeMobileMenu()">Bütçe Hesapla</a>
