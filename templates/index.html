@@ -2,65 +2,54 @@
 
 {% block content %}
 <style>
-    /* HERO ALANI ANİMASYONLARI */
+    /* HERO ALANI MOBİL UYUM */
     .hero {
-        text-align: center; padding: 100px 20px 80px;
+        text-align: center; padding: 60px 15px 40px;
         background: radial-gradient(circle at center, rgba(0, 210, 255, 0.08) 0%, transparent 70%);
-        animation: fadeInUp 0.8s ease-out;
     }
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .hero h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
+    .hero h1 { font-size: 32px; font-weight: 700; margin-bottom: 15px; line-height: 1.25; }
     .hero h1 span {
         background: linear-gradient(90deg, #00d2ff, #0072ff);
         -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .hero p { font-size: 18px; color: #8a99ad; max-width: 600px; margin: 0 auto 35px; }
-    .hero-buttons { display: flex; justify-content: center; gap: 20px; }
+    .hero p { font-size: 15px; color: #8a99ad; max-width: 600px; margin: 0 auto 25px; line-height: 1.5; }
+    .hero-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
     
     .btn-main {
-        background: #00d2ff; color: #0b0f19; padding: 14px 28px; border-radius: 8px;
-        font-weight: 700; text-decoration: none; transition: 0.3s;
-        box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+        background: #00d2ff; color: #0b0f19; padding: 12px 22px; border-radius: 8px;
+        font-weight: 700; text-decoration: none; transition: 0.3s; font-size: 14px;
+        box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
     }
-    .btn-main:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(0, 210, 255, 0.7); }
-    
     .btn-secondary {
-        border: 1px solid #1e2d4a; color: #fff; padding: 14px 28px; border-radius: 8px;
-        font-weight: 600; text-decoration: none; transition: 0.3s; background: rgba(19, 27, 46, 0.5);
+        border: 1px solid #1e2d4a; color: #fff; padding: 12px 22px; border-radius: 8px;
+        font-weight: 600; text-decoration: none; transition: 0.3s; background: rgba(19, 27, 46, 0.5); font-size: 14px;
     }
-    .btn-secondary:hover { border-color: #00d2ff; color: #00d2ff; transform: translateY(-3px); }
 
-    /* PORTFOLYO VE KARTLAR */
-    .portfolio-section { padding: 80px 8%; text-align: center; }
-    .portfolio-section h2 { font-size: 36px; margin-bottom: 50px; position: relative; display: inline-block; }
+    /* PORTFOLYO MOBİL UYUM */
+    .portfolio-section { padding: 50px 5%; text-align: center; }
+    .portfolio-section h2 { font-size: 26px; margin-bottom: 30px; position: relative; display: inline-block; }
     .portfolio-section h2::after {
-        content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
-        width: 60px; height: 3px; background: #00d2ff; border-radius: 2px;
+        content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+        width: 50px; height: 3px; background: #00d2ff; border-radius: 2px;
     }
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     
     .card-3d {
         background: #131b2e; border: 1px solid #1e2d4a; border-radius: 12px;
-        padding: 35px 25px; text-align: left; cursor: pointer; transition: 0.4s ease;
-        position: relative; overflow: hidden;
+        padding: 25px 20px; text-align: left; cursor: pointer; transition: 0.3s;
     }
-    .card-3d::before {
-        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
-        background: linear-gradient(90deg, transparent, #00d2ff, transparent);
-        opacity: 0; transition: 0.4s;
+    .card-3d h3 { font-size: 19px; color: #00d2ff; margin-bottom: 10px; }
+    .card-3d p { color: #8a99ad; font-size: 14px; line-height: 1.5; margin-bottom: 15px; }
+    .card-link { font-size: 13px; font-weight: 600; color: #00d2ff; display: inline-block; }
+
+    @media (min-width: 769px) {
+        .hero { padding: 100px 20px 80px; }
+        .hero h1 { font-size: 52px; }
+        .hero p { font-size: 18px; }
+        .portfolio-section { padding: 80px 8%; }
+        .portfolio-section h2 { font-size: 36px; }
+        .cards-grid { gap: 30px; }
     }
-    .card-3d:hover {
-        transform: translateY(-8px); border-color: rgba(0, 210, 255, 0.5);
-        box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
-    }
-    .card-3d:hover::before { opacity: 1; }
-    .card-3d h3 { font-size: 22px; color: #00d2ff; margin-bottom: 12px; }
-    .card-3d p { color: #8a99ad; font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
-    .card-link { font-size: 14px; font-weight: 600; color: #fff; display: inline-block; }
-    .card-3d:hover .card-link { color: #00d2ff; }
 </style>
 
 <section class="hero">
