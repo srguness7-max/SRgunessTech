@@ -1,29 +1,90 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SRgunessTech | Geleceğin Teknolojik Çözümleri</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <!-- Particles.js CDN -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-</head>
-<body>
-    <div id="particles-js"></div>
+<!-- IBAN Modal Stilleri ve Yapısı -->
+<style>
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: #0b0f19;
+  border: 1px solid #00d2ff;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+  color: #fff;
+  position: relative;
+  text-align: center;
+}
+.modal-close {
+  position: absolute;
+  top: 15px; right: 20px;
+  font-size: 24px;
+  color: #8a99ad;
+  cursor: pointer;
+}
+.iban-box {
+  background: #131b2e;
+  border: 1px dashed #00d2ff;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: monospace;
+  font-size: 16px;
+  color: #00d2ff;
+}
+.copy-btn {
+  background: #00d2ff;
+  color: #0b0f19;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.copy-btn:hover { background: #0099cc; color: #fff; }
+</style>
+
+<!-- Modal HTML Yapısı -->
+<div id="paymentModal" class="modal-overlay">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closePaymentModal()">&times;</span>
+    <h3 style="color: #00d2ff; margin-bottom: 10px;">SRGüneş Tech - Banka Bilgileri</h3>
+    <p style="font-size: 14px; color: #8a99ad;">Özel proje ve hizmet ödemelerinizi aşağıdaki IBAN adresine Havale/EFT ile gönderebilirsiniz.</p>
     
-    <header class="navbar">
-        <div class="logo">SR<span>gunessTech</span></div>
-        <nav>
-            <a href="{{ url_for('index') }}">Ana Sayfa</a>
-            <a href="#portfolio">Portfolyo</a>
-            <a href="https://www.shopier.com/SRguness7/49686112" target="_blank" class="nav-btn">Teklif Al</a>
-        </nav>
-    </header>
+    <div style="text-align: left; margin-top: 15px; font-size: 14px;">
+      <strong>Alıcı Adı:</strong> Seyyid Ramazan Güneş
+    </div>
 
-    <main class="content">
-        {% block content %}{% endblock %}
-    </main>
+    <div class="iban-box">
+      <span id="ibanText">TR00 0000 0000 0000 0000 0000 00</span>
+      <button class="copy-btn" onclick="copyIBAN()">Kopyala</button>
+    </div>
 
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</body>
-</html>
+    <p style="font-size: 12px; color: #8a99ad;">* Açıklama kısmına <strong>Adınız ve Proje Adınızı</strong> yazmayı unutmayınız.</p>
+  </div>
+</div>
+
+<script>
+function openPaymentModal() {
+  document.getElementById('paymentModal').style.display = 'flex';
+}
+function closePaymentModal() {
+  document.getElementById('paymentModal').style.display = 'none';
+}
+function copyIBAN() {
+  var iban = document.getElementById('ibanText').innerText;
+  navigator.clipboard.writeText(iban);
+  alert('IBAN adresi panoya kopyalandı!');
+}
+</script>
