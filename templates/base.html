@@ -10,11 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        
         html { scroll-behavior: smooth; }
         * { box-sizing: border-box; }
         body {
             margin: 0; background-color: #060913; color: #fff;
-            font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; overflow-x: hidden;
             background-image: 
                 radial-gradient(at 0% 0%, rgba(0, 210, 255, 0.12) 0px, transparent 50%),
                 radial-gradient(at 100% 100%, rgba(120, 0, 255, 0.1) 0px, transparent 50%),
@@ -22,7 +24,6 @@
             background-attachment: fixed;
         }
 
-        /* AKICI GRID ÇİZGİLERİ ARKA PLAN */
         body::before {
             content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -33,7 +34,7 @@
         /* NAVBAR STİLLERİ */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 16px 6%; background: rgba(6, 9, 19, 0.8);
+            padding: 16px 6%; background: rgba(6, 9, 19, 0.85);
             backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             position: sticky; top: 0; z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-wrap: wrap; gap: 15px;
@@ -42,12 +43,9 @@
             display: flex; align-items: center; gap: 12px; text-decoration: none;
         }
         .logo-img {
-            height: 36px; width: auto; object-fit: contain;
-            filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.4));
+            height: 38px; width: auto; object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.5));
             transition: 0.3s ease;
-        }
-        .logo a:hover .logo-img {
-            transform: scale(1.05); filter: drop-shadow(0 0 12px rgba(0, 210, 255, 0.7));
         }
         .logo-text {
             font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px;
@@ -80,7 +78,7 @@
             z-index: 9999; justify-content: center; align-items: center; padding: 15px;
         }
         .modal-content {
-            background: rgba(13, 19, 35, 0.9); border: 1px solid rgba(0, 210, 255, 0.3); border-radius: 16px;
+            background: rgba(13, 19, 35, 0.95); border: 1px solid rgba(0, 210, 255, 0.3); border-radius: 16px;
             padding: 30px; max-width: 500px; width: 100%;
             box-shadow: 0 0 40px rgba(0, 210, 255, 0.2); color: #fff;
             position: relative; text-align: center; max-height: 90vh; overflow-y: auto;
@@ -105,7 +103,6 @@
         .btn-submit { width: 100%; padding: 14px; background: #25d366; color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; transition: 0.3s; }
         .btn-submit:hover { box-shadow: 0 0 20px rgba(37, 211, 102, 0.6); }
 
-        /* SABİT WHATSAPP ICONU */
         .fixed-wa-btn {
             position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
             background: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center;
@@ -119,7 +116,6 @@
         }
         .fixed-wa-btn svg { width: 32px; height: 32px; fill: #fff; }
 
-        /* FOOTER */
         .footer {
             background: rgba(4, 6, 12, 0.95); border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 50px 8% 25px;
             margin-top: 80px; text-align: center; color: #64748b; font-size: 14px;
@@ -143,7 +139,11 @@
     <header class="navbar">
         <div class="logo">
             <a href="{{ url_for('index') }}">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="SRgunessTech Logo" class="logo-img">
+                <!--images/images/logo.png yapısına göre tam güncellenen resim yolu-->
+                <img src="{{ url_for('static', filename='images/images/logo.png') }}" 
+                     alt="" 
+                     class="logo-img">
+                
                 <span class="logo-text">SR<span>gunessTech</span></span>
             </a>
         </div>
@@ -161,14 +161,12 @@
         {% block content %}{% endblock %}
     </main>
 
-    <!-- SABİT WHATSAPP ICONU -->
     <a href="https://wa.me/905531734971?text=Merhaba%2C%20SRgunessTech%20uzzerinden%20bilgi%20almak%20istiyorum." target="_blank" class="fixed-wa-btn" title="WhatsApp İle İletişime Geç">
         <svg viewBox="0 0 32 32">
             <path d="M16 2A13 13 0 0 0 4.68 21.25L3 27.5l6.43-1.65A13 13 0 1 0 16 2zm0 24a11 11 0 0 1-5.59-1.52l-.4-.24-3.8.97 1-3.68-.26-.41A11 11 0 1 1 16 26zm6-8.16c-.33-.16-1.95-.96-2.25-1.07s-.52-.16-.74.16-.86 1.07-1.05 1.29-.38.25-.71.08a9 9 0 0 1-2.63-1.62 10 10 0 0 1-1.82-2.27c-.19-.33 0-.5.15-.66s.33-.38.5-.57a2.2 2.2 0 0 0 .33-.55.6.6 0 0 0 0-.57c-.08-.16-.74-1.78-1-2.43s-.54-.54-.74-.55h-.63a1.2 1.2 0 0 0-.88.41 3.7 3.7 0 0 0-1.15 2.75 6.4 6.4 0 0 0 1.34 3.42 14.7 14.7 0 0 0 5.65 5 19 19 0 0 0 1.9.7 4.6 4.6 0 0 0 2.1.13 3.4 3.4 0 0 0 2.25-1.58 2.8 2.8 0 0 0 .2-1.58c-.08-.13-.31-.22-.64-.38z"/>
         </svg>
     </a>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-col">
@@ -195,7 +193,6 @@
         </div>
     </footer>
 
-    <!-- MODALLAR -->
     <div id="requestModal" class="modal-overlay">
         <div class="modal-content">
             <span class="modal-close" onclick="closeRequestModal()">&times;</span>
