@@ -1,90 +1,122 @@
-<!-- IBAN Modal Stilleri ve Yapısı -->
-<style>
-.modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(5px);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-}
-.modal-content {
-  background: #0b0f19;
-  border: 1px solid #00d2ff;
-  border-radius: 12px;
-  padding: 30px;
-  max-width: 480px;
-  width: 90%;
-  box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
-  color: #fff;
-  position: relative;
-  text-align: center;
-}
-.modal-close {
-  position: absolute;
-  top: 15px; right: 20px;
-  font-size: 24px;
-  color: #8a99ad;
-  cursor: pointer;
-}
-.iban-box {
-  background: #131b2e;
-  border: 1px dashed #00d2ff;
-  padding: 15px;
-  border-radius: 8px;
-  margin: 20px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: monospace;
-  font-size: 16px;
-  color: #00d2ff;
-}
-.copy-btn {
-  background: #00d2ff;
-  color: #0b0f19;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.copy-btn:hover { background: #0099cc; color: #fff; }
-</style>
-
-<!-- Modal HTML Yapısı -->
-<div id="paymentModal" class="modal-overlay">
-  <div class="modal-content">
-    <span class="modal-close" onclick="closePaymentModal()">&times;</span>
-    <h3 style="color: #00d2ff; margin-bottom: 10px;">SRGüneş Tech - Banka Bilgileri</h3>
-    <p style="font-size: 14px; color: #8a99ad;">Özel proje ve hizmet ödemelerinizi aşağıdaki IBAN adresine Havale/EFT ile gönderebilirsiniz.</p>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRGunesTech | Geleceğin Teknolojisi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <div style="text-align: left; margin-top: 15px; font-size: 14px;">
-      <strong>Alıcı Adı:</strong> Seyyid Ramazan Güneş
+    <style>
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #0b0f19;
+            border: 1px solid #00d2ff;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 480px;
+            width: 90%;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+            color: #fff;
+            position: relative;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 24px;
+            color: #8a99ad;
+            cursor: pointer;
+        }
+        .iban-box {
+            background: #131b2e;
+            border: 1px dashed #00d2ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: monospace;
+            font-size: 15px;
+            color: #00d2ff;
+        }
+        .copy-btn {
+            background: #00d2ff;
+            color: #0b0f19;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .copy-btn:hover {
+            background: #0099cc;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('index') }}">SRgunessTech</a>
+        </div>
+        <nav>
+            <a href="{{ url_for('index') }}">Ana Sayfa</a>
+            <a href="#portfolio">Portfolyo</a>
+            <a href="javascript:void(0)" onclick="openPaymentModal()" class="btn-quote">Teklif Al</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Banka / IBAN Ödeme Modalı -->
+    <div id="paymentModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closePaymentModal()">&times;</span>
+            <h3 style="color: #00d2ff; margin-bottom: 10px;">SRGüneş Tech - Banka Bilgileri</h3>
+            <p style="font-size: 14px; color: #8a99ad;">Özel proje ve hizmet ödemelerinizi aşağıdaki IBAN adresine Havale/EFT ile gönderebilirsiniz.</p>
+            
+            <div style="text-align: left; margin-top: 15px; font-size: 14px;">
+                <strong>Alıcı Adı:</strong> Seyyid Ramazan Güneş
+            </div>
+
+            <div class="iban-box">
+                <span id="ibanText">TR65 0006 2000 5330 0006 6289 70</span>
+                <button class="copy-btn" onclick="copyIBAN()">Kopyala</button>
+            </div>
+
+            <p style="font-size: 12px; color: #8a99ad;">* Açıklama kısmına <strong>Adınızı ve Proje Adınızı</strong> yazmayı unutmayınız.</p>
+        </div>
     </div>
 
-    <div class="iban-box">
-      <span id="ibanText">TR00 0000 0000 0000 0000 0000 00</span>
-      <button class="copy-btn" onclick="copyIBAN()">Kopyala</button>
-    </div>
-
-    <p style="font-size: 12px; color: #8a99ad;">* Açıklama kısmına <strong>Adınız ve Proje Adınızı</strong> yazmayı unutmayınız.</p>
-  </div>
-</div>
-
-<script>
-function openPaymentModal() {
-  document.getElementById('paymentModal').style.display = 'flex';
-}
-function closePaymentModal() {
-  document.getElementById('paymentModal').style.display = 'none';
-}
-function copyIBAN() {
-  var iban = document.getElementById('ibanText').innerText;
-  navigator.clipboard.writeText(iban);
-  alert('IBAN adresi panoya kopyalandı!');
-}
-</script>
+    <script>
+        function openPaymentModal() {
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+        function copyIBAN() {
+            var iban = document.getElementById('ibanText').innerText;
+            navigator.clipboard.writeText(iban);
+            alert('IBAN adresi panoya kopyalandı!');
+        }
+    </script>
+</body>
+</html>
