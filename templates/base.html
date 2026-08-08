@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
         
         html { scroll-behavior: smooth; }
         * { box-sizing: border-box; }
@@ -28,41 +28,33 @@
             font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; overflow-x: hidden;
         }
 
-        /* BAYKAR TARZI TAM SAYDAM SIFIR NAVBAR (ÇUBUK/ŞERİT/ÇİZGİ TAMAMEN KALDIRILDI) */
+        /* BAYKAR TARZI TAM ŞEFFAF NAVBAR */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 15px 4%; 
             background: transparent !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-            position: absolute;
-            top: 0; left: 0; width: 100%;
-            z-index: 1000;
-            border: none !important;
-            box-shadow: none !important;
+            position: absolute; top: 0; left: 0; width: 100%;
+            z-index: 1000; border: none !important; box-shadow: none !important;
         }
         
         .logo a { display: flex; align-items: center; gap: 8px !important; text-decoration: none; }
         .logo-img {
-            height: 60px !important; width: auto; object-fit: contain;
+            height: 65px !important; width: auto; object-fit: contain;
             filter: brightness(0) invert(1);
             transition: 0.3s ease;
         }
         .logo a:hover .logo-img { transform: scale(1.04); }
+        
+        /* BEMBEYAZ, İNCE VE UZUN YAZI */
         .logo-text {
-            font-size: 28px; font-weight: 700; color: #ffffff !important; letter-spacing: 1.5px;
-            font-family: 'Rajdhani', sans-serif; text-transform: uppercase;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            font-size: 34px !important; font-weight: 600 !important; color: #ffffff !important;
+            letter-spacing: 2px !important; font-family: 'Rajdhani', sans-serif !important;
+            text-transform: uppercase; text-shadow: none !important; margin: 0 !important;
         }
         
-        .nav-links { display: flex; align-items: center; gap: 22px; }
+        .nav-links { display: flex; align-items: center; gap: 20px; }
         .nav-links a { 
-            color: #ffffff; 
-            text-decoration: none; 
-            font-size: 14px; 
-            font-weight: 600; 
-            transition: 0.3s;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+            color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 600; transition: 0.3s;
         }
         .nav-links a:hover { color: #38bdf8; }
         
@@ -70,7 +62,6 @@
             background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
             color: #fff !important; padding: 10px 22px; border-radius: 30px; font-weight: 700 !important;
             box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4); transition: 0.3s !important; border: none;
-            text-shadow: none !important;
         }
         .btn-quote:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6) !important; }
         
@@ -78,7 +69,6 @@
             border: 1px solid rgba(255, 255, 255, 0.4); color: #ffffff !important;
             padding: 9px 20px; border-radius: 30px; font-weight: 600; transition: 0.3s;
             background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px);
-            text-shadow: none !important;
         }
         .nav-pay-btn:hover { background: #38bdf8; border-color: #38bdf8; color: #0f172a !important; }
 
@@ -140,7 +130,7 @@
         @media (max-width: 900px) {
             .navbar { padding: 12px 4%; }
             .logo-img { height: 45px !important; }
-            .logo-text { font-size: 20px; }
+            .logo-text { font-size: 24px !important; }
             .hamburger-btn { display: block; }
             
             .nav-links {
