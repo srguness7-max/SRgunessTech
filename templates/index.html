@@ -2,15 +2,16 @@
 
 {% block content %}
 <style>
-    /* HERO VİDEO ARKA PLAN STİLLERİ (EN TEPEDEN BAŞLAR) */
+    /* %100 TAM EKRAN HERO VİDEO */
     .hero-section {
         position: relative;
-        min-height: 100vh;
+        height: 100vh;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 140px 20px 60px;
+        padding: 0 20px;
         overflow: hidden;
     }
 
@@ -27,147 +28,97 @@
         object-fit: cover;
     }
 
-    /* VİDEO ÜZERİNDEKİ KOYU ŞEFFAF FİLTRE */
     .hero-overlay {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        top: 0; left: 0; width: 100%; height: 100%;
         background: linear-gradient(180deg, rgba(14, 23, 38, 0.45) 0%, rgba(14, 23, 38, 0.55) 50%, rgba(14, 23, 38, 0.95) 100%);
         z-index: -1;
     }
 
     .hero-container {
-        max-width: 900px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 2;
+        max-width: 900px; margin: 0 auto; position: relative; z-index: 2; margin-top: 40px;
     }
 
     .hero-badge {
-        display: inline-block;
-        padding: 6px 16px;
-        background: rgba(56, 189, 248, 0.15);
-        border: 1px solid rgba(56, 189, 248, 0.4);
-        color: #38bdf8;
-        border-radius: 20px;
-        font-size: 13px;
-        font-weight: 600;
-        margin-bottom: 25px;
-        backdrop-filter: blur(8px);
+        display: inline-block; padding: 6px 16px;
+        background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4);
+        color: #38bdf8; border-radius: 20px; font-size: 13px; font-weight: 600;
+        margin-bottom: 25px; backdrop-filter: blur(8px);
     }
 
     .hero-title {
-        font-size: 52px;
-        font-weight: 800;
-        line-height: 1.15;
-        margin-bottom: 20px;
-        color: #ffffff;
-        font-family: 'Rajdhani', sans-serif;
-        text-transform: uppercase;
+        font-size: 52px; font-weight: 800; line-height: 1.15; margin-bottom: 20px;
+        color: #ffffff; font-family: 'Rajdhani', sans-serif; text-transform: uppercase;
         letter-spacing: 1px;
-        text-shadow: 0 4px 12px rgba(0,0,0,0.6);
     }
 
-    .hero-title span {
-        color: #38bdf8;
-    }
+    .hero-title span { color: #38bdf8; }
 
     .hero-subtitle {
-        font-size: 17px;
-        color: #f1f5f9;
-        line-height: 1.6;
-        margin-bottom: 35px;
-        max-width: 750px;
-        margin-left: auto;
-        margin-right: auto;
-        text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+        font-size: 17px; color: #f1f5f9; line-height: 1.6; margin-bottom: 35px;
+        max-width: 750px; margin-left: auto; margin-right: auto;
     }
 
-    .hero-btns {
-        display: flex;
-        gap: 15px;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
+    .hero-btns { display: flex; gap: 15px; justify-content: center; align-items: center; flex-wrap: wrap; }
 
     .btn-primary-custom {
-        background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
-        color: #fff;
-        padding: 14px 32px;
-        border-radius: 30px;
-        font-weight: 700;
-        text-decoration: none;
-        box-shadow: 0 4px 20px rgba(2, 132, 199, 0.4);
-        transition: 0.3s;
+        background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%); color: #fff;
+        padding: 14px 32px; border-radius: 30px; font-weight: 700; text-decoration: none;
+        box-shadow: 0 4px 20px rgba(2, 132, 199, 0.4); transition: 0.3s;
     }
-
-    .btn-primary-custom:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(2, 132, 199, 0.6);
-    }
+    .btn-primary-custom:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(2, 132, 199, 0.6); }
 
     .btn-secondary-custom {
-        background: rgba(255, 255, 255, 0.1);
-        color: #fff;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        padding: 14px 32px;
-        border-radius: 30px;
-        font-weight: 600;
-        text-decoration: none;
-        backdrop-filter: blur(8px);
-        transition: 0.3s;
+        background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 14px 32px; border-radius: 30px; font-weight: 600; text-decoration: none;
+        backdrop-filter: blur(8px); transition: 0.3s;
     }
+    .btn-secondary-custom:hover { background: rgba(255, 255, 255, 0.25); border-color: #38bdf8; }
 
-    .btn-secondary-custom:hover {
-        background: rgba(255, 255, 255, 0.25);
-        border-color: #38bdf8;
+    .stats-container { display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap; }
+    .stat-item h3 { font-size: 36px; font-weight: 800; color: #38bdf8; margin: 0; font-family: 'Rajdhani', sans-serif; }
+    .stat-item p { font-size: 13px; color: #cbd5e1; margin: 5px 0 0; font-weight: 600; }
+
+    /* HESAPLAYICI DÜZENİ */
+    .calc-card {
+        background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(56, 189, 248, 0.2);
+        border-radius: 16px; padding: 35px; max-width: 700px; margin: 0 auto; backdrop-filter: blur(10px);
     }
-
-    /* İSTATİSTİK KARTLARI */
-    .stats-container {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        margin-top: 60px;
-        flex-wrap: wrap;
+    .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; text-align: left; }
+    .checkbox-item {
+        background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 12px 15px; border-radius: 8px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; font-size: 14px;
     }
+    .checkbox-item:hover { border-color: #38bdf8; }
+    .checkbox-item input { accent-color: #38bdf8; width: 18px; height: 18px; }
 
-    .stat-item h3 {
-        font-size: 36px;
-        font-weight: 800;
-        color: #38bdf8;
-        margin: 0;
-        font-family: 'Rajdhani', sans-serif;
-        text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    /* PORTFOLYO KARTLARI */
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
+    .portfolio-card {
+        background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px; padding: 25px; transition: 0.3s; cursor: pointer; text-align: left;
     }
+    .portfolio-card:hover { transform: translateY(-5px); border-color: #38bdf8; box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15); }
 
-    .stat-item p {
-        font-size: 13px;
-        color: #cbd5e1;
-        margin: 5px 0 0;
-        font-weight: 600;
-        text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    /* YORUM VE SSS */
+    .testimonial-card, .faq-item {
+        background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px; padding: 25px; margin-bottom: 15px; text-align: left;
     }
 
     @media (max-width: 768px) {
         .hero-title { font-size: 34px; }
         .hero-subtitle { font-size: 15px; }
         .stats-container { gap: 20px; }
-        .hero-section { padding-top: 110px; }
     }
 </style>
 
-<!-- KESİNTİSİZ VİDEO DÖNGÜSÜ İLE HERO SECTION -->
+<!-- TAM EKRAN HERO VİDEO -->
 <section class="hero-section">
-    <!-- OTOMATİK BAŞLAYAN SESSİZ ARKA PLAN VİDEOSU -->
     <video autoplay loop muted playsinline class="hero-bg-video">
-        <source src="{{ url_for('static', filename='hero-bg.mp4') }}?v=3" type="video/mp4">
+        <source src="{{ url_for('static', filename='hero-bg.mp4') }}?v=4" type="video/mp4">
     </video>
     
-    <!-- KOYU ŞEFFAF FİLTRE -->
     <div class="hero-overlay"></div>
 
     <div class="hero-container">
@@ -197,15 +148,21 @@
     </div>
 </section>
 
-<!-- DİĞER BÖLÜMLER (HAKKINDA, HİZMETLER VB.) BAŞLANGICI -->
-<div class="container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+<!-- SİTE İÇERİĞİ -->
+<div class="container" style="max-width: 1200px; margin: 0 auto; padding: 60px 20px;">
 
-    <!-- HAKKINDA BÖLÜMÜ -->
+    <!-- HAKKIMIZDA & EĞİTİM BÖLÜMÜ -->
     <section id="about" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
         <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; text-align: center; margin-bottom: 20px;">Hakkımızda</h2>
-        <p style="text-align: center; max-width: 800px; margin: 0 auto; color: #cbd5e1; line-height: 1.8;">
-            SRgunessTech; donanım, gömülü yazılım, otonom sistemler ve modern web teknolojilerini tek çatı altında birleştiren yüksek teknolojili bir ar-ge ve yazılım atölyesidir. Fikirlerinizi üretime hazır prototiplere dönüştürüyoruz.
+        <p style="text-align: center; max-width: 850px; margin: 0 auto 30px; color: #cbd5e1; line-height: 1.8; font-size: 16px;">
+            SRgunessTech; donanım, gömülü yazılım, otonom sistemler ve modern web teknolojilerini tek çatı altında birleştiren yüksek teknolojili bir ar-ge ve yazılım atölyesidir.
         </p>
+        <div style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px; padding: 25px; max-width: 800px; margin: 0 auto; text-align: left;">
+            <h4 style="color: #38bdf8; margin: 0 0 10px; font-size: 18px;">🎓 Mühendislik Alt Yapısı & Altyapı</h4>
+            <p style="color: #94a3b8; font-size: 14px; line-height: 1.6; margin: 0;">
+                Atatürk Üniversitesi Bilgisayar Programcılığı eğitimi ve Endüstriyel Otomasyon altyapımızla; Python, Flask, C/C++, ESP32 gömülü sistemler, SolidWorks 3D prototipleme ve otonom İHA yazılımları üzerine uzmanlaşmış çözümler üretiyoruz.
+            </p>
+        </div>
     </section>
 
     <!-- HİZMETLER BÖLÜMÜ -->
@@ -227,5 +184,113 @@
         </div>
     </section>
 
+    <!-- İNTERAKTİF BÜTÇE HESAPLAYICI -->
+    <section id="calculator" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08); text-align: center;">
+        <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; margin-bottom: 10px;">Bütçe Hesaplayıcı</h2>
+        <p style="color: #94a3b8; margin-bottom: 30px;">İhtiyacınız olan modülleri seçerek tahmini proje bütçenizi anında hesaplayın.</p>
+        
+        <div class="calc-card">
+            <div class="checkbox-grid">
+                <label class="checkbox-item">
+                    <input type="checkbox" value="3500" onchange="calculateBudget()"> Web Yazılımı / Tanıtım Sitesi (3.500 TL)
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="5000" onchange="calculateBudget()"> Yönetim Paneli & Veritabanı (5.000 TL)
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="4500" onchange="calculateBudget()"> Gömülü Sistem & Wi-Fi Kontrol (4.500 TL)
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="2500" onchange="calculateBudget()"> SolidWorks 3D Kasa Tasarımı (2.500 TL)
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="6000" onchange="calculateBudget()"> Otonom Sistem / Telemetri (6.000 TL)
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="2000" onchange="calculateBudget()"> Özel Domain & Sunucu Kurulumu (2.000 TL)
+                </label>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px;">
+                <h3 style="color: #fff; margin: 0;">Tahmini Toplam Tutar: <span id="totalPrice" style="color: #38bdf8; font-size: 28px; font-family: 'Rajdhani', sans-serif;">0 TL</span></h3>
+                <button onclick="openRequestModalWithBudget()" class="btn-primary-custom" style="margin-top: 20px; cursor: pointer; border: none;">Bu Bütçeyle Teklif Al</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLYO BÖLÜMÜ -->
+    <section id="portfolio" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; text-align: center; margin-bottom: 10px;">Öne Çıkan Projeler</h2>
+        <p style="text-align: center; color: #94a3b8; margin-bottom: 30px;">Ar-Ge laboratuvarımızda geliştirdiğimiz bazı teknik çalışmalar.</p>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-card" onclick="openProjectDetail('SRG-01 Otonom İHA Projesi', 'Python tabanlı yer istasyonu yazılımı, otonom uçuş protokolleri ve telemetri veri aktarımı entegre edilmiş insansız hava aracı projesi.')">
+                <span style="color: #38bdf8; font-size: 12px; font-weight: bold;">HAVACILIK & OTONOM</span>
+                <h3 style="color: #fff; margin: 10px 0 8px;">SRG-01 Otonom İHA</h3>
+                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5;">Yer istasyonu telemetri kontrolü ve otonom sistemler.</p>
+            </div>
+            <div class="portfolio-card" onclick="openProjectDetail('Python & ESP32 Wi-Fi Araç Kontrolü', 'ESP32 mikrodenetleyici ve Python socket iletişimi üzerinden anlık komut alan, özel yönlandirme mekanizmalı RC araç.')">
+                <span style="color: #38bdf8; font-size: 12px; font-weight: bold;">GÖMÜLÜ SİSTEM & IOT</span>
+                <h3 style="color: #fff; margin: 10px 0 8px;">Wi-Fi Robotik Araç</h3>
+                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5;">ESP32 ve bilgisayar tabanlı kablosuz yönlendirme.</p>
+            </div>
+            <div class="portfolio-card" onclick="openProjectDetail('SolidWorks Koruyucu Cihaz Kılıfı', 'Elektronik kartlar için Shell yöntemi, bağlantı bossları ve hava kanalları tasarlanarak üretilmiş özel SolidWorks 3D kasası.')">
+                <span style="color: #38bdf8; font-size: 12px; font-weight: bold;">3D TASARIM & CAD</span>
+                <h3 style="color: #fff; margin: 10px 0 8px;">SolidWorks Diagnostik Kasa</h3>
+                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5;">Cihazlar için özel hassas 3D koruma kutuları.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MÜŞTERİ YORUMLARI -->
+    <section id="testimonials" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; text-align: center; margin-bottom: 30px;">Müşteri Yorumları</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div class="testimonial-card">
+                <p style="color: #cbd5e1; font-style: italic; font-size: 14px; line-height: 1.6;">"Gömülü sistem projemiz için hızlı ve sorunsuz bir iletişim sağladık. İstediğimiz kart tasarımını tam zamanında teslim aldık."</p>
+                <div style="color: #38bdf8; font-weight: bold; margin-top: 15px; font-size: 13px;">- Ahmet K. / Mühendislik Danışmanlığı</div>
+            </div>
+            <div class="testimonial-card">
+                <p style="color: #cbd5e1; font-style: italic; font-size: 14px; line-height: 1.6;">"Web sitemizin Render ve DNS kurulumlarını saatler içinde tamamladılar. İletişimleri gayet net ve profesyonel."</p>
+                <div style="color: #38bdf8; font-weight: bold; margin-top: 15px; font-size: 13px;">- Selin Y. / Dijital Yayıncılık</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIKÇA SORULAN SORULAR (SSS) -->
+    <section id="faq" style="padding: 60px 0;">
+        <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; text-align: center; margin-bottom: 30px;">Sıkça Sorulan Sorular</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="faq-item">
+                <h4 style="color: #fff; margin: 0 0 10px;">❓ Proje teslim süreleriniz ne kadardır?</h4>
+                <p style="color: #94a3b8; font-size: 14px; margin: 0;">Projenin kapsamına göre değişmekle birlikte standart web yazılımları 3-5 gün, gömülü sistem prototipleri 1-2 hafta içinde teslim edilir.</p>
+            </div>
+            <div class="faq-item">
+                <h4 style="color: #fff; margin: 0 0 10px;">❓ Ödemeyi nasıl yapabilirim?</h4>
+                <p style="color: #94a3b8; font-size: 14px; margin: 0;">Menüdeki "Ödeme Yap" butonundan resmi banka IBAN adresimize Havale/EFT yapabilirsiniz.</p>
+            </div>
+        </div>
+    </section>
+
 </div>
+
+<script>
+    function calculateBudget() {
+        var checkboxes = document.querySelectorAll('.checkbox-item input[type="checkbox"]');
+        var total = 0;
+        checkboxes.forEach(function(cb) {
+            if (cb.checked) {
+                total += parseInt(cb.value);
+            }
+        });
+        document.getElementById('totalPrice').innerText = total.toLocaleString('tr-TR') + ' TL';
+    }
+
+    function openRequestModalWithBudget() {
+        var total = document.getElementById('totalPrice').innerText;
+        openRequestModal();
+        if (total !== '0 TL') {
+            document.getElementById('reqBudget').value = total;
+        }
+    }
+</script>
 {% endblock %}
