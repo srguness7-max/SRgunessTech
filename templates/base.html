@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Google Search Console Doğrulama Etiketi -->
-<meta name="google-site-verification" content="BAJsoxVaHtuN_9ib_DTXRCWwUdlqNsaNoWGnZgf5n4Y" />
+    <meta name="google-site-verification" content="BAJsoxVaHtuN_9ib_DTXRCWwUdlqNsaNoWGnZgf5n4Y" />
 
     <title>SRgunessTech | Geleceğin Teknolojisi</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -44,10 +44,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-wrap: wrap; gap: 15px;
         }
         
-        /* BAYKAR İNCE VE GENİŞ FUTURİSTİK LOGO KODU */
-        .logo a {
-            display: flex; align-items: center; gap: 18px; text-decoration: none;
-        }
+        .logo a { display: flex; align-items: center; gap: 18px; text-decoration: none; }
         .logo-img {
             height: 72px; width: auto; object-fit: contain;
             filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
@@ -98,17 +95,17 @@
             background: rgba(0, 210, 255, 0.05); border: 1px dashed #00d2ff; padding: 14px;
             border-radius: 10px; margin: 20px 0; display: flex;
             justify-content: space-between; align-items: center;
-            font-family: monospace; font-size: 14px; color: #00d2ff; gap: 10px;
+            font-family: monospace; font-size: 13px; color: #00d2ff; gap: 10px;
         }
         .copy-btn { background: #00d2ff; color: #060913; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; }
         .copy-btn:hover { background: #fff; }
         .form-group { text-align: left; margin-bottom: 14px; }
         .form-group label { display: block; margin-bottom: 6px; font-size: 12px; color: #94a3b8; font-weight: 600; }
-        .form-group input, .form-group textarea {
+        .form-group input, .form-group textarea, .form-group select {
             width: 100%; padding: 12px; background: rgba(6, 9, 19, 0.8); border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px; color: #fff; font-family: inherit; font-size: 14px; transition: 0.3s;
         }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #00d2ff; box-shadow: 0 0 10px rgba(0, 210, 255, 0.3); }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #00d2ff; box-shadow: 0 0 10px rgba(0, 210, 255, 0.3); }
         .btn-submit { width: 100%; padding: 14px; background: #25d366; color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; transition: 0.3s; }
         .btn-submit:hover { box-shadow: 0 0 20px rgba(37, 211, 102, 0.6); }
 
@@ -157,7 +154,10 @@
         <nav>
             <a href="{{ url_for('index') }}">Ana Sayfa</a>
             <a href="#services">Hizmetler</a>
+            <a href="#calculator">Bütçe Hesapla</a>
             <a href="#portfolio">Portfolyo</a>
+            <a href="#logbook">Proje Günlüğü</a>
+            <a href="#testimonials">Yorumlar</a>
             <a href="#faq">SSS</a>
             <a href="javascript:void(0)" onclick="openRequestModal()" class="btn-quote">Teklif Al</a>
             <a href="javascript:void(0)" onclick="openPaymentModal()" class="nav-pay-btn">Ödeme Yap</a>
@@ -184,8 +184,10 @@
             <div class="footer-col">
                 <h4>Hızlı Bağlantılar</h4>
                 <a href="#services">Hizmetlerimiz</a>
-                <a href="#process">Çalışma Süreci</a>
+                <a href="#calculator">Bütçe Hesaplayıcı</a>
                 <a href="#portfolio">Öne Çıkan Projeler</a>
+                <a href="#logbook">Proje Günlüğü</a>
+                <a href="#testimonials">Müşteri Yorumları</a>
                 <a href="#faq">Sıkça Sorulan Sorular</a>
             </div>
             <div class="footer-col">
@@ -227,6 +229,7 @@
         </div>
     </div>
 
+    <!-- IBAN ÖDEME MODALI -->
     <div id="paymentModal" class="modal-overlay">
         <div class="modal-content">
             <span class="modal-close" onclick="closePaymentModal()">&times;</span>
@@ -234,7 +237,7 @@
             <p style="font-size: 13px; color: #94a3b8;">Proje ödemelerinizi aşağıdaki IBAN adresine Havale/EFT ile gönderebilirsiniz.</p>
             <div style="text-align: left; margin-top: 15px; font-size: 13px;"><strong>Alıcı Adı:</strong> Seyyid Ramazan Güneş</div>
             <div class="iban-box">
-                <span id="ibanText">TR00 0000 0000 0000 0000 0000 00</span>
+                <span id="ibanText">TR65 0006 2000 5330 0006 6289 70</span>
                 <button class="copy-btn" onclick="copyIBAN()">Kopyala</button>
             </div>
             <p style="font-size: 11px; color: #94a3b8;">* Açıklama kısmına <strong>Adınızı ve Proje Adınızı</strong> yazmayı unutmayınız.</p>
