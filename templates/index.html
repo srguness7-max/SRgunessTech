@@ -2,7 +2,7 @@
 
 {% block content %}
 <style>
-    /* %100 TAM EKRAN HERO VİDEO */
+    /* HERO VİDEO */
     .hero-section {
         position: relative;
         height: 100vh;
@@ -116,7 +116,7 @@
 <!-- TAM EKRAN HERO VİDEO -->
 <section class="hero-section">
     <video autoplay loop muted playsinline class="hero-bg-video">
-        <source src="{{ url_for('static', filename='hero-bg.mp4') }}?v=4" type="video/mp4">
+        <source src="{{ url_for('static', filename='hero-bg.mp4') }}?v=5" type="video/mp4">
     </video>
     
     <div class="hero-overlay"></div>
@@ -151,16 +151,30 @@
 <!-- SİTE İÇERİĞİ -->
 <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 60px 20px;">
 
-    <!-- HAKKIMIZDA & EĞİTİM BÖLÜMÜ -->
+    <!-- HAKKIMIZDA BÖLÜMÜ (SADECE ŞİRKET VE İŞ ODAKLI) -->
     <section id="about" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
         <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; text-align: center; margin-bottom: 20px;">Hakkımızda</h2>
-        <p style="text-align: center; max-width: 850px; margin: 0 auto 30px; color: #cbd5e1; line-height: 1.8; font-size: 16px;">
-            SRgunessTech; donanım, gömülü yazılım, otonom sistemler ve modern web teknolojilerini tek çatı altında birleştiren yüksek teknolojili bir ar-ge ve yazılım atölyesidir.
+        <p style="text-align: center; max-width: 850px; margin: 0 auto; color: #cbd5e1; line-height: 1.8; font-size: 16px;">
+            SRgunessTech; savunma sanayii teknolojileri, otonom hava ve kara araçları, gömülü sistemler, endüstriyel otomasyon ve özel web yazılımları geliştirmek amacıyla Ankara merkezli kurulan yenilikçi bir teknoloji laboratuvarıdır. İleri düzey mühendislik prensipleriyle fikirlerinizi üretime ve çalışan prototiplere dönüştürüyoruz.
         </p>
-        <div style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px; padding: 25px; max-width: 800px; margin: 0 auto; text-align: left;">
-            <h4 style="color: #38bdf8; margin: 0 0 10px; font-size: 18px;">🎓 Mühendislik Alt Yapısı & Altyapı</h4>
-            <p style="color: #94a3b8; font-size: 14px; line-height: 1.6; margin: 0;">
-                Atatürk Üniversitesi Bilgisayar Programcılığı eğitimi ve Endüstriyel Otomasyon altyapımızla; Python, Flask, C/C++, ESP32 gömülü sistemler, SolidWorks 3D prototipleme ve otonom İHA yazılımları üzerine uzmanlaşmış çözümler üretiyoruz.
+    </section>
+
+    <!-- KURUCUMUZ BÖLÜMÜ -->
+    <section id="founder" style="padding: 60px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <h2 style="font-size: 32px; font-family: 'Rajdhani', sans-serif; color: #38bdf8; text-align: center; margin-bottom: 30px;">Kurucumuz</h2>
+        <div style="background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 16px; padding: 35px; max-width: 850px; margin: 0 auto; backdrop-filter: blur(10px); text-align: left;">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                <div style="width: 50px; height: 50px; background: rgba(56, 189, 248, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #38bdf8; font-size: 24px; font-weight: bold;">👨‍💻</div>
+                <div>
+                    <h3 style="color: #ffffff; margin: 0; font-size: 22px; font-family: 'Rajdhani', sans-serif;">Seyyid Ramazan Güneş</h3>
+                    <span style="color: #38bdf8; font-size: 13px; font-weight: 600;">Kurucu & Baş Mühendis / Yazılımcı</span>
+                </div>
+            </div>
+            <p style="color: #cbd5e1; font-size: 15px; line-height: 1.8; margin-bottom: 15px;">
+                Ankara doğumlu olan Seyyid Ramazan Güneş, teknik eğitim hayatına <strong>Endüstriyel Otomasyon Teknolojileri</strong> alanında başarmış, teorik ve pratik mekanik/elektronik temellerini bu süreçte atmıştır. Yükseköğrenimini <strong>Atatürk Üniversitesi Bilgisayar Programcılığı</strong> bünyesinde sürdürmektedir.
+            </p>
+            <p style="color: #cbd5e1; font-size: 15px; line-height: 1.8; margin: 0;">
+                Gömülü sistemler (ESP32/STM32), Python ve C/C++ mimarileri, SolidWorks mekanik 3D prototipleme, otonom İHA yer istasyonları ve modern web teknolojileri (Flask, JavaScript) alanlarında geliştirdiği projelerle SRgunessTech markasını kurmuş ve yönetmektedir.
             </p>
         </div>
     </section>
