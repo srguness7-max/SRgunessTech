@@ -33,13 +33,27 @@
         /* NAVBAR STİLLERİ */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 18px 6%; background: rgba(6, 9, 19, 0.7);
+            padding: 16px 6%; background: rgba(6, 9, 19, 0.8);
             backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             position: sticky; top: 0; z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-wrap: wrap; gap: 15px;
         }
-        .logo a { font-size: 24px; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: -0.5px; }
-        .logo a span { background: linear-gradient(90deg, #00d2ff, #0072ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .logo a {
+            display: flex; align-items: center; gap: 12px; text-decoration: none;
+        }
+        .logo-img {
+            height: 36px; width: auto; object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.4));
+            transition: 0.3s ease;
+        }
+        .logo a:hover .logo-img {
+            transform: scale(1.05); filter: drop-shadow(0 0 12px rgba(0, 210, 255, 0.7));
+        }
+        .logo-text {
+            font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .logo-text span { color: #00d2ff; font-weight: 700; }
         
         .navbar nav { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
         .navbar nav a { color: #94a3b8; text-decoration: none; font-size: 14px; font-weight: 600; transition: 0.3s; }
@@ -59,7 +73,7 @@
         }
         .nav-pay-btn:hover { background: #00d2ff; color: #060913 !important; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
 
-        /* MODAL STİLLERİ (CAM EFEKTİ) */
+        /* MODAL STİLLERİ */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(2, 4, 10, 0.85); backdrop-filter: blur(12px);
@@ -128,7 +142,10 @@
 <body>
     <header class="navbar">
         <div class="logo">
-            <a href="{{ url_for('index') }}">SR<span>gunessTech</span></a>
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="SRgunessTech Logo" class="logo-img">
+                <span class="logo-text">SR<span>gunessTech</span></span>
+            </a>
         </div>
         <nav>
             <a href="{{ url_for('index') }}">Ana Sayfa</a>
