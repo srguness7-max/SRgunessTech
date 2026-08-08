@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
         
         html { scroll-behavior: smooth; }
         * { box-sizing: border-box; }
@@ -34,24 +34,29 @@
         /* NAVBAR STİLLERİ */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 16px 6%; background: rgba(6, 9, 19, 0.85);
+            padding: 18px 6%; background: rgba(6, 9, 19, 0.9);
             backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             position: sticky; top: 0; z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-wrap: wrap; gap: 15px;
         }
+        
+        /* BAYKAR TARZI BÜYÜK LOGO VE KESKİN BEYAZ YAZI */
         .logo a {
-            display: flex; align-items: center; gap: 12px; text-decoration: none;
+            display: flex; align-items: center; gap: 16px; text-decoration: none;
         }
         .logo-img {
-            height: 38px; width: auto; object-fit: contain;
-            filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.5));
+            height: 56px; width: auto; object-fit: contain;
+            filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
             transition: 0.3s ease;
         }
-        .logo-text {
-            font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+        .logo a:hover .logo-img {
+            transform: scale(1.05);
+            filter: brightness(0) invert(1) drop-shadow(0 0 15px rgba(0, 210, 255, 0.8));
         }
-        .logo-text span { color: #00d2ff; font-weight: 700; }
+        .logo-text {
+            font-size: 28px; font-weight: 900; color: #ffffff !important; letter-spacing: -0.5px;
+            font-family: 'Montserrat', sans-serif; text-transform: uppercase;
+        }
         
         .navbar nav { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
         .navbar nav a { color: #94a3b8; text-decoration: none; font-size: 14px; font-weight: 600; transition: 0.3s; }
@@ -59,14 +64,14 @@
         
         .btn-quote {
             background: linear-gradient(135deg, #00d2ff 0%, #0072ff 100%) !important;
-            color: #fff !important; padding: 9px 20px; border-radius: 30px; font-weight: 700 !important;
+            color: #fff !important; padding: 10px 22px; border-radius: 30px; font-weight: 700 !important;
             box-shadow: 0 0 20px rgba(0, 210, 255, 0.4); transition: 0.3s !important; border: none;
         }
         .btn-quote:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0, 210, 255, 0.8) !important; }
         
         .nav-pay-btn {
             border: 1px solid rgba(0, 210, 255, 0.4); color: #00d2ff !important;
-            padding: 8px 18px; border-radius: 30px; font-weight: 600; transition: 0.3s;
+            padding: 9px 20px; border-radius: 30px; font-weight: 600; transition: 0.3s;
             background: rgba(0, 210, 255, 0.05);
         }
         .nav-pay-btn:hover { background: #00d2ff; color: #060913 !important; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
@@ -129,6 +134,8 @@
             .navbar { justify-content: center; text-align: center; padding: 12px 10px; }
             .navbar nav { justify-content: center; width: 100%; gap: 10px; }
             .navbar nav a { font-size: 13px; }
+            .logo-img { height: 42px; }
+            .logo-text { font-size: 22px; }
             .iban-box { flex-direction: column; text-align: center; }
             .copy-btn { width: 100%; margin-top: 8px; }
             .footer-content { flex-direction: column; text-align: center; }
@@ -140,7 +147,7 @@
         <div class="logo">
             <a href="{{ url_for('index') }}">
                 <img src="{{ url_for('static', filename='logo.png') }}" alt="SRgunessTech Logo" class="logo-img">
-                <span class="logo-text">SR<span>gunessTech</span></span>
+                <span class="logo-text">SRgunessTech</span>
             </a>
         </div>
         <nav>
