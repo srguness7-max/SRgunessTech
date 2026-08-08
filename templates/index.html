@@ -1,374 +1,296 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<style>
-    /* HERO TASARIMI */
-    .hero { text-align: center; padding: 100px 20px 70px; position: relative; }
-    .badge-glow {
-        display: inline-flex; align-items: center; gap: 8px;
-        background: rgba(0, 210, 255, 0.1); border: 1px solid rgba(0, 210, 255, 0.3);
-        padding: 6px 16px; border-radius: 20px; color: #00d2ff; font-size: 13px;
-        font-weight: 700; margin-bottom: 25px; box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
-    }
-    .badge-dot { width: 8px; height: 8px; background: #00d2ff; border-radius: 50%; box-shadow: 0 0 8px #00d2ff; }
-
-    .hero h1 { font-size: 58px; font-weight: 800; margin-bottom: 20px; line-height: 1.15; letter-spacing: -1.5px; }
-    .hero h1 span {
-        background: linear-gradient(135deg, #00d2ff 0%, #0072ff 50%, #9d4edd 100%);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .hero p { font-size: 18px; color: #94a3b8; max-width: 650px; margin: 0 auto 35px; line-height: 1.6; }
-    .hero-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    .btn-main {
-        background: linear-gradient(135deg, #00d2ff 0%, #0072ff 100%); color: #fff; padding: 15px 32px; border-radius: 30px;
-        font-weight: 700; text-decoration: none; transition: 0.3s; font-size: 15px;
-        box-shadow: 0 0 30px rgba(0, 210, 255, 0.4);
-    }
-    .btn-main:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 0 45px rgba(0, 210, 255, 0.8); }
+    <!-- Google Search Console Doğrulama Etiketi -->
+    <meta name="google-site-verification" content="BAJsoxVaHtuN_9ib_DTXRCWwUdlqNsaNoWGnZgf5n4Y" />
+
+    <title>SRgunessTech | Geleceğin Teknolojisi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     
-    .btn-secondary {
-        border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; padding: 15px 32px; border-radius: 30px;
-        font-weight: 600; text-decoration: none; transition: 0.3s; background: rgba(255, 255, 255, 0.03); font-size: 15px;
-        backdrop-filter: blur(10px);
-    }
-    .btn-secondary:hover { border-color: #00d2ff; color: #00d2ff; transform: translateY(-3px); }
-
-    .stats-bar {
-        display: flex; justify-content: center; gap: 50px; margin-top: 60px;
-        padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.05); flex-wrap: wrap;
-    }
-    .stat-item h3 { font-size: 32px; font-weight: 800; color: #00d2ff; margin: 0; text-shadow: 0 0 15px rgba(0, 210, 255, 0.4); }
-    .stat-item p { font-size: 13px; color: #64748b; margin-top: 5px; font-weight: 600; }
-
-    /* SEKTÖR BAŞLIKLARI */
-    .section-title { text-align: center; font-size: 36px; margin-bottom: 50px; font-weight: 800; letter-spacing: -1px; }
-    .section-title span { background: linear-gradient(90deg, #00d2ff, #0072ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-    /* HİZMETLER */
-    .services-section { padding: 80px 8%; }
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
-    .service-card {
-        background: rgba(13, 19, 35, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 30px;
-        transition: 0.4s; backdrop-filter: blur(10px); position: relative; overflow: hidden;
-    }
-    .service-card:hover { border-color: rgba(0, 210, 255, 0.6); transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0, 210, 255, 0.15); }
-    .service-icon { font-size: 36px; margin-bottom: 18px; display: inline-block; filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.5)); }
-    .service-card h3 { color: #fff; font-size: 20px; margin-bottom: 12px; font-weight: 700; }
-    .service-card p { color: #94a3b8; font-size: 14px; line-height: 1.6; }
-
-    /* MALİYET HESAPLAYICI */
-    .calculator-section { padding: 80px 8%; background: rgba(8, 12, 22, 0.7); border-y: 1px solid rgba(255, 255, 255, 0.05); }
-    .calc-box {
-        max-width: 800px; margin: 0 auto; background: rgba(13, 19, 35, 0.8); border: 1px solid rgba(0, 210, 255, 0.3);
-        border-radius: 20px; padding: 35px; box-shadow: 0 0 40px rgba(0, 210, 255, 0.15);
-    }
-    .calc-option { margin-bottom: 20px; }
-    .calc-option label { display: block; font-size: 14px; color: #00d2ff; font-weight: 700; margin-bottom: 10px; }
-    .calc-checkboxes { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
-    .calc-cb-item {
-        background: rgba(6, 9, 19, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px;
-        border-radius: 8px; font-size: 13px; color: #cbd5e1; cursor: pointer; display: flex; align-items: center; gap: 8px;
-    }
-    .calc-result {
-        text-align: center; margin-top: 30px; padding-top: 25px; border-top: 1px dashed rgba(0, 210, 255, 0.3);
-    }
-    .calc-price { font-size: 36px; font-weight: 800; color: #00d2ff; margin: 10px 0 20px; text-shadow: 0 0 20px rgba(0, 210, 255, 0.5); }
-
-    /* PORTFOLYO */
-    .portfolio-section { padding: 80px 8%; text-align: center; }
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-    .card-3d {
-        background: rgba(13, 19, 35, 0.7); border: 1px solid rgba(0, 210, 255, 0.2); border-radius: 16px;
-        padding: 30px; text-align: left; cursor: pointer; transition: 0.4s; position: relative; overflow: hidden;
-    }
-    .card-3d:hover { transform: translateY(-8px); border-color: #00d2ff; box-shadow: 0 15px 40px rgba(0, 210, 255, 0.25); }
-    .card-3d h3 { font-size: 22px; color: #00d2ff; margin-bottom: 12px; font-weight: 700; }
-    .card-3d p { color: #94a3b8; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
-    .card-link { font-size: 14px; font-weight: 700; color: #fff; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s; }
-
-    /* PROJE GÜNLÜĞÜ (BLOG) */
-    .logbook-section { padding: 80px 8%; }
-    .logbook-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-    .log-card {
-        background: rgba(13, 19, 35, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 25px; transition: 0.3s;
-    }
-    .log-card:hover { border-color: #00d2ff; transform: translateY(-5px); }
-    .log-date { font-size: 12px; color: #00d2ff; font-weight: 700; margin-bottom: 8px; display: block; }
-    .log-card h3 { font-size: 18px; color: #fff; margin-bottom: 10px; font-weight: 700; }
-    .log-card p { font-size: 13px; color: #94a3b8; line-height: 1.6; }
-
-    /* MÜŞTERİ YORUMLARI */
-    .testimonials-section { padding: 80px 8%; background: rgba(8, 12, 22, 0.5); }
-    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-    .testi-card {
-        background: rgba(13, 19, 35, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 25px;
-    }
-    .stars { color: #f59e0b; margin-bottom: 12px; font-size: 16px; }
-    .testi-card p { font-size: 14px; color: #cbd5e1; font-style: italic; line-height: 1.6; margin-bottom: 15px; }
-    .testi-author { font-size: 13px; font-weight: 700; color: #00d2ff; }
-    .testi-role { font-size: 11px; color: #64748b; }
-
-    /* SSS */
-    .faq-section { padding: 80px 8%; max-width: 850px; margin: 0 auto; }
-    .faq-item { background: rgba(13, 19, 35, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; margin-bottom: 15px; overflow: hidden; }
-    .faq-question { padding: 20px 25px; font-weight: 700; color: #fff; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 16px; transition: 0.3s; }
-    .faq-question:hover { color: #00d2ff; }
-    .faq-answer { padding: 0 25px 20px; color: #94a3b8; font-size: 14px; line-height: 1.6; display: none; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 15px; }
-
-    @media (max-width: 768px) {
-        .hero { padding: 60px 15px 40px; }
-        .hero h1 { font-size: 36px; }
-        .hero p { font-size: 15px; }
-        .section-title { font-size: 28px; }
-        .stats-bar { gap: 25px; }
-        .stat-item h3 { font-size: 26px; }
-    }
-</style>
-
-<section class="hero">
-    <div class="badge-glow">
-        <span class="badge-dot"></span> 7/24 Aktif Mühendislik & Yazılım Laboratuvarı
-    </div>
-    <h1>Geleceğin Teknolojisini <br><span>Birlikte İnşa Edelim</span></h1>
-    <p>SRgunessTech bünyesinde gömülü sistemler, web yazılımları, otomasyon ve özel mühendislik çözümleri sunuyoruz.</p>
-    <div class="hero-buttons">
-        <a href="javascript:void(0)" onclick="openRequestModal()" class="btn-main">Projeni Başlat</a>
-        <a href="#calculator" class="btn-secondary">Maliyet Hesapla</a>
-    </div>
-
-    <div class="stats-bar">
-        <div class="stat-item">
-            <h3>+15</h3>
-            <p>Tamamlanan Proje</p>
-        </div>
-        <div class="stat-item">
-            <h3>%100</h3>
-            <p>Müşteri Memnuniyeti</p>
-        </div>
-        <div class="stat-item">
-            <h3>7/24</h3>
-            <p>Teknik Destek</p>
-        </div>
-    </div>
-</section>
-
-<!-- HİZMETLERİMİZ -->
-<section id="services" class="services-section">
-    <h2 class="section-title">Hizmet<span>lerimiz</span></h2>
-    <div class="services-grid">
-        <div class="service-card">
-            <span class="service-icon">⚡</span>
-            <h3>Gömülü Sistem & IoT</h3>
-            <p>ESP32, STM32 ve Arduino mimarilerinde Wi-Fi / Bluetooth entegrasyonlu akıllı donanım kartları ve sensör sistemleri.</p>
-        </div>
-        <div class="service-card">
-            <span class="service-icon">💻</span>
-            <h3>Özel Web Yazılım</h3>
-            <p>Python/Flask altyapısı ile yüksek performanslı, veritabanı yönetimli web siteleri, otomasyonlar ve yönetim panelleri.</p>
-        </div>
-        <div class="service-card">
-            <span class="service-icon">🛠️</span>
-            <h3>Mekanik & 3D Tasarım</h3>
-            <p>SolidWorks ortamında ürün kılıfları, donanım muhafazaları ve hassas 3D baskı odaklı prototip imalat modelleri.</p>
-        </div>
-        <div class="service-card">
-            <span class="service-icon">🚀</span>
-            <h3>Otonom Sistemler</h3>
-            <p>İHA ve İKA projelerine özel kontrol yazılımları, uzaktan komut arayüzleri ve yer istasyonu telemetri sistemleri.</p>
-        </div>
-    </div>
-</section>
-
-<!-- MALİYET HESAPLAYICI -->
-<section id="calculator" class="calculator-section">
-    <h2 class="section-title">Proje Bütçe <span>Hesaplayıcı</span></h2>
-    <div class="calc-box">
-        <div class="calc-option">
-            <label>1. Proje Türü</label>
-            <div class="form-group">
-                <select id="calcType" onchange="calculatePrice()">
-                    <option value="3500">Gömülü Sistem & IoT Donanım Kartı</option>
-                    <option value="4000">Özel Web Yazılım & Panel</option>
-                    <option value="2500">SolidWorks 3D Kılıf / Mekanik Tasarım</option>
-                    <option value="6000">Otonom İHA / İKA Kontrol Yazılımı</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="calc-option">
-            <label>2. Ek Özellikler</label>
-            <div class="calc-checkboxes">
-                <label class="calc-cb-item">
-                    <input type="checkbox" id="extWifi" value="1000" onchange="calculatePrice()"> Wi-Fi / Bluetooth
-                </label>
-                <label class="calc-cb-item">
-                    <input type="checkbox" id="extDb" value="1500" onchange="calculatePrice()"> Özel Veritabanı
-                </label>
-                <label class="calc-cb-item">
-                    <input type="checkbox" id="extPrint" value="800" onchange="calculatePrice()"> 3D Prototip Baskı
-                </label>
-                <label class="calc-cb-item">
-                    <input type="checkbox" id="extFast" value="2000" onchange="calculatePrice()"> Acil Teslimat (3-5 Gün)
-                </label>
-            </div>
-        </div>
-
-        <div class="calc-result">
-            <span style="font-size: 14px; color: #94a3b8;">Tahmini Proje Bütçesi</span>
-            <div class="calc-price" id="calcTotalPrice">3.500 TL - 4.500 TL</div>
-            <button class="btn-main" onclick="sendCalculatedQuote()" style="width: 100%; border: none; cursor: pointer;">Bu Konfigürasyonla Teklif Al</button>
-        </div>
-    </div>
-</section>
-
-<!-- PORTFOLYO -->
-<section id="portfolio" class="portfolio-section">
-    <h2 class="section-title">Öne Çıkan <span>Projeler</span></h2>
-    <div class="cards-grid">
-        <div class="card-3d" onclick="openProjectDetail('SRG-01 Otonom İHA', 'SRgunessTech mühendisliği ile geliştirilen SRG-01, yerli donanım mimarisine ve bilgisayar kontrollü otonom uçuş yazılımlarına sahiptir. Telemetri verilerini anlık aktaran yer istasyonu entegrasyonu mevcuttur.')">
-            <h3>SRG-01 Otonom İHA</h3>
-            <p>Özel bilgisayar kontrollü ve yerli donanım mimarisine sahip insansız hava aracı projesi.</p>
-            <span class="card-link">Detayları İncele &rarr;</span>
-        </div>
-        <div class="card-3d" onclick="openProjectDetail('Gömülü Sistem & IoT', 'ESP32, Arduino ve Raspberry Pi tabanlı, Wi-Fi / Bluetooth haberleşmeli özel donanım projeleri. Python arayüzleri ve mobil bağlantılar ile uzaktan kontrol edilen endüstriyel ve hobi odaklı otomasyon sistemleri.')">
-            <h3>Gömülü Sistem & IoT</h3>
-            <p>ESP32 ve Arduino tabanlı, Wi-Fi ve Python arayüzü ile uzaktan kontrol edilen araç sistemleri.</p>
-            <span class="card-link">Detayları İncele &rarr;</span>
-        </div>
-        <div class="card-3d" onclick="openProjectDetail('Web & Otomasyon', 'Python/Flask ve modern ön yüz teknolojileri ile geliştirilen; hızlı, güvenli, SSL sertifikalı ve özel veritabanı entegrasyonlu web yazılımları, yönetim panelleri ve dijital çözümler.')">
-            <h3>Web & Otomasyon</h3>
-            <p>Python/Flask altyapısı ile geliştirilen yüksek performanslı ve interaktif dijital çözümler.</p>
-            <span class="card-link">Detayları İncele &rarr;</span>
-        </div>
-    </div>
-</section>
-
-<!-- PROJE GÜNLÜĞÜ (BLOG / SEO) -->
-<section id="logbook" class="logbook-section">
-    <h2 class="section-title">Proje <span>Günlüğü</span></h2>
-    <div class="logbook-grid">
-        <div class="log-card">
-            <span class="log-date">Ağustos 2026</span>
-            <h3>ESP32 Wi-Fi Araç Kontrol Yazılımı</h3>
-            <p>Socket tabanlı Python arayüzü ile ESP32 yön kontrol gecikmelerini 12ms seviyesine indirdik. Özel yönlendirme algoritması entegre edildi.</p>
-        </div>
-        <div class="log-card">
-            <span class="log-date">Ağustos 2026</span>
-            <h3>SRG-01 Telemetri & Yer İstasyonu</h3>
-            <p>İHA uçuş verilerini anlık grafiklere döken Python tabanlı masaüstü arayüzü mimarisi tamamlandı.</p>
-        </div>
-        <div class="log-card">
-            <span class="log-date">Temmuz 2026</span>
-            <h3>SolidWorks İle Sensör Kılıf Tasarımı</h3>
-            <p>Gömülü sistem kartları için kabuk (shell) metodu ile darbelere dayanıklı 3D basılabilir kılıf prototipi oluşturuldu.</p>
-        </div>
-    </div>
-</section>
-
-<!-- MÜŞTERİ YORUMLARI -->
-<section id="testimonials" class="testimonials-section">
-    <h2 class="section-title">Müşteri <span>Yorumları</span></h2>
-    <div class="testi-grid">
-        <div class="testi-card">
-            <div class="stars">★★★★★</div>
-            <p>"ESP32 tabanlı özel IoT kart yazılımımızı tam zamanında ve temiz kod yapısıyla teslim etti. İletişimi gayet pratik."</p>
-            <div class="testi-author">M. Yılmaz</div>
-            <div class="testi-role">Elektronik Proje Yöneticisi</div>
-        </div>
-        <div class="testi-card">
-            <div class="stars">★★★★★</div>
-            <p>"SolidWorks ile çizilmesi gereken karmaşık kılıf tasarımımızı tam istediğimiz milimetrik toleranslarda hazırladı."</p>
-            <div class="testi-author">A. Kaya</div>
-            <div class="testi-role">Ar-Ge Mühendisi</div>
-        </div>
-        <div class="testi-card">
-            <div class="stars">★★★★★</div>
-            <p>"Flask tabanlı yönetim panelimizi Render üzerine sorunsuz kurdu. DNS ve domain yapılandırmalarında çok yardımcı oldu."</p>
-            <div class="testi-author">S. Demir</div>
-            <div class="testi-role">Girişimci</div>
-        </div>
-    </div>
-</section>
-
-<!-- SSS -->
-<section id="faq" class="faq-section">
-    <h2 class="section-title">Sıkça Sorulan <span>Sorular</span></h2>
-    <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-            Projemin kaynak kodlarını ve tasarım dosyalarını teslim ediyor musunuz?
-            <span>+</span>
-        </div>
-        <div class="faq-answer">
-            Evet, geliştirilen tüm web yazılımlarının kaynak kodları, SolidWorks çizimleri ve gömülü sistem yazılımları eksiksiz olarak müşteriye teslim edilir.
-        </div>
-    </div>
-    <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-            Proje geliştirme süreci ne kadar sürüyor?
-            <span>+</span>
-        </div>
-        <div class="faq-answer">
-            Projenin kapsamına ve donanım/yazılım karmaşıklığına bağlı olarak süreçler genellikle 3 ile 15 iş günü arasında tamamlanmaktadır.
-        </div>
-    </div>
-    <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-            Teslimat sonrası teknik destek sağlıyor musunuz?
-            <span>+</span>
-        </div>
-        <div class="faq-answer">
-            Teslimat sonrasında sistemin sorunsuz çalışması, kurulum aşamaları ve olası revizyon talepleriniz için teknik destek sunıyoruz.
-        </div>
-    </div>
-</section>
-
-<script>
-    function toggleFaq(element) {
-        var answer = element.nextElementSibling;
-        var icon = element.querySelector('span');
-        if (answer.style.display === "block") {
-            answer.style.display = "none";
-            icon.innerText = "+";
-        } else {
-            answer.style.display = "block";
-            icon.innerText = "-";
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+        
+        html { scroll-behavior: smooth; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; background-color: #060913; color: #fff;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 210, 255, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(120, 0, 255, 0.1) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(0, 114, 255, 0.05) 0px, transparent 50%);
+            background-attachment: fixed;
         }
-    }
 
-    function calculatePrice() {
-        var base = parseInt(document.getElementById('calcType').value);
-        var wifi = document.getElementById('extWifi').checked ? parseInt(document.getElementById('extWifi').value) : 0;
-        var db = document.getElementById('extDb').checked ? parseInt(document.getElementById('extDb').value) : 0;
-        var print = document.getElementById('extPrint').checked ? parseInt(document.getElementById('extPrint').value) : 0;
-        var fast = document.getElementById('extFast').checked ? parseInt(document.getElementById('extFast').value) : 0;
+        body::before {
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px; z-index: -1; pointer-events: none;
+        }
 
-        var total = base + wifi + db + print + fast;
-        var maxTotal = total + 1000;
+        /* NAVBAR STİLLERİ */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 6%; background: rgba(6, 9, 19, 0.9);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-wrap: wrap; gap: 15px;
+        }
+        
+        .logo a { display: flex; align-items: center; gap: 18px; text-decoration: none; }
+        .logo-img {
+            height: 72px; width: auto; object-fit: contain;
+            filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+            transition: 0.3s ease;
+        }
+        .logo a:hover .logo-img {
+            transform: scale(1.05);
+            filter: brightness(0) invert(1) drop-shadow(0 0 18px rgba(0, 210, 255, 0.8));
+        }
+        .logo-text {
+            font-size: 32px; font-weight: 500; color: #ffffff !important; letter-spacing: 2px;
+            font-family: 'Rajdhani', sans-serif; text-transform: uppercase;
+        }
+        
+        .navbar nav { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .navbar nav a { color: #94a3b8; text-decoration: none; font-size: 14px; font-weight: 600; transition: 0.3s; }
+        .navbar nav a:hover { color: #00d2ff; text-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
+        
+        .btn-quote {
+            background: linear-gradient(135deg, #00d2ff 0%, #0072ff 100%) !important;
+            color: #fff !important; padding: 10px 22px; border-radius: 30px; font-weight: 700 !important;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.4); transition: 0.3s !important; border: none;
+        }
+        .btn-quote:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0, 210, 255, 0.8) !important; }
+        
+        .nav-pay-btn {
+            border: 1px solid rgba(0, 210, 255, 0.4); color: #00d2ff !important;
+            padding: 9px 20px; border-radius: 30px; font-weight: 600; transition: 0.3s;
+            background: rgba(0, 210, 255, 0.05);
+        }
+        .nav-pay-btn:hover { background: #00d2ff; color: #060913 !important; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
 
-        document.getElementById('calcTotalPrice').innerText = total.toLocaleString('tr-TR') + " TL - " + maxTotal.toLocaleString('tr-TR') + " TL";
-    }
+        /* MODAL STİLLERİ */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(2, 4, 10, 0.85); backdrop-filter: blur(12px);
+            z-index: 9999; justify-content: center; align-items: center; padding: 15px;
+        }
+        .modal-content {
+            background: rgba(13, 19, 35, 0.95); border: 1px solid rgba(0, 210, 255, 0.3); border-radius: 16px;
+            padding: 30px; max-width: 500px; width: 100%;
+            box-shadow: 0 0 40px rgba(0, 210, 255, 0.2); color: #fff;
+            position: relative; text-align: center; max-height: 90vh; overflow-y: auto;
+        }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 26px; color: #94a3b8; cursor: pointer; }
+        .modal-close:hover { color: #00d2ff; }
+        .iban-box {
+            background: rgba(0, 210, 255, 0.05); border: 1px dashed #00d2ff; padding: 14px;
+            border-radius: 10px; margin: 20px 0; display: flex;
+            justify-content: space-between; align-items: center;
+            font-family: monospace; font-size: 13px; color: #00d2ff; gap: 10px;
+        }
+        .copy-btn { background: #00d2ff; color: #060913; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .copy-btn:hover { background: #fff; }
+        .form-group { text-align: left; margin-bottom: 14px; }
+        .form-group label { display: block; margin-bottom: 6px; font-size: 12px; color: #94a3b8; font-weight: 600; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 12px; background: rgba(6, 9, 19, 0.8); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px; color: #fff; font-family: inherit; font-size: 14px; transition: 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #00d2ff; box-shadow: 0 0 10px rgba(0, 210, 255, 0.3); }
+        .btn-submit { width: 100%; padding: 14px; background: #25d366; color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; transition: 0.3s; }
+        .btn-submit:hover { box-shadow: 0 0 20px rgba(37, 211, 102, 0.6); }
 
-    function sendCalculatedQuote() {
-        var select = document.getElementById('calcType');
-        var typeText = select.options[select.selectedIndex].text;
-        var priceText = document.getElementById('calcTotalPrice').innerText;
+        .fixed-wa-btn {
+            position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
+            background: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.6); z-index: 999; text-decoration: none;
+            transition: 0.3s; animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .fixed-wa-btn svg { width: 32px; height: 32px; fill: #fff; }
 
-        var extras = [];
-        if(document.getElementById('extWifi').checked) extras.push("Wi-Fi/Bluetooth");
-        if(document.getElementById('extDb').checked) extras.push("Veritabanı");
-        if(document.getElementById('extPrint').checked) extras.push("3D Baskı");
-        if(document.getElementById('extFast').checked) extras.push("Acil Teslimat");
+        .footer {
+            background: rgba(4, 6, 12, 0.95); border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 50px 8% 25px;
+            margin-top: 80px; text-align: center; color: #64748b; font-size: 14px;
+        }
+        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; margin-bottom: 40px; text-align: left; }
+        .footer-col h4 { color: #fff; font-size: 16px; margin-bottom: 15px; font-weight: 700; }
+        .footer-col p, .footer-col a { color: #94a3b8; text-decoration: none; display: block; margin-bottom: 10px; font-size: 14px; transition: 0.3s; }
+        .footer-col a:hover { color: #00d2ff; }
 
-        var extraStr = extras.length > 0 ? extras.join(", ") : "Yok";
+        @media (max-width: 768px) {
+            .navbar { justify-content: center; text-align: center; padding: 12px 10px; }
+            .navbar nav { justify-content: center; width: 100%; gap: 10px; }
+            .navbar nav a { font-size: 13px; }
+            .logo-img { height: 50px; }
+            .logo-text { font-size: 24px; }
+            .iban-box { flex-direction: column; text-align: center; }
+            .copy-btn { width: 100%; margin-top: 8px; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="SRgunessTech Logo" class="logo-img">
+                <span class="logo-text">SRgunessTech</span>
+            </a>
+        </div>
+        <nav>
+            <a href="{{ url_for('index') }}">Ana Sayfa</a>
+            <a href="#services">Hizmetler</a>
+            <a href="#calculator">Bütçe Hesapla</a>
+            <a href="#portfolio">Portfolyo</a>
+            <a href="#logbook">Proje Günlüğü</a>
+            <a href="#testimonials">Yorumlar</a>
+            <a href="#faq">SSS</a>
+            <a href="javascript:void(0)" onclick="openRequestModal()" class="btn-quote">Teklif Al</a>
+            <a href="javascript:void(0)" onclick="openPaymentModal()" class="nav-pay-btn">Ödeme Yap</a>
+        </nav>
+    </header>
 
-        var msg = "*Hesaplayıcı Üzerinden Proje Talebi*\n\n" +
-                  "*Proje Türü:* " + typeText + "\n" +
-                  "*Ek Seçimler:* " + extraStr + "\n" +
-                  "*Tahmini Bütçe:* " + priceText + "\n\n" +
-                  "Detayları görüşmek istiyorum.";
+    <main>
+        {% block content %}{% endblock %}
+    </main>
 
-        window.open("https://wa.me/905531734971?text=" + encodeURIComponent(msg), '_blank');
-    }
-</script>
-{% endblock %}
+    <a href="https://wa.me/905531734971?text=Merhaba%2C%20SRgunessTech%20uzzerinden%20bilgi%20almak%20istiyorum." target="_blank" class="fixed-wa-btn" title="WhatsApp İle İletişime Geç">
+        <svg viewBox="0 0 32 32">
+            <path d="M16 2A13 13 0 0 0 4.68 21.25L3 27.5l6.43-1.65A13 13 0 1 0 16 2zm0 24a11 11 0 0 1-5.59-1.52l-.4-.24-3.8.97 1-3.68-.26-.41A11 11 0 1 1 16 26zm6-8.16c-.33-.16-1.95-.96-2.25-1.07s-.52-.16-.74.16-.86 1.07-1.05 1.29-.38.25-.71.08a9 9 0 0 1-2.63-1.62 10 10 0 0 1-1.82-2.27c-.19-.33 0-.5.15-.66s.33-.38.5-.57a2.2 2.2 0 0 0 .33-.55.6.6 0 0 0 0-.57c-.08-.16-.74-1.78-1-2.43s-.54-.54-.74-.55h-.63a1.2 1.2 0 0 0-.88.41 3.7 3.7 0 0 0-1.15 2.75 6.4 6.4 0 0 0 1.34 3.42 14.7 14.7 0 0 0 5.65 5 19 19 0 0 0 1.9.7 4.6 4.6 0 0 0 2.1.13 3.4 3.4 0 0 0 2.25-1.58 2.8 2.8 0 0 0 .2-1.58c-.08-.13-.31-.22-.64-.38z"/>
+        </svg>
+    </a>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>SRgunessTech</h4>
+                <p>Mühendislik, gömülü sistemler, IoT ve özel web yazılımları geliştirme laboratuvarı.</p>
+                <p>📍 Ankara, Türkiye</p>
+            </div>
+            <div class="footer-col">
+                <h4>Hızlı Bağlantılar</h4>
+                <a href="#services">Hizmetlerimiz</a>
+                <a href="#calculator">Bütçe Hesaplayıcı</a>
+                <a href="#portfolio">Öne Çıkan Projeler</a>
+                <a href="#logbook">Proje Günlüğü</a>
+                <a href="#testimonials">Müşteri Yorumları</a>
+                <a href="#faq">Sıkça Sorulan Sorular</a>
+            </div>
+            <div class="footer-col">
+                <h4>İletişim & Destek</h4>
+                <p>📱 WhatsApp: +90 553 173 49 71</p>
+                <p>✉️ E-Posta: destek@srgunesstech.com.tr</p>
+                <a href="javascript:void(0)" onclick="openPaymentModal()" style="color: #00d2ff; font-weight: bold;">💳 Online Ödeme / IBAN</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 20px;">
+            &copy; 2026 SRgunessTech. Tüm Hakları Saklıdır.
+        </div>
+    </footer>
+
+    <div id="requestModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeRequestModal()">&times;</span>
+            <h3 style="color: #00d2ff; margin-bottom: 8px;">Proje Teklif Formu</h3>
+            <p style="font-size: 12px; color: #94a3b8; margin-bottom: 15px;">Projenizin detaylarını girin, doğrudan WhatsApp üzerinden detayları görüşelim.</p>
+            <form id="projectForm" onsubmit="submitToWhatsApp(event)">
+                <div class="form-group">
+                    <label>Adınız Soyadınız / Firma</label>
+                    <input type="text" id="reqName" required placeholder="Örn: Ahmet Yılmaz">
+                </div>
+                <div class="form-group">
+                    <label>E-Posta veya Telefon</label>
+                    <input type="text" id="reqContact" required placeholder="Örn: ahmet@gmail.com / 05xx">
+                </div>
+                <div class="form-group">
+                    <label>Tahmini Bütçeniz (TL)</label>
+                    <input type="text" id="reqBudget" placeholder="Örn: 5.000 TL">
+                </div>
+                <div class="form-group">
+                    <label>Proje Detayları</label>
+                    <textarea id="reqDetails" rows="3" required placeholder="Projenizden kısaca bahsedin..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">WhatsApp İle Gönder</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- IBAN ÖDEME MODALI -->
+    <div id="paymentModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closePaymentModal()">&times;</span>
+            <h3 style="color: #00d2ff; margin-bottom: 8px;">SRgunessTech - Banka Bilgileri</h3>
+            <p style="font-size: 13px; color: #94a3b8;">Proje ödemelerinizi aşağıdaki IBAN adresine Havale/EFT ile gönderebilirsiniz.</p>
+            <div style="text-align: left; margin-top: 15px; font-size: 13px;"><strong>Alıcı Adı:</strong> Seyyid Ramazan Güneş</div>
+            <div class="iban-box">
+                <span id="ibanText">TR65 0006 2000 5330 0006 6289 70</span>
+                <button class="copy-btn" onclick="copyIBAN()">Kopyala</button>
+            </div>
+            <p style="font-size: 11px; color: #94a3b8;">* Açıklama kısmına <strong>Adınızı ve Proje Adınızı</strong> yazmayı unutmayınız.</p>
+        </div>
+    </div>
+
+    <div id="projectDetailModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeProjectModal()">&times;</span>
+            <h3 id="projectTitle" style="color: #00d2ff; margin-bottom: 10px;"></h3>
+            <p id="projectDescription" style="font-size: 13px; color: #cbd5e1; line-height: 1.6; text-align: left; margin: 15px 0;"></p>
+            <button class="copy-btn" style="width: 100%; padding: 12px; background: #00d2ff;" onclick="closeProjectModal(); openRequestModal();">Bu Projeden Teklif Al</button>
+        </div>
+    </div>
+
+    <script>
+        function openRequestModal() { document.getElementById('requestModal').style.display = 'flex'; }
+        function closeRequestModal() { document.getElementById('requestModal').style.display = 'none'; }
+        function openPaymentModal() { document.getElementById('paymentModal').style.display = 'flex'; }
+        function closePaymentModal() { document.getElementById('paymentModal').style.display = 'none'; }
+        function closeProjectModal() { document.getElementById('projectDetailModal').style.display = 'none'; }
+        
+        function openProjectDetail(title, desc) {
+            document.getElementById('projectTitle').innerText = title;
+            document.getElementById('projectDescription').innerText = desc;
+            document.getElementById('projectDetailModal').style.display = 'flex';
+        }
+
+        function copyIBAN() {
+            var iban = document.getElementById('ibanText').innerText;
+            navigator.clipboard.writeText(iban);
+            alert('IBAN adresi panoya kopyalandı!');
+        }
+
+        function submitToWhatsApp(e) {
+            e.preventDefault();
+            var phone = "905531734971";
+            var name = document.getElementById('reqName').value;
+            var contact = document.getElementById('reqContact').value;
+            var budget = document.getElementById('reqBudget').value || 'Belirtilmedi';
+            var details = document.getElementById('reqDetails').value;
+
+            var message = "*Yeni Proje Teklif Talebi*\n\n" +
+                          "*Müşteri / Firma:* " + name + "\n" +
+                          "*İletişim:* " + contact + "\n" +
+                          "*Tahmini Bütçe:* " + budget + "\n\n" +
+                          "*Proje Detayları:*\n" + details;
+
+            var waUrl = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+            window.open(waUrl, '_blank');
+            closeRequestModal();
+            document.getElementById('projectForm').reset();
+        }
+    </script>
+</body>
+</html>
