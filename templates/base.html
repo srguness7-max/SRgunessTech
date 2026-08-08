@@ -7,9 +7,10 @@
     <!-- Google Search Console Doğrulama Etiketi -->
     <meta name="google-site-verification" content="BAJsoxVaHtuN_9ib_DTXRCWwUdlqNsaNoWGnZgf5n4Y" />
 
-    <!-- TAB / FAVICON SİMGESİ (logo.png) -->
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='logo.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='logo.png') }}">
+    <!-- TAB / FAVICON SİMGESİ (logo2.png) -->
+    <link rel="icon" type="image/png" sizes="64x64" href="{{ url_for('static', filename='logo2.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='logo2.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo2.png') }}">
 
     <title>SRgunessTech | Geleceğin Teknolojisi</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -39,28 +40,29 @@
             background-size: 50px 50px; z-index: -1; pointer-events: none;
         }
 
-        /* NAVBAR STİLLERİ */
+        /* ÜST ARAYÜZ (TAM ŞEFFAF, YOL/ŞERİT KALDIRILDI) */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 3%; background: rgba(14, 23, 38, 0.85);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            padding: 10px 2%; background: transparent !important;
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             position: sticky; top: 0; z-index: 1000;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.15); gap: 15px;
+            border: none !important; gap: 15px;
         }
         
-        /* LOGO.PNG BÜYÜTÜLDÜ VE NETLEŞTİRİLDİ */
-        .logo a { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+        /* LOGO2.PNG DEVASA BÜYÜK VE YAZIYA BİREBİR YANAŞIK */
+        .logo a { display: flex; align-items: center; gap: 2px !important; text-decoration: none; }
         .logo-img {
-            height: 80px; width: auto; object-fit: contain;
-            filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
+            height: 110px !important; width: auto; object-fit: contain;
+            filter: brightness(0) invert(1);
             transition: 0.3s ease;
         }
         .logo a:hover .logo-img {
-            transform: scale(1.04);
+            transform: scale(1.03);
         }
         .logo-text {
-            font-size: 32px; font-weight: 700; color: #ffffff !important; letter-spacing: 1.5px;
+            font-size: 34px; font-weight: 700; color: #ffffff !important; letter-spacing: 2px;
             font-family: 'Rajdhani', sans-serif; text-transform: uppercase;
+            text-shadow: none !important; margin-left: 0 !important;
         }
         
         .nav-links { display: flex; align-items: center; gap: 18px; }
@@ -138,7 +140,7 @@
 
         @media (max-width: 900px) {
             .navbar { padding: 10px 4%; }
-            .logo-img { height: 55px; }
+            .logo-img { height: 60px !important; }
             .logo-text { font-size: 22px; }
             .hamburger-btn { display: block; }
             
@@ -160,7 +162,7 @@
     <header class="navbar">
         <div class="logo">
             <a href="{{ url_for('index') }}">
-                <img src="{{ url_for('static', filename='logo.png') }}" alt="SRgunessTech Logo" class="logo-img">
+                <img src="{{ url_for('static', filename='logo2.png') }}" alt="SRgunessTech Logo" class="logo-img">
                 <span class="logo-text">SRgunessTech</span>
             </a>
         </div>
