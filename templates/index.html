@@ -1,9 +1,71 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    /* HERO ALANI ANİMASYONLARI */
+    .hero {
+        text-align: center; padding: 100px 20px 80px;
+        background: radial-gradient(circle at center, rgba(0, 210, 255, 0.08) 0%, transparent 70%);
+        animation: fadeInUp 0.8s ease-out;
+    }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .hero h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
+    .hero h1 span {
+        background: linear-gradient(90deg, #00d2ff, #0072ff);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p { font-size: 18px; color: #8a99ad; max-width: 600px; margin: 0 auto 35px; }
+    .hero-buttons { display: flex; justify-content: center; gap: 20px; }
+    
+    .btn-main {
+        background: #00d2ff; color: #0b0f19; padding: 14px 28px; border-radius: 8px;
+        font-weight: 700; text-decoration: none; transition: 0.3s;
+        box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+    }
+    .btn-main:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(0, 210, 255, 0.7); }
+    
+    .btn-secondary {
+        border: 1px solid #1e2d4a; color: #fff; padding: 14px 28px; border-radius: 8px;
+        font-weight: 600; text-decoration: none; transition: 0.3s; background: rgba(19, 27, 46, 0.5);
+    }
+    .btn-secondary:hover { border-color: #00d2ff; color: #00d2ff; transform: translateY(-3px); }
+
+    /* PORTFOLYO VE KARTLAR */
+    .portfolio-section { padding: 80px 8%; text-align: center; }
+    .portfolio-section h2 { font-size: 36px; margin-bottom: 50px; position: relative; display: inline-block; }
+    .portfolio-section h2::after {
+        content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+        width: 60px; height: 3px; background: #00d2ff; border-radius: 2px;
+    }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    
+    .card-3d {
+        background: #131b2e; border: 1px solid #1e2d4a; border-radius: 12px;
+        padding: 35px 25px; text-align: left; cursor: pointer; transition: 0.4s ease;
+        position: relative; overflow: hidden;
+    }
+    .card-3d::before {
+        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+        background: linear-gradient(90deg, transparent, #00d2ff, transparent);
+        opacity: 0; transition: 0.4s;
+    }
+    .card-3d:hover {
+        transform: translateY(-8px); border-color: rgba(0, 210, 255, 0.5);
+        box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
+    }
+    .card-3d:hover::before { opacity: 1; }
+    .card-3d h3 { font-size: 22px; color: #00d2ff; margin-bottom: 12px; }
+    .card-3d p { color: #8a99ad; font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
+    .card-link { font-size: 14px; font-weight: 600; color: #fff; display: inline-block; }
+    .card-3d:hover .card-link { color: #00d2ff; }
+</style>
+
 <section class="hero">
     <h1>Geleceğin Teknolojisini <br><span>Birlikte İnşa Edelim</span></h1>
-    <p>Gömülü sistemler, web yazılımları, otomasyon ve özel mühendislik çözümleri.</p>
+    <p>SRGunesTech bünyesinde gömülü sistemler, web yazılımları, otomasyon ve özel mühendislik çözümleri sunuyoruz.</p>
     <div class="hero-buttons">
         <a href="javascript:void(0)" onclick="openRequestModal()" class="btn-main">Projeni Başlat</a>
         <a href="#portfolio" class="btn-secondary">Portfolyoyu İncele</a>
@@ -13,17 +75,20 @@
 <section id="portfolio" class="portfolio-section">
     <h2>Öne Çıkan Projeler</h2>
     <div class="cards-grid">
-        <div class="card-3d">
+        <div class="card-3d" onclick="openProjectDetail('SRG-01 Otonom İHA', 'SRGunesTech mühendisliği ile geliştirilen SRG-01, yerli donanım mimarisine ve bilgisayar kontrollü otonom uçuş yazılımlarına sahiptir. Telemetri verilerini anlık aktaran yer istasyonu entegrasyonu mevcuttur.')">
             <h3>SRG-01 Otonom İHA</h3>
             <p>Özel bilgisayar kontrollü ve yerli donanım mimarisine sahip insansız hava aracı projesi.</p>
+            <span class="card-link">Detayları İncele &rarr;</span>
         </div>
-        <div class="card-3d">
+        <div class="card-3d" onclick="openProjectDetail('Gömülü Sistem & IoT', 'ESP32, Arduino ve Raspberry Pi tabanlı, Wi-Fi / Bluetooth haberleşmeli özel donanım projeleri. Python arayüzleri ve mobil bağlantılar ile uzaktan kontrol edilen endüstriyel ve hobi odaklı otomasyon sistemleri.')">
             <h3>Gömülü Sistem & IoT</h3>
             <p>ESP32 ve Arduino tabanlı, Wi-Fi ve Python arayüzü ile uzaktan kontrol edilen araç sistemleri.</p>
+            <span class="card-link">Detayları İncele &rarr;</span>
         </div>
-        <div class="card-3d">
+        <div class="card-3d" onclick="openProjectDetail('Web & Otomasyon', 'Python/Flask ve modern ön yüz teknolojileri ile geliştirilen; hızlı, güvenli, SSL sertifikalı ve özel veritabanı entegrasyonlu web yazılımları, yönetim panelleri ve dijital çözümler.')">
             <h3>Web & Otomasyon</h3>
             <p>Python/Flask altyapısı ile geliştirilen yüksek performanslı ve interaktif dijital çözümler.</p>
+            <span class="card-link">Detayları İncele &rarr;</span>
         </div>
     </div>
 </section>
