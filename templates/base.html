@@ -7,10 +7,31 @@
     <!-- Google Search Console Doğrulama Etiketi -->
     <meta name="google-site-verification" content="BAJsoxVaHtuN_9ib_DTXRCWwUdlqNsaNoWGnZgf5n4Y" />
 
-    <!-- TAB / FAVICON SİMGESİ -->
+    <!-- TAB, MOBİL VE GOOGLE ARAMA SONUÇLARI (SERP) LOGO / FAVICON KODLARI -->
     <link rel="icon" type="image/png" sizes="64x64" href="{{ url_for('static', filename='logo2.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='logo2.png') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='logo2.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo2.png') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='logo2.png') }}">
+
+    <!-- GOOGLE AI BAKIŞI VE ARAMA MOTORLARI İÇİN KURUMSAL KIMLIK (SCHEMA.ORG) VERİSİ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SRgunessTech",
+      "url": "https://srgunesstech.com.tr",
+      "logo": "https://srgunesstech.com.tr/static/logo2.png",
+      "description": "SRgunessTech; gömülü sistemler, otonom İHA yer istasyonu yazılımları, SolidWorks 3D tasarım ve özel web platformları geliştiren teknoloji ve ar-ge atölyesidir.",
+      "founder": {
+        "@type": "Person",
+        "name": "Seyyid Ramazan Güneş",
+        "jobTitle": "Kurucu & CEO"
+      },
+      "sameAs": [
+        "https://srgunesstech.com.tr"
+      ]
+    }
+    </script>
 
     <title>SRgunessTech | Geleceğin Teknolojisi</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -28,7 +49,7 @@
             font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; overflow-x: hidden;
         }
 
-        /* HAFİF & ÇOK DAHA ŞEFFAF STICKY NAVBAR */
+        /* HAFİF & ŞEFFAF STICKY NAVBAR */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 12px 4%; 
@@ -50,7 +71,7 @@
         }
         .logo a:hover .logo-img { transform: scale(1.04); }
         
-        /* BEMBEYAZ, İNCE VE UZUN YAZI */
+        /* BEMBEYAZ, İNCE VE UZUN TIPOGRAFİ */
         .logo-text {
             font-size: 34px !important; font-weight: 600 !important; color: #ffffff !important;
             letter-spacing: 2px !important; font-family: 'Rajdhani', sans-serif !important;
