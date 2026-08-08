@@ -7,7 +7,7 @@
     <!-- Google Search Console Doğrulama Etiketi -->
     <meta name="google-site-verification" content="BAJsoxVaHtuN_9ib_DTXRCWwUdlqNsaNoWGnZgf5n4Y" />
 
-    <!-- TAB / FAVICON SİMGESİ (logo2.png) -->
+    <!-- TAB / FAVICON SİMGESİ (DEĞİŞTİRİLMEDİ) -->
     <link rel="icon" type="image/png" sizes="64x64" href="{{ url_for('static', filename='logo2.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='logo2.png') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='logo2.png') }}">
@@ -40,7 +40,7 @@
             background-size: 50px 50px; z-index: -1; pointer-events: none;
         }
 
-        /* ÜST ARAYÜZ (TAM ŞEFFAF, YOL/ŞERİT KALDIRILDI) */
+        /* ÜST ARAYÜZ (TAM ŞEFFAF, YOL/ŞERİT YOK) */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 10px 2%; background: transparent !important;
@@ -49,20 +49,20 @@
             border: none !important; gap: 15px;
         }
         
-        /* LOGO2.PNG DEVASA BÜYÜK VE YAZIYA BİREBİR YANAŞIK */
-        .logo a { display: flex; align-items: center; gap: 2px !important; text-decoration: none; }
+        /* SITE İÇİ LOGO KÜÇÜLTÜLDÜ VE YAZIYLA HİZALANDI */
+        .logo a { display: flex; align-items: center; gap: 8px !important; text-decoration: none; }
         .logo-img {
-            height: 110px !important; width: auto; object-fit: contain;
+            height: 65px !important; width: auto; object-fit: contain;
             filter: brightness(0) invert(1);
             transition: 0.3s ease;
         }
         .logo a:hover .logo-img {
-            transform: scale(1.03);
+            transform: scale(1.04);
         }
         .logo-text {
-            font-size: 34px; font-weight: 700; color: #ffffff !important; letter-spacing: 2px;
+            font-size: 30px; font-weight: 700; color: #ffffff !important; letter-spacing: 1.5px;
             font-family: 'Rajdhani', sans-serif; text-transform: uppercase;
-            text-shadow: none !important; margin-left: 0 !important;
+            text-shadow: none !important;
         }
         
         .nav-links { display: flex; align-items: center; gap: 18px; }
@@ -140,7 +140,7 @@
 
         @media (max-width: 900px) {
             .navbar { padding: 10px 4%; }
-            .logo-img { height: 60px !important; }
+            .logo-img { height: 45px !important; }
             .logo-text { font-size: 22px; }
             .hamburger-btn { display: block; }
             
