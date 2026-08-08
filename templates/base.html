@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
         
         html { scroll-behavior: smooth; }
         * { box-sizing: border-box; }
@@ -35,19 +35,19 @@
             background-size: 50px 50px; z-index: -1; pointer-events: none;
         }
 
-        /* NAVBAR STİLLERİ */
+        /* NAVBAR STİLLERİ - ARKA PLANLA BÜTÜNLEŞİK & SOLA HİZALI */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 14px 6%; background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            padding: 12px 3%; background: rgba(14, 23, 38, 0.95);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             position: sticky; top: 0; z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); flex-wrap: wrap; gap: 15px;
+            border-bottom: none; flex-wrap: wrap; gap: 15px;
         }
         
-        /* LOGO & BÜYÜK YAKIN BEYAZ YAZI */
-        .logo a { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        /* LOGO BÜYÜK, YAZIDAN BASKIN VE YAKIN */
+        .logo a { display: flex; align-items: center; gap: 6px; text-decoration: none; }
         .logo-img {
-            height: 84px; width: auto; object-fit: contain;
+            height: 96px; width: auto; object-fit: contain;
             filter: brightness(0) invert(1);
             transition: 0.3s ease;
         }
@@ -55,12 +55,12 @@
             transform: scale(1.03);
         }
         .logo-text {
-            font-size: 36px; font-weight: 600; color: #ffffff !important; letter-spacing: 1.5px;
+            font-size: 32px; font-weight: 700; color: #ffffff !important; letter-spacing: 2px;
             font-family: 'Rajdhani', sans-serif; text-transform: uppercase;
-            text-shadow: none !important;
+            text-shadow: none !important; margin-left: 2px;
         }
         
-        .navbar nav { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .navbar nav { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
         .navbar nav a { color: #cbd5e1; text-decoration: none; font-size: 14px; font-weight: 600; transition: 0.3s; }
         .navbar nav a:hover { color: #38bdf8; }
         
@@ -129,11 +129,11 @@
         .footer-col a:hover { color: #38bdf8; }
 
         @media (max-width: 768px) {
-            .navbar { justify-content: center; text-align: center; padding: 12px 10px; }
+            .navbar { justify-content: center; text-align: center; padding: 10px 15px; }
             .navbar nav { justify-content: center; width: 100%; gap: 10px; }
             .navbar nav a { font-size: 13px; }
-            .logo-img { height: 60px; }
-            .logo-text { font-size: 28px; }
+            .logo-img { height: 70px; }
+            .logo-text { font-size: 26px; }
             .iban-box { flex-direction: column; text-align: center; }
             .copy-btn { width: 100%; margin-top: 8px; }
             .footer-content { flex-direction: column; text-align: center; }
