@@ -2,15 +2,15 @@
 
 {% block content %}
 <style>
-    /* HERO VİDEO ARKA PLAN STİLLERİ */
+    /* HERO VİDEO ARKA PLAN STİLLERİ (EN TEPEDEN BAŞLAR) */
     .hero-section {
         position: relative;
-        min-height: 85vh;
+        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 60px 20px;
+        padding: 140px 20px 60px;
         overflow: hidden;
     }
 
@@ -27,14 +27,14 @@
         object-fit: cover;
     }
 
-    /* VİDEO ÜZERİNDEKİ KOYU ŞEFFAF FİLTRE (YAZILAR NET OKUNSUN DİYE) */
+    /* VİDEO ÜZERİNDEKİ KOYU ŞEFFAF FİLTRE */
     .hero-overlay {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(180deg, rgba(14, 23, 38, 0.75) 0%, rgba(14, 23, 38, 0.6) 50%, rgba(14, 23, 38, 0.95) 100%);
+        background: linear-gradient(180deg, rgba(14, 23, 38, 0.45) 0%, rgba(14, 23, 38, 0.55) 50%, rgba(14, 23, 38, 0.95) 100%);
         z-index: -1;
     }
 
@@ -48,14 +48,14 @@
     .hero-badge {
         display: inline-block;
         padding: 6px 16px;
-        background: rgba(56, 189, 248, 0.12);
+        background: rgba(56, 189, 248, 0.15);
         border: 1px solid rgba(56, 189, 248, 0.4);
         color: #38bdf8;
         border-radius: 20px;
         font-size: 13px;
         font-weight: 600;
         margin-bottom: 25px;
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(8px);
     }
 
     .hero-title {
@@ -67,6 +67,7 @@
         font-family: 'Rajdhani', sans-serif;
         text-transform: uppercase;
         letter-spacing: 1px;
+        text-shadow: 0 4px 12px rgba(0,0,0,0.6);
     }
 
     .hero-title span {
@@ -75,12 +76,13 @@
 
     .hero-subtitle {
         font-size: 17px;
-        color: #cbd5e1;
+        color: #f1f5f9;
         line-height: 1.6;
         margin-bottom: 35px;
         max-width: 750px;
         margin-left: auto;
         margin-right: auto;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.7);
     }
 
     .hero-btns {
@@ -108,19 +110,19 @@
     }
 
     .btn-secondary-custom {
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.1);
         color: #fff;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         padding: 14px 32px;
         border-radius: 30px;
         font-weight: 600;
         text-decoration: none;
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(8px);
         transition: 0.3s;
     }
 
     .btn-secondary-custom:hover {
-        background: rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.25);
         border-color: #38bdf8;
     }
 
@@ -139,19 +141,22 @@
         color: #38bdf8;
         margin: 0;
         font-family: 'Rajdhani', sans-serif;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
 
     .stat-item p {
         font-size: 13px;
-        color: #94a3b8;
+        color: #cbd5e1;
         margin: 5px 0 0;
         font-weight: 600;
+        text-shadow: 0 1px 4px rgba(0,0,0,0.6);
     }
 
     @media (max-width: 768px) {
         .hero-title { font-size: 34px; }
         .hero-subtitle { font-size: 15px; }
         .stats-container { gap: 20px; }
+        .hero-section { padding-top: 110px; }
     }
 </style>
 
@@ -159,7 +164,7 @@
 <section class="hero-section">
     <!-- OTOMATİK BAŞLAYAN SESSİZ ARKA PLAN VİDEOSU -->
     <video autoplay loop muted playsinline class="hero-bg-video">
-        <source src="{{ url_for('static', filename='hero-bg.mp4') }}?v=2" type="video/mp4">
+        <source src="{{ url_for('static', filename='hero-bg.mp4') }}?v=3" type="video/mp4">
     </video>
     
     <!-- KOYU ŞEFFAF FİLTRE -->
