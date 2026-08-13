@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}SRgunessTech | Geleceğin Teknolojileri{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Arka Plan Teknoloji Izgarası ve Işık Efektleri -->
+    <div class="tech-bg-grid"></div>
+    <div class="tech-bg-glow"></div>
+
     <header>
         <div class="container">
             <nav>
                 <div class="logo">
-                    <a href="{{ url_for('index') }}">SRguness<span>Tech</span></a>
+                    <a href="{{ url_for('index') }}">
+                        <!-- static/js klasöründeki mevcut logo görselin -->
+                        <img src="{{ url_for('static', filename='js/logo.png') }}" alt="SRgunessTech Logo" class="brand-logo" onerror="this.style.display='none'">
+                        <span class="brand-name">SRGUNESSTECH</span>
+                    </a>
                 </div>
                 <ul class="nav-links">
                     <li><a href="{{ url_for('index') }}">Ana Sayfa</a></li>
@@ -34,7 +42,11 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-info">
-                    <h3>SRguness<span>Tech</span></h3>
+                    <div class="logo" style="margin-bottom: 12px;">
+                        <a href="{{ url_for('index') }}">
+                            <span class="brand-name" style="font-size: 1.2rem;">SRGUNESSTECH</span>
+                        </a>
+                    </div>
                     <p>Günlük hayatı kolaylaştıran özgün teknolojiler, gömülü sistemler ve akıllı donanım çözümleri geliştiriyoruz.</p>
                 </div>
                 <div class="footer-links">
