@@ -10,10 +10,9 @@ app.secret_key = 'srgunesstech_secret_key_2026'
 
 # --- GMAIL HESAP BİLGİLERİ ---
 SENDER_EMAIL = 'srgunesstech@gmail.com'
-APP_PASSWORD = 'igosbkqtkzkfdkjf'  # Gmail Uygulama Şifren
+APP_PASSWORD = 'igosbkqtkzkfdkjf'
 
 def send_email_thread(name, user_email, subject, message_body):
-    """Bulut sunucularında tıkama yapmayan yerel Python SMTP göndericisi"""
     try:
         msg = MIMEMultipart()
         msg['From'] = f"SRgunessTech Web <{SENDER_EMAIL}>"
@@ -32,14 +31,13 @@ Mesaj:
 """
         msg.attach(MIMEText(body_text, 'plain', 'utf-8'))
 
-        # SSL üzerinden Gmail SMTP sunucusuna güvenli bağlantı (Port 465)
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=10)
         server.login(SENDER_EMAIL, APP_PASSWORD)
         server.sendmail(SENDER_EMAIL, SENDER_EMAIL, msg.as_string())
         server.quit()
-        print(">>> E-POSTA BAŞARIYLA SIZIN GMAIL KUTUNUZA ULAŞTI <<<")
+        print(">>> MESAJ GMAIL KUTUSUNA ULAŞTI <<<")
     except Exception as e:
-        print(f">>> E-POSTA GÖNDERME HATASI: {e} <<<")
+        print(f">>> E-POSTA HATASI: {e} <<<")
 
 @app.route('/')
 def index():
@@ -65,7 +63,6 @@ def contact():
         subject = request.form.get('subject')
         message_body = request.form.get('message')
         
-        # Maili arka planda fırlat (Site kilitlenmez, anında yanıt verir)
         threading.Thread(
             target=send_email_thread, 
             args=(name, user_email, subject, message_body)
