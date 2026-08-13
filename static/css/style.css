@@ -28,7 +28,7 @@ body {
     position: relative;
 }
 
-/* --- CANLI TEKNOLOJİ ARKA PLAN EFEKTLERİ --- */
+/* CANLI TEKNOLOJİ ARKA PLAN EFEKTLERİ */
 .tech-bg-grid {
     position: fixed;
     top: 0;
@@ -56,16 +56,21 @@ body {
     filter: blur(80px);
 }
 
-/* Container */
+/* Containers */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
 }
 
-/* --- BAYKAR TARZI LOGO VE BEYAZ İNCE-UZUN BAŞLIK --- */
+.container-fluid {
+    width: 100%;
+    padding: 0 40px; /* Header'ı sola ve sağa daha çok genişletir */
+}
+
+/* HEADER & LOGO ALANI */
 header {
-    background-color: rgba(8, 12, 20, 0.85);
+    background-color: rgba(8, 12, 20, 0.88);
     backdrop-filter: blur(16px);
     position: fixed;
     top: 0;
@@ -78,43 +83,50 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 85px;
+    height: 90px;
 }
 
 .logo a {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
     text-decoration: none;
 }
 
+/* Büyütülmüş Logo Görseli */
 .brand-logo {
-    height: 38px;
+    height: 48px; /* Logoyu büyüttük */
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 8px rgba(0, 112, 243, 0.5));
+    filter: drop-shadow(0 0 10px rgba(0, 112, 243, 0.6));
+    transition: transform 0.3s ease;
 }
 
+.logo a:hover .brand-logo {
+    transform: scale(1.05);
+}
+
+/* Büyütülmüş ve İnce-Uzun Şık Yazı */
 .brand-name {
     font-family: var(--font-tech);
-    font-size: 1.6rem;
-    font-weight: 300;
+    font-size: 2.1rem; /* Yazı boyutunu büyüttük */
+    font-weight: 500;
     color: #ffffff;
-    letter-spacing: 4px; /* İnce ve uzun gösteren harf aralığı */
+    letter-spacing: 3px;
     text-transform: uppercase;
     transition: all 0.3s ease;
 }
 
 .logo a:hover .brand-name {
     color: #ffffff;
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+    text-shadow: 0 0 16px rgba(255, 255, 255, 0.8);
 }
 
-/* Navigation Links */
+/* Nav Links */
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 32px;
+    gap: 36px;
     align-items: center;
 }
 
@@ -122,7 +134,7 @@ nav {
     color: var(--text-muted);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 1rem;
     letter-spacing: 0.5px;
     transition: color 0.3s ease;
 }
@@ -135,11 +147,11 @@ nav {
 .btn-primary {
     background: linear-gradient(135deg, var(--accent-blue), #0051ba);
     color: #fff;
-    padding: 10px 22px;
+    padding: 12px 26px;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 16px var(--accent-glow);
@@ -157,11 +169,11 @@ nav {
 .btn-secondary {
     background: rgba(255, 255, 255, 0.03);
     color: #fff;
-    padding: 10px 22px;
+    padding: 12px 26px;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
     display: inline-block;
@@ -175,7 +187,7 @@ nav {
 
 /* Hero Section */
 .hero {
-    padding: 200px 0 120px;
+    padding: 210px 0 120px;
     text-align: center;
 }
 
