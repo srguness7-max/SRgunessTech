@@ -3,298 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Google Search Console Doğrulama Etiketi -->
-    <meta name="google-site-verification" content="BAJsoxVaHtuN_9ib_DTXRCWwUdlqNsaNoWGnZgf5n4Y" />
-
-    <!-- TAB, MOBİL VE GOOGLE ARAMA SONUÇLARI (SERP) LOGO / FAVICON KODLARI -->
-    <link rel="icon" type="image/png" sizes="64x64" href="{{ url_for('static', filename='logo2.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='logo2.png') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='logo2.png') }}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="{{ url_for('static', filename='logo2.png') }}">
-
-    <!-- GOOGLE AI BAKIŞI VE ARAMA MOTORLARI İÇİN KURUMSAL SCHEMA VERİSİ -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "SRgunessTech",
-      "url": "https://srgunesstech.com.tr",
-      "logo": "https://srgunesstech.com.tr/static/logo2.png",
-      "description": "SRgunessTech; gömülü sistemler, IoT, otomasyon ve özel elektronik ürün geliştirme mühendislik atölyesidir.",
-      "founder": {
-        "@type": "Person",
-        "name": "Seyyid Ramazan Güneş",
-        "jobTitle": "Kurucu & CEO"
-      },
-      "sameAs": [
-        "https://srgunesstech.com.tr"
-      ]
-    }
-    </script>
-
-    <title>SRgunessTech | Gömülü Sistemler, Otomasyon & Ürün Geliştirme</title>
+    <title>{% block title %}SRgunessTech | Geleceğin Teknolojileri{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
-        
-        html { scroll-behavior: smooth; }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0; background-color: #0e1726; color: #f1f5f9;
-            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; overflow-x: hidden;
-        }
-
-        /* HAFİF & ŞEFFAF STICKY NAVBAR */
-        .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 4%; 
-            background: rgba(14, 23, 38, 0.35) !important;
-            backdrop-filter: blur(4px) !important;
-            -webkit-backdrop-filter: blur(4px) !important;
-            position: fixed !important; 
-            top: 0; left: 0; width: 100%;
-            z-index: 1000; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-            transition: all 0.3s ease;
-        }
-        
-        .logo a { display: flex; align-items: center; gap: 8px !important; text-decoration: none; }
-        .logo-img {
-            height: 60px !important; width: auto; object-fit: contain;
-            filter: brightness(0) invert(1);
-            transition: 0.3s ease;
-        }
-        .logo a:hover .logo-img { transform: scale(1.04); }
-        
-        .logo-text {
-            font-size: 34px !important; font-weight: 600 !important; color: #ffffff !important;
-            letter-spacing: 2px !important; font-family: 'Rajdhani', sans-serif !important;
-            text-transform: uppercase; text-shadow: none !important; margin: 0 !important;
-        }
-        
-        .nav-links { display: flex; align-items: center; gap: 22px; }
-        .nav-links a { 
-            color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 600; transition: 0.3s;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-        }
-        .nav-links a:hover { color: #38bdf8; }
-        
-        .btn-quote {
-            background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
-            color: #fff !important; padding: 10px 24px; border-radius: 30px; font-weight: 700 !important;
-            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4); transition: 0.3s !important; border: none;
-            text-shadow: none !important; text-decoration: none; display: inline-block;
-        }
-        .btn-quote:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6) !important; }
-
-        .hamburger-btn {
-            display: none; background: transparent; border: none; color: #fff;
-            font-size: 28px; cursor: pointer; padding: 5px;
-        }
-
-        /* MODAL STİLLERİ */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px);
-            z-index: 9999; justify-content: center; align-items: center; padding: 15px;
-        }
-        .modal-content {
-            background: rgba(30, 41, 59, 0.95); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 16px;
-            padding: 30px; max-width: 520px; width: 100%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); color: #fff;
-            position: relative; text-align: center; max-height: 90vh; overflow-y: auto;
-        }
-        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 26px; color: #94a3b8; cursor: pointer; }
-        .modal-close:hover { color: #38bdf8; }
-        
-        .form-group { text-align: left; margin-bottom: 14px; }
-        .form-group label { display: block; margin-bottom: 6px; font-size: 12px; color: #94a3b8; font-weight: 600; }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%; padding: 12px; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 8px; color: #fff; font-family: inherit; font-size: 14px; transition: 0.3s;
-        }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
-        .btn-submit { width: 100%; padding: 14px; background: #22c55e; color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; transition: 0.3s; }
-        .btn-submit:hover { background: #16a34a; }
-
-        .fixed-wa-btn {
-            position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
-            background: #22c55e; border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.4); z-index: 999; text-decoration: none;
-            transition: 0.3s;
-        }
-        .fixed-wa-btn:hover { transform: scale(1.08); }
-        .fixed-wa-btn svg { width: 32px; height: 32px; fill: #fff; }
-
-        .footer {
-            background: rgba(15, 23, 42, 0.95); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 50px 8% 25px;
-            margin-top: 80px; text-align: center; color: #94a3b8; font-size: 14px;
-        }
-        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; margin-bottom: 40px; text-align: left; }
-        .footer-col h4 { color: #fff; font-size: 16px; margin-bottom: 15px; font-weight: 700; }
-        .footer-col p, .footer-col a { color: #cbd5e1; text-decoration: none; display: block; margin-bottom: 10px; font-size: 14px; transition: 0.3s; }
-        .footer-col a:hover { color: #38bdf8; }
-
-        @media (max-width: 900px) {
-            .navbar { padding: 10px 4%; }
-            .logo-img { height: 45px !important; }
-            .logo-text { font-size: 24px !important; }
-            .hamburger-btn { display: block; }
-            
-            .nav-links {
-                display: none; flex-direction: column; width: 100%; position: absolute;
-                top: 100%; left: 0; background: rgba(15, 23, 42, 0.98); padding: 20px;
-                border-bottom: 1px solid rgba(56, 189, 248, 0.2); gap: 15px; text-align: center;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            }
-            .nav-links.active { display: flex; }
-            .footer-content { flex-direction: column; text-align: center; }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="navbar">
-        <div class="logo">
-            <a href="{{ url_for('index') }}">
-                <img src="{{ url_for('static', filename='logo2.png') }}" alt="SRgunessTech Logo" class="logo-img">
-                <span class="logo-text">SRgunessTech</span>
-            </a>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="{{ url_for('index') }}">SRguness<span>Tech</span></a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('index') }}">Ana Sayfa</a></li>
+                    <li><a href="{{ url_for('products') }}">Ürünler</a></li>
+                    <li><a href="{{ url_for('technologies') }}">Teknolojiler</a></li>
+                    <li><a href="{{ url_for('about') }}">Hakkımızda</a></li>
+                    <li><a href="{{ url_for('contact') }}">İletişim</a></li>
+                </ul>
+                <a href="{{ url_for('products') }}" class="btn-primary">Ürünlerimizi Keşfet →</a>
+            </nav>
         </div>
-        
-        <button class="hamburger-btn" onclick="toggleMobileMenu()">☰</button>
-
-        <nav class="nav-links" id="navLinks">
-            <a href="{{ url_for('index') }}" onclick="closeMobileMenu()">Ana Sayfa</a>
-            <a href="#solutions" onclick="closeMobileMenu()">Çözümler</a>
-            <a href="#process" onclick="closeMobileMenu()">Nasıl Çalışıyoruz?</a>
-            <a href="#portfolio" onclick="closeMobileMenu()">Projeler & Ar-Ge</a>
-            <a href="#founder" onclick="closeMobileMenu()">Kurucumuz</a>
-            <a href="#faq" onclick="closeMobileMenu()">SSS</a>
-            <a href="javascript:void(0)" onclick="closeMobileMenu(); openRequestModal();" class="btn-quote">Projeni Anlat ➔</a>
-        </nav>
     </header>
 
     <main>
         {% block content %}{% endblock %}
     </main>
 
-    <a href="https://wa.me/905531734971?text=Merhaba%2C%20SRgunessTech%20%C3%BCzerinden%20elektronik/yaz%C4%B1l%C4%B1m%20projem%20i%C3%A7in%20ileti%C5%9Fime%20ge%C3%A7iyorum." target="_blank" class="fixed-wa-btn" title="WhatsApp İle İletişime Geç">
-        <svg viewBox="0 0 32 32">
-            <path d="M16 2A13 13 0 0 0 4.68 21.25L3 27.5l6.43-1.65A13 13 0 1 0 16 2zm0 24a11 11 0 0 1-5.59-1.52l-.4-.24-3.8.97 1-3.68-.26-.41A11 11 0 1 1 16 26zm6-8.16c-.33-.16-1.95-.96-2.25-1.07s-.52-.16-.74.16-.86 1.07-1.05 1.29-.38.25-.71.08a9 9 0 0 1-2.63-1.62 10 10 0 0 1-1.82-2.27c-.19-.33 0-.5.15-.66s.33-.38.5-.57a2.2 2.2 0 0 0 .33-.55.6.6 0 0 0 0-.57c-.08-.16-.74-1.78-1-2.43s-.54-.54-.74-.55h-.63a1.2 1.2 0 0 0-.88.41 3.7 3.7 0 0 0-1.15 2.75 6.4 6.4 0 0 0 1.34 3.42 14.7 14.7 0 0 0 5.65 5 19 19 0 0 0 1.9.7 4.6 4.6 0 0 0 2.1.13 3.4 3.4 0 0 0 2.25-1.58 2.8 2.8 0 0 0 .2-1.58c-.08-.13-.31-.22-.64-.38z"/>
-        </svg>
-    </a>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-col">
-                <h4>SRgunessTech</h4>
-                <p>Gömülü sistemler, otomasyon, IoT ve özel elektronik ürün geliştirme mühendislik atölyesi.</p>
-                <p>📍 Ankara, Türkiye</p>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <h3>SRguness<span>Tech</span></h3>
+                    <p>Günlük hayatı kolaylaştıran özgün teknolojiler, gömülü sistemler ve akıllı donanım çözümleri geliştiriyoruz.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Hızlı Bağlantılar</h4>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Ana Sayfa</a></li>
+                        <li><a href="{{ url_for('products') }}">Ürünler</a></li>
+                        <li><a href="{{ url_for('technologies') }}">Teknolojiler</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Kurumsal</h4>
+                    <ul>
+                        <li><a href="{{ url_for('about') }}">Hakkımızda</a></li>
+                        <li><a href="{{ url_for('contact') }}">İş Birliği & İletişim</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-col">
-                <h4>Hızlı Bağlantılar</h4>
-                <a href="#solutions">Mühendislik Çözümleri</a>
-                <a href="#process">Nasıl Çalışıyoruz?</a>
-                <a href="#scope-form">Proje Kapsam Formu</a>
-                <a href="#portfolio">Projeler & Ar-Ge</a>
-                <a href="#founder">Kurucumuz</a>
-                <a href="#faq">Sıkça Sorulan Sorular</a>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SRgunessTech. Tüm hakları saklıdır.</p>
             </div>
-            <div class="footer-col">
-                <h4>İletişim & Destek</h4>
-                <p>📱 WhatsApp: +90 553 173 49 71</p>
-                <p>✉️ E-Posta: destek@srgunesstech.com.tr</p>
-                <p style="color: #38bdf8; font-size: 13px; margin-top: 10px;">⚡ 24 Saat İçinde Teknik Ön Değerlendirme</p>
-            </div>
-        </div>
-        <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 20px;">
-            &copy; 2026 SRgunessTech. Tüm Hakları Saklıdır.
         </div>
     </footer>
-
-    <!-- PROJE ANLAT / TEKLİF AL MODALI -->
-    <div id="requestModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeRequestModal()">&times;</span>
-            <h3 style="color: #38bdf8; margin-bottom: 8px;">Projenizi Anlatın</h3>
-            <p style="font-size: 12px; color: #94a3b8; margin-bottom: 15px;">Teknik gereksinimlerinizi iletin, 24 saat içinde ücretsiz mühendislik değerlendirmesi yapalım.</p>
-            <form id="projectForm" onsubmit="submitToWhatsApp(event)">
-                <div class="form-group">
-                    <label>Adınız / Firma Adı</label>
-                    <input type="text" id="reqName" required placeholder="Örn: Ahmet Yılmaz / ABC Otomasyon">
-                </div>
-                <div class="form-group">
-                    <label>İletişim (Telefon / E-Posta)</label>
-                    <input type="text" id="reqContact" required placeholder="Örn: 05xx xxx xx xx">
-                </div>
-                <div class="form-group">
-                    <label>Tahmini Proje Kapsamı</label>
-                    <select id="reqScope">
-                        <option value="Başlangıç / Prototipleme">Başlangıç / Prototip</option>
-                        <option value="Orta Seviye / IoT & Panel">Orta Seviye / IoT & Panel Entegrasyon</option>
-                        <option value="İleri Seviye / Özel Ürün Geliştirme">İleri Seviye / Özel Cihaz & Ürün</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Proje Detayları & İhtiyaçlar</label>
-                    <textarea id="reqDetails" rows="3" required placeholder="ESP32, PCB, 3D Kasa, Web Panel vb. neye ihtiyacınız olduğunu kısaca açıklayın..."></textarea>
-                </div>
-                <button type="submit" class="btn-submit">WhatsApp İle Teknik Görüşme Başlat</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="projectDetailModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeProjectModal()">&times;</span>
-            <h3 id="projectTitle" style="color: #38bdf8; margin-bottom: 10px;"></h3>
-            <p id="projectDescription" style="font-size: 13px; color: #cbd5e1; line-height: 1.6; text-align: left; margin: 15px 0;"></p>
-            <button class="copy-btn" style="width: 100%; padding: 12px; background: #38bdf8; color: #0f172a; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;" onclick="closeProjectModal(); openRequestModal();">Benzer Bir Proje İçin Görüşün</button>
-        </div>
-    </div>
-
-    <script>
-        function toggleMobileMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
-        function closeMobileMenu() {
-            document.getElementById('navLinks').classList.remove('active');
-        }
-
-        function openRequestModal() { document.getElementById('requestModal').style.display = 'flex'; }
-        function closeRequestModal() { document.getElementById('requestModal').style.display = 'none'; }
-        function closeProjectModal() { document.getElementById('projectDetailModal').style.display = 'none'; }
-        
-        function openProjectDetail(title, desc) {
-            document.getElementById('projectTitle').innerText = title;
-            document.getElementById('projectDescription').innerText = desc;
-            document.getElementById('projectDetailModal').style.display = 'flex';
-        }
-
-        function submitToWhatsApp(e) {
-            e.preventDefault();
-            var phone = "905531734971";
-            var name = document.getElementById('reqName').value;
-            var contact = document.getElementById('reqContact').value;
-            var scope = document.getElementById('reqScope').value;
-            var details = document.getElementById('reqDetails').value;
-
-            var message = "*Yeni Mühendislik Proje Talebi*\n\n" +
-                          "*Müşteri / Firma:* " + name + "\n" +
-                          "*İletişim:* " + contact + "\n" +
-                          "*Tahmini Kapsam:* " + scope + "\n\n" +
-                          "*Proje Detayları:*\n" + details;
-
-            var waUrl = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-            window.open(waUrl, '_blank');
-            closeRequestModal();
-            document.getElementById('projectForm').reset();
-        }
-    </script>
 </body>
 </html>
