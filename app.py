@@ -1,30 +1,45 @@
 import os
+import smtplib
 import threading
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from flask import Flask, render_template, request, flash, redirect, url_for
-from flask_mail import Mail, Message
 
 app = Flask(__name__)
 app.secret_key = 'srgunesstech_secret_key_2026'
 
-# --- GMAIL SMTP E-POSTA AYARLARI (Port 465 & SSL) ---
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = 'srgunesstech@gmail.com'
-app.config['MAIL_PASSWORD'] = 'igosbkqtkzkfdkjf'
-app.config['MAIL_DEFAULT_SENDER'] = ('SRgunessTech Web', 'srgunesstech@gmail.com')
+# --- GMAIL HESAP BİLGİLERİ ---
+SENDER_EMAIL = 'srgunesstech@gmail.com'
+APP_PASSWORD = 'igosbkqtkzkfdkjf'  # Gmail Uygulama Şifren
 
-mail = Mail(app)
+def send_email_thread(name, user_email, subject, message_body):
+    """Bulut sunucularında tıkama yapmayan yerel Python SMTP göndericisi"""
+    try:
+        msg = MIMEMultipart()
+        msg['From'] = f"SRgunessTech Web <{SENDER_EMAIL}>"
+        msg['To'] = SENDER_EMAIL
+        msg['Reply-To'] = user_email
+        msg['Subject'] = f"[SRgunessTech İletişim] {subject}"
 
-def send_async_email(app_instance, msg):
-    """Mail gönderme işlemini arka planda çalıştırır, hatayı terminale/loglara basar."""
-    with app_instance.app_context():
-        try:
-            mail.send(msg)
-            print(">>> MAIL BAŞARIYLA GÖNDERİLDİ! <<<")
-        except Exception as e:
-            print(f">>> MAIL GÖNDERME HATASI: {e} <<<")
+        body_text = f"""SRgunessTech Web Sitesinden Yeni Mesaj!
+
+Gönderen Ad Soyad : {name}
+Gönderen E-Posta  : {user_email}
+Konu             : {subject}
+
+Mesaj:
+{message_body}
+"""
+        msg.attach(MIMEText(body_text, 'plain', 'utf-8'))
+
+        # SSL üzerinden Gmail SMTP sunucusuna güvenli bağlantı (Port 465)
+        server = smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=10)
+        server.login(SENDER_EMAIL, APP_PASSWORD)
+        server.sendmail(SENDER_EMAIL, SENDER_EMAIL, msg.as_string())
+        server.quit()
+        print(">>> E-POSTA BAŞARIYLA SIZIN GMAIL KUTUNUZA ULAŞTI <<<")
+    except Exception as e:
+        print(f">>> E-POSTA GÖNDERME HATASI: {e} <<<")
 
 @app.route('/')
 def index():
@@ -46,25 +61,15 @@ def about():
 def contact():
     if request.method == 'POST':
         name = request.form.get('name')
-        email = request.form.get('email')
+        user_email = request.form.get('email')
         subject = request.form.get('subject')
         message_body = request.form.get('message')
         
-        msg = Message(
-            subject=f"[SRgunessTech İletişim] {subject}",
-            recipients=['srgunesstech@gmail.com']
-        )
-        msg.body = f"""SRgunessTech Web Sitesinden Yeni Mesaj!
-
-Gönderen Ad Soyad : {name}
-Gönderen E-Posta  : {email}
-Konu             : {subject}
-
-Mesaj:
-{message_body}
-"""
-        # Arka planda mail fırlatma
-        threading.Thread(target=send_async_email, args=(app, msg)).start()
+        # Maili arka planda fırlat (Site kilitlenmez, anında yanıt verir)
+        threading.Thread(
+            target=send_email_thread, 
+            args=(name, user_email, subject, message_body)
+        ).start()
         
         flash('Mesajınız başarıyla iletildi! En kısa sürede geri dönüş yapacağız.', 'success')
         return redirect(url_for('contact'))
