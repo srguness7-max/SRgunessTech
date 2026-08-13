@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}SRgunessTech | Geleceğin Teknolojileri{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- TARAYICI SEKMESİ İKONU (FAVICON) -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='js/logo2.png') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Arka Plan Teknoloji Izgarası ve Işık Efektleri -->
@@ -13,12 +17,12 @@
     <div class="tech-bg-glow"></div>
 
     <header>
-        <div class="container">
+        <div class="container-fluid">
             <nav>
                 <div class="logo">
                     <a href="{{ url_for('index') }}">
-                        <!-- static/js klasöründeki mevcut logo görselin -->
-                        <img src="{{ url_for('static', filename='js/logo.png') }}" alt="SRgunessTech Logo" class="brand-logo" onerror="this.style.display='none'">
+                        <!-- Logo Görseli (logo2.png) -->
+                        <img src="{{ url_for('static', filename='js/logo2.png') }}" alt="SRgunessTech Logo" class="brand-logo">
                         <span class="brand-name">SRGUNESSTECH</span>
                     </a>
                 </div>
@@ -44,7 +48,8 @@
                 <div class="footer-info">
                     <div class="logo" style="margin-bottom: 12px;">
                         <a href="{{ url_for('index') }}">
-                            <span class="brand-name" style="font-size: 1.2rem;">SRGUNESSTECH</span>
+                            <img src="{{ url_for('static', filename='js/logo2.png') }}" alt="SRgunessTech Logo" style="height: 30px;">
+                            <span class="brand-name" style="font-size: 1.3rem;">SRGUNESSTECH</span>
                         </a>
                     </div>
                     <p>Günlük hayatı kolaylaştıran özgün teknolojiler, gömülü sistemler ve akıllı donanım çözümleri geliştiriyoruz.</p>
